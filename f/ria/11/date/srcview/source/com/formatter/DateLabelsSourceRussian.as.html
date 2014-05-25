@@ -1,0 +1,69 @@
+<!-- saved from url=(0014)about:internet -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>DateLabelsSourceRussian.as</title>
+<link rel="stylesheet" type="text/css" href="../../../SourceStyles.css"/>
+</head>
+
+<body><pre><span class="ActionScriptpackage">package</span> <span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">formatter</span>
+<span class="ActionScriptBracket/Brace">{</span>
+<span class="ActionScriptASDoc">/**
+ * English date labels source.
+ */</span>
+<span class="ActionScriptReserved">public</span> <span class="ActionScriptclass">class</span> <span class="ActionScriptDefault_Text">DateLabelsSourceRussian</span> <span class="ActionScriptReserved">implements</span> <span class="ActionScriptDefault_Text">IDateLabelsSource</span>
+<span class="ActionScriptBracket/Brace">{</span>
+    
+    <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">years</span>:<span class="ActionScriptDefault_Text">Array</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptBracket/Brace">[</span> <span class="ActionScriptString">"год"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptString">"года"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptString">"лет"</span> <span class="ActionScriptBracket/Brace">]</span>;
+    
+    <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">months</span>:<span class="ActionScriptDefault_Text">Array</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptBracket/Brace">[</span> <span class="ActionScriptString">"месяц"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptString">"месяца"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptString">"месяцев"</span> <span class="ActionScriptBracket/Brace">]</span>;
+    
+    <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">days</span>:<span class="ActionScriptDefault_Text">Array</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptBracket/Brace">[</span> <span class="ActionScriptString">"день"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptString">"дня"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptString">"дней"</span> <span class="ActionScriptBracket/Brace">]</span>;
+    
+    <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">hours</span>:<span class="ActionScriptDefault_Text">Array</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptBracket/Brace">[</span> <span class="ActionScriptString">"час"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptString">"часа"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptString">"часов"</span> <span class="ActionScriptBracket/Brace">]</span>;
+    
+    <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">minutes</span>:<span class="ActionScriptDefault_Text">Array</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptBracket/Brace">[</span> <span class="ActionScriptString">"минута"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptString">"минуты"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptString">"минут"</span> <span class="ActionScriptBracket/Brace">]</span>;
+    
+    <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">seconds</span>:<span class="ActionScriptDefault_Text">Array</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptBracket/Brace">[</span> <span class="ActionScriptString">"секунда"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptString">"секунды"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptString">"секунд"</span> <span class="ActionScriptBracket/Brace">]</span>;
+    
+    <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">milliseconds</span>:<span class="ActionScriptDefault_Text">Array</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptBracket/Brace">[</span> <span class="ActionScriptString">"милисекунда"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptString">"милисекунды"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptString">"секунд"</span> <span class="ActionScriptBracket/Brace">]</span>;
+    
+    <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">unknowns</span>:<span class="ActionScriptDefault_Text">Array</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptBracket/Brace">[</span> <span class="ActionScriptString">"?"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptString">"?"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptString">"?"</span> <span class="ActionScriptBracket/Brace">]</span>;
+    
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">getLabel</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">amount</span>:<span class="ActionScriptDefault_Text">int</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">datePart</span>:<span class="ActionScriptDefault_Text">String</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">String</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptDefault_Text">amount</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">Math</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">abs</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">amount</span><span class="ActionScriptBracket/Brace">)</span>;
+        
+        <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">index</span>:<span class="ActionScriptDefault_Text">int</span>;
+        <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">lastDigit</span>:<span class="ActionScriptDefault_Text">int</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">amount</span> <span class="ActionScriptOperator">%</span> 10;
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">amount</span> <span class="ActionScriptOperator">&gt;=</span> 5 <span class="ActionScriptOperator">&amp;&amp;</span> <span class="ActionScriptDefault_Text">amount</span> <span class="ActionScriptOperator">&lt;=</span> 20 <span class="ActionScriptOperator">||</span> <span class="ActionScriptDefault_Text">lastDigit</span> <span class="ActionScriptOperator">==</span> 0 <span class="ActionScriptOperator">||</span> <span class="ActionScriptDefault_Text">lastDigit</span> <span class="ActionScriptOperator">&gt;=</span> 5<span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptDefault_Text">index</span> <span class="ActionScriptOperator">=</span> 2;
+        <span class="ActionScriptReserved">else</span> <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">lastDigit</span> <span class="ActionScriptOperator">==</span> 1<span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptDefault_Text">index</span> <span class="ActionScriptOperator">=</span> 0;
+        <span class="ActionScriptReserved">else</span> <span class="ActionScriptComment">// lastDigit = 2, 3, 4
+</span>            <span class="ActionScriptDefault_Text">index</span> <span class="ActionScriptOperator">=</span> 1;
+        
+        <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">array</span>:<span class="ActionScriptDefault_Text">Array</span>;
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">datePart</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptDefault_Text">DatePart</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">YEAR</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptDefault_Text">array</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">years</span>;
+        <span class="ActionScriptReserved">else</span> <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">datePart</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptDefault_Text">DatePart</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">MONTH</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptDefault_Text">array</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">months</span>;
+        <span class="ActionScriptReserved">else</span> <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">datePart</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptDefault_Text">DatePart</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">DAY</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptDefault_Text">array</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">days</span>;
+        <span class="ActionScriptReserved">else</span> <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">datePart</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptDefault_Text">DatePart</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">HOUR</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptDefault_Text">array</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">hours</span>;
+        <span class="ActionScriptReserved">else</span> <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">datePart</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptDefault_Text">DatePart</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">MINUTE</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptDefault_Text">array</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">minutes</span>;
+        <span class="ActionScriptReserved">else</span> <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">datePart</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptDefault_Text">DatePart</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">SECOND</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptDefault_Text">array</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">seconds</span>;
+        <span class="ActionScriptReserved">else</span> <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">datePart</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptDefault_Text">DatePart</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">MILLISECOND</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptDefault_Text">array</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">milliseconds</span>;
+        <span class="ActionScriptReserved">else</span>
+            <span class="ActionScriptDefault_Text">array</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">unknowns</span>;
+        
+        <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">array</span><span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptDefault_Text">index</span><span class="ActionScriptBracket/Brace">]</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+<span class="ActionScriptBracket/Brace">}</span>
+<span class="ActionScriptBracket/Brace">}</span></pre></body>
+</html>

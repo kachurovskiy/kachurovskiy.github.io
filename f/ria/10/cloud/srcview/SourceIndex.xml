@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<index>
+	<title>Source of TagCloudApp</title>
+	<nodes>
+		<node label="html-template">
+			<node icon="htmlIcon" label="index.template.html" url="source/html-template/index.template.html"/>
+			<node label="swfobject.js" url="source/html-template/swfobject.js.txt"/>
+		</node>
+		<node label="libs">
+		</node>
+		<node label="release-assets">
+			<node icon="imageIcon" label="screenshot1.png" url="source/release-assets/screenshot1.png.html"/>
+		</node>
+		<node label="src">
+			<node icon="actionScriptIcon" label="CloudLayout.as" url="source/CloudLayout.as.html"/>
+			<node icon="mxmlAppIcon" selected="true" label="TagCloudApp.mxml" url="source/TagCloudApp.mxml.html"/>
+		</node>
+	</nodes>
+	<zipfile label="Download source (ZIP, 24K)" url="TagCloudApp.zip">
+	</zipfile>
+	<sdklink label="Download Flex SDK" url="http://www.adobe.com/go/flex4_sdk_download">
+	</sdklink>
+</index>

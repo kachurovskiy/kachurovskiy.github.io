@@ -1,0 +1,2078 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<!-- Mirrored from kachurovskiy.com/2010/spark-tree/  04:20:44 GMT -->
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Spark Tree</title>
+
+<link rel="stylesheet" href="/wp-content/themes/hybrid/style.min.css" type="text/css" media="all" />
+
+
+
+<meta name="generator" content="WordPress 3.8.1" />
+<meta name="template" content="Hybrid 1.2" />
+<link rel="alternate" type="application/rss+xml" title="Maxim Kachurovskiy &raquo; Feed" href="../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="Maxim Kachurovskiy &raquo; Comments Feed" href="../../comments/feed/index.html" />
+
+            <script type="text/javascript">//<![CDATA[
+            // Google Analytics for WordPress by Yoast v4.3.5 | http://yoast.com/wordpress/google-analytics/
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-4425250-5']);
+				            _gaq.push(['_trackPageview']);
+            (function () {
+                var ga = document.createElement('script');
+                ga.type = 'text/javascript';
+                ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(ga, s);
+            })();
+            //]]></script>
+			<link rel="alternate" type="application/rss+xml" title="Maxim Kachurovskiy &raquo; Spark Tree Comments Feed" href="feed/index.html" />
+<link rel='stylesheet' id='contact-form-7-css'  href='/wp-content/plugins/contact-form-7/includes/css/stylesf3df.css?ver=3.7.2' type='text/css' media='all' />
+<script type='text/javascript' src='/wp-includes/js/jquery/jquery.js?ver=1.10.2'></script>
+<script type='text/javascript' src='/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+<script type='text/javascript' src='/wp-includes/js/comment-reply.min.js?ver=3.8.1'></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../xmlrpc0db0.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Runtime icons for Flex components' href='../runtime-icons-for-flex-components/index.html' />
+<link rel='next' title='Spark Tree &#8211; faster, with icons and text colors' href='../spark-tree-updated/index.html' />
+<link rel='canonical' href='index.html' />
+<link rel='shortlink' href='../../index4f61.html?p=66' />
+
+<script type="text/javascript" src="/wp-content/plugins/ald-transpose-email/ald-transpose-email.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/wp-content/plugins/highlight-source-pro/all.css" /><!--[if IE]><link rel="stylesheet" type="text/css" href="http://kachurovskiy.com/wp-content/plugins/highlight-source-pro/ie.css" /><![endif]-->
+</head>
+
+<body class="wordpress ltr en_US parent-theme y2014 m03 d18 h08 tuesday logged-out singular singular-post singular-post-66 single-66 primary-active secondary-inactive subsidiary-inactive">
+
+
+<div id="body-container">
+
+	
+	<div id="header-container">
+
+		<div id="header">
+
+			<div id="site-title"><a href="../../index.html" title="Maxim Kachurovskiy" rel="home"><span>Maxim Kachurovskiy</span></a></div><div id="site-description"><span>Adobe Flex, Flash, ActionScript and more</span></div>
+		</div><!-- #header -->
+
+	</div><!-- #header-container -->
+
+	
+	<div id="container">
+
+		
+	<div id="content" class="hfeed content">
+
+		<div class="breadcrumb-trail breadcrumbs" itemprop="breadcrumb"><span class="trail-before">Browse:</span> <span class="trail-begin"><a href="../../index.html" title="Maxim Kachurovskiy" rel="home" class="trail-begin">Home</a></span> <span class="sep">/</span> <a href="../index.html" title="2010">2010</a> <span class="sep">/</span> <span class="trail-end">Spark Tree</span></div>
+		
+			<div id="post-66" class="hentry post publish post-1 odd author-maxim category-component category-fplatform category-flex">
+
+				<h1 class='post-title entry-title'><a href='index.html'>Spark Tree</a></h1><p class="byline">By <span class="author vcard"><a class="url fn n" rel="author" href="/author/maxim/index.html" title="Maxim">Maxim</a></span> on <abbr class="published" title="Thursday, August 26th, 2010, 4:55 pm">August 26, 2010</abbr> </p>
+				<div class="entry-content">
+					<p>Unfortunately Flex 4 does not have <strong>Spark Tree</strong> and <strong>MX Tree</strong> has <a href="https://bugs.adobe.com/jira/secure/IssueNavigator.jspa?reset=true&amp;jqlQuery=project+%3D+SDK+AND+issuetype+%3D+Bug+AND+resolution+in+%28Unresolved%2C+Deferred%29+AND+component+in+%28%22mx%3A+List%22%2C+%22mx%3A+Tree%22%29+AND+status+in+%28Open%2C+%22In+Progress%22%2C+Reopened%2C+Community%2C+New%2C+%22Internal+Review%22%2C+%22Under+Investigation%22%2C+%22Waiting+on+Info%22%29">99 bugs at this moment</a>. </p>
+<p>In our project we were in need of Spark-based Tree for some time so inspired by <a href="http://blogs.adobe.com/aharui/2009/12/displaying_tree-like_hierarchi.html">Alex Harui</a> I wrote it:</p>
+<p><a href="/f/ria/10/sparkTree/SparkTreeApp.html"><img src="/f/ria/10/sparkTree/screenshot1.png"/></a></p>
+<p><a href="https://github.com/downloads/kachurovskiy/Spark-Tree/SparkTree4.0.swc">Download SparkTree4.0.swc for Flex SDK 4.0. and 4.1</a><br />
+<a href="https://github.com/downloads/kachurovskiy/Spark-Tree/SparkTree4.5.swc">Download SparkTree4.5.swc for Flex SDK 4.5 and higher</a><br />
+<a href="https://github.com/kachurovskiy/Spark-Tree/">Download source code</a></p>
+<h5>Creating tree item renderers</h5>
+<p>Tree item renderers should extend <code>TreeItemRenderer</code>. <a href="/f/ria/10/sparkTree/srcview/source/DefaultTreeItemRenderer.mxml.html">Here is the default item renderer.</a></p>
+<p>License: MIT.</p>
+									</div><!-- .entry-content -->
+
+				<p class="entry-meta"><span class="category"><span class="before">Posted in </span><a href="/category/component/index.html" rel="tag">Component</a>, <a href="/category/fplatform/index.html" rel="tag">Flash Platform</a>, <a href="/category/fplatform/flex/index.html" rel="tag">Flex</a></span>  | <a class="comments-link" href="index.html#comments" title="Comment on Spark Tree">140 Responses</a></p>
+			</div><!-- .hentry -->
+
+			
+			
+<div id="comments-template">
+
+	
+		<div id="comments">
+
+			<h3 id="comments-number" class="comments-header">140 responses to &#8220;Spark Tree&#8221;</h3>
+
+			
+			<ol class="comment-list">
+				
+	<li id="comment-3" class="comment even thread-even depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://millcity.com"><a href="http://millcity.com/" title="Wade Mueller" class="url" rel="external nofollow">Wade Mueller</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, August 27th, 2010, 11:45 am">August 27, 2010</abbr> at <abbr class="comment-time" title="Friday, August 27th, 2010, 11:45 am">11:45</abbr></span> | <a class="permalink" href="index.html#comment-3" title="Permalink to comment 3">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=3#respond' onclick='return addComment.moveForm("comment-3", "3", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Very cool, nicely done.</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-6" class="comment byuser comment-author-maxim bypostauthor odd alt depth-2 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Saturday, August 28th, 2010, 4:42 pm">August 28, 2010</abbr> at <abbr class="comment-time" title="Saturday, August 28th, 2010, 4:42 pm">16:42</abbr></span> | <a class="permalink" href="index.html#comment-6" title="Permalink to comment 6">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=6#respond' onclick='return addComment.moveForm("comment-6", "6", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Thank you! :)</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-4" class="pingback even thread-odd thread-alt depth-1 ping reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com/2010/spark-tree-updated/"><a href="../spark-tree-updated/index.html" title="Spark Tree &#8211; faster, with icons and text colors" class="url" rel="external nofollow">Spark Tree &#8211; faster, with icons and text colors</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, August 27th, 2010, 4:12 pm">August 27, 2010</abbr> at <abbr class="comment-time" title="Friday, August 27th, 2010, 4:12 pm">16:12</abbr></span> | <a class="permalink" href="index.html#comment-4" title="Permalink to comment 4">Permalink</a>  </div>
+		<div class="comment-text">
+			
+			<p>[...] just updated the Spark Tree custom component. Here are the improvements and new [...]</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment -->
+	<li id="comment-35" class="pingback odd alt thread-even depth-1 ping reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com/2010/lots-of-bug-fixes-in-spark-tree/"><a href="../lots-of-bug-fixes-in-spark-tree/index.html" title="Lots of bug fixes in Spark Tree" class="url" rel="external nofollow">Lots of bug fixes in Spark Tree</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Monday, September 20th, 2010, 5:44 pm">September 20, 2010</abbr> at <abbr class="comment-time" title="Monday, September 20th, 2010, 5:44 pm">17:44</abbr></span> | <a class="permalink" href="index.html#comment-35" title="Permalink to comment 35">Permalink</a>  </div>
+		<div class="comment-text">
+			
+			<p>[...] have heavily used the Spark Tree in our project and have fixed plenty of bugs. Feel free to get the updated [...]</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment -->
+	<li id="comment-49" class="comment even thread-odd thread-alt depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://www.videoRx.com"><a href="http://www.videorx.com/" title="Robert Reinhardt" class="url" rel="external nofollow">Robert Reinhardt</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, October 8th, 2010, 11:19 pm">October 8, 2010</abbr> at <abbr class="comment-time" title="Friday, October 8th, 2010, 11:19 pm">23:19</abbr></span> | <a class="permalink" href="index.html#comment-49" title="Permalink to comment 49">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=49#respond' onclick='return addComment.moveForm("comment-49", "49", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Very nice indeed! Can you tell me if it&#8217;s possible (and how) to make your Tree component open specific branches (i.e. folders) on load? When I refresh the dataProvider, everything collapses. Many thanks in advance!</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-50" class="comment byuser comment-author-maxim bypostauthor odd alt depth-2 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, October 8th, 2010, 11:52 pm">October 8, 2010</abbr> at <abbr class="comment-time" title="Friday, October 8th, 2010, 11:52 pm">23:52</abbr></span> | <a class="permalink" href="index.html#comment-50" title="Permalink to comment 50">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=50#respond' onclick='return addComment.moveForm("comment-50", "50", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Does the new dataProvider consist of the old objects or the whole collection is recreated?</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-51" class="comment even thread-even depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://www.videoRx.com"><a href="http://www.videorx.com/" title="Robert Reinhardt" class="url" rel="external nofollow">Robert Reinhardt</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Saturday, October 9th, 2010, 12:28 am">October 9, 2010</abbr> at <abbr class="comment-time" title="Saturday, October 9th, 2010, 12:28 am">00:28</abbr></span> | <a class="permalink" href="index.html#comment-51" title="Permalink to comment 51">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=51#respond' onclick='return addComment.moveForm("comment-51", "51", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>The whole collection is recreated, but it&#8217;s the same items in the dataProvider. Thanks for the quick reply!</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-53" class="comment byuser comment-author-maxim bypostauthor odd alt depth-2 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Saturday, October 9th, 2010, 11:27 am">October 9, 2010</abbr> at <abbr class="comment-time" title="Saturday, October 9th, 2010, 11:27 am">11:27</abbr></span> | <a class="permalink" href="index.html#comment-53" title="Permalink to comment 53">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=53#respond' onclick='return addComment.moveForm("comment-53", "53", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Fixed! You can get the new version from <a href="/f/ria/10/sparkTree/SparkTree.rar" rel="nofollow">http://kachurovskiy.com/f/ria/10/sparkTree/SparkTree.rar</a> , the only changed file is TreeDataProvider.as</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-80" class="comment even thread-odd thread-alt depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://www.videoRx.com"><a href="http://www.videorx.com/" title="Robert Reinhardt" class="url" rel="external nofollow">Robert Reinhardt</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Wednesday, October 27th, 2010, 3:02 am">October 27, 2010</abbr> at <abbr class="comment-time" title="Wednesday, October 27th, 2010, 3:02 am">03:02</abbr></span> | <a class="permalink" href="index.html#comment-80" title="Permalink to comment 80">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=80#respond' onclick='return addComment.moveForm("comment-80", "80", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Can you recommend an approach to create a duplicate tree with the same open branches? Many thanks in advance.</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-83" class="comment byuser comment-author-maxim bypostauthor odd alt depth-2 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Wednesday, October 27th, 2010, 3:45 pm">October 27, 2010</abbr> at <abbr class="comment-time" title="Wednesday, October 27th, 2010, 3:45 pm">15:45</abbr></span> | <a class="permalink" href="index.html#comment-83" title="Permalink to comment 83">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=83#respond' onclick='return addComment.moveForm("comment-83", "83", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>I&#8217;ve just updated the <a href="/f/ria/10/sparkTree/SparkTree.rar" rel="nofollow">http://kachurovskiy.com/f/ria/10/sparkTree/SparkTree.rar</a> , new version introduces <code>ITEM_OPENING</code>, <code>ITEM_OPEN</code>, <code>ITEM_CLOSE</code> events that act the same way as the MX Tree events.</p>
+<p>But if you need just a copy &#8211; now you can set the same TreeDataProvider for two trees and they will have their open branch auto-synced:</p>
+<pre lang="actionscript">
+var tree1:Tree = new Tree();
+var tree2:Tree = new Tree();
+var arrayCollection:ArrayCollection = ...;
+
+// 1-st way
+tree1.dataProvider = arrayCollection;
+tree2.dataProvider = tree1.dataProvider;
+
+// 2-nd way
+var treeDataProvider:TreeDataProvider = new TreeDataProvider(arrayCollection);
+tree1.dataProvider = treeDataProvider;
+tree2.dataProvider = treeDataProvider;
+</pre>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-103" class="comment even thread-even depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">Daniel</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Thursday, November 4th, 2010, 3:36 pm">November 4, 2010</abbr> at <abbr class="comment-time" title="Thursday, November 4th, 2010, 3:36 pm">15:36</abbr></span> | <a class="permalink" href="index.html#comment-103" title="Permalink to comment 103">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=103#respond' onclick='return addComment.moveForm("comment-103", "103", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Is there a way to open all nodes when first shown/loaded?</p>
+<p>Many Thanks<br />
+Daniel</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-104" class="comment byuser comment-author-maxim bypostauthor odd alt depth-2 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Thursday, November 4th, 2010, 3:38 pm">November 4, 2010</abbr> at <abbr class="comment-time" title="Thursday, November 4th, 2010, 3:38 pm">15:38</abbr></span> | <a class="permalink" href="index.html#comment-104" title="Permalink to comment 104">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=104#respond' onclick='return addComment.moveForm("comment-104", "104", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>No, there is not built-in procedure for that. I suggest you to manually loop through the collection and to call <code>expandItem(item, true)</code> for each item on all levels from to the bottom.</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-106" class="comment even thread-odd thread-alt depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://www.videoRx.com"><a href="http://www.videorx.com/" title="Robert Reinhardt" class="url" rel="external nofollow">Robert Reinhardt</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Sunday, November 7th, 2010, 6:23 pm">November 7, 2010</abbr> at <abbr class="comment-time" title="Sunday, November 7th, 2010, 6:23 pm">18:23</abbr></span> | <a class="permalink" href="index.html#comment-106" title="Permalink to comment 106">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=106#respond' onclick='return addComment.moveForm("comment-106", "106", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Is there any equivalency to the openItems property of the mx:Tree component? I&#8217;m looking for the best approach with your Tree component to track which branch nodes the user opens, so that on refresh/relaunch of app, the same nodes can be opened automatically. Many thanks in advance.</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-107" class="comment byuser comment-author-maxim bypostauthor odd alt depth-2 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Sunday, November 7th, 2010, 6:46 pm">November 7, 2010</abbr> at <abbr class="comment-time" title="Sunday, November 7th, 2010, 6:46 pm">18:46</abbr></span> | <a class="permalink" href="index.html#comment-107" title="Permalink to comment 107">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=107#respond' onclick='return addComment.moveForm("comment-107", "107", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Well there is no built-in <code>openItems</code> yet but:<br />
+1. You can watch ITEM_OPEN and ITEM_CLOSE events and calculate it itself<br />
+2. TreeDataProvider has this info in private variable <code>parentObjectsToOpenBranches</code> or smth like that &#8211; you can make it accessible since the source is open.</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-112" class="comment even thread-even depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://www.videoRx.com"><a href="http://www.videorx.com/" title="Robert Reinhardt" class="url" rel="external nofollow">Robert Reinhardt</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Tuesday, November 9th, 2010, 6:46 am">November 9, 2010</abbr> at <abbr class="comment-time" title="Tuesday, November 9th, 2010, 6:46 am">06:46</abbr></span> | <a class="permalink" href="index.html#comment-112" title="Permalink to comment 112">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=112#respond' onclick='return addComment.moveForm("comment-112", "112", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>I&#8217;m having difficulty storing in a local SharedObject the right data to know which branch nodes to open&#8211;and I know why: I&#8217;m using the Tree&#8217;s selectedIndex, which isn&#8217;t always going to point to a branch&#8211;depending on how other branches are opened or closed. So, using ITEM_OPEN and ITEM_CLOSE, what&#8217;s the best way to store and then later re-use for re-initialization branch info? My problem is that I don&#8217;t understand the best way to calculate a &#8220;branch index&#8221; so that regardless of which branches are opened/closed, I can reopen branches without using selectedIndex.</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment -->
+	<li id="comment-115" class="comment odd alt thread-odd thread-alt depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://www.videoRx.com"><a href="http://www.videorx.com/" title="Robert Reinhardt" class="url" rel="external nofollow">Robert Reinhardt</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Tuesday, November 9th, 2010, 10:01 pm">November 9, 2010</abbr> at <abbr class="comment-time" title="Tuesday, November 9th, 2010, 10:01 pm">22:01</abbr></span> | <a class="permalink" href="index.html#comment-115" title="Permalink to comment 115">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=115#respond' onclick='return addComment.moveForm("comment-115", "115", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Figured it out&#8230; All of my branches had unique ids, so I stored the unique ids in my shared object, and on updateComplete, I compare the stored unique id to the uid&#8217;s of the new branches and then expand on that new item. Seems to work great!</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-117" class="comment byuser comment-author-maxim bypostauthor even depth-2 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Tuesday, November 9th, 2010, 10:55 pm">November 9, 2010</abbr> at <abbr class="comment-time" title="Tuesday, November 9th, 2010, 10:55 pm">22:55</abbr></span> | <a class="permalink" href="index.html#comment-117" title="Permalink to comment 117">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=117#respond' onclick='return addComment.moveForm("comment-117", "117", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Sorry that I didn&#8217;t answer, just forgot about your previous comment. My little daughter takes all my time :)</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-119" class="comment odd alt thread-even depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">Adrien C</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Wednesday, November 10th, 2010, 11:52 am">November 10, 2010</abbr> at <abbr class="comment-time" title="Wednesday, November 10th, 2010, 11:52 am">11:52</abbr></span> | <a class="permalink" href="index.html#comment-119" title="Permalink to comment 119">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=119#respond' onclick='return addComment.moveForm("comment-119", "119", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Good work, Thank you !<br />
+What do you think about moving your files to a package (com.kachurovskiy.sparktree ?), and releasing your SparkTree as a swc ?</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-120" class="comment byuser comment-author-maxim bypostauthor even depth-2 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Wednesday, November 10th, 2010, 3:11 pm">November 10, 2010</abbr> at <abbr class="comment-time" title="Wednesday, November 10th, 2010, 3:11 pm">15:11</abbr></span> | <a class="permalink" href="index.html#comment-120" title="Permalink to comment 120">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=120#respond' onclick='return addComment.moveForm("comment-120", "120", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Thank you for the suggestion, it can simplify the process for people, who need only basic functionality and do not want to mess with the source. Will do.</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-169" class="comment odd alt thread-odd thread-alt depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kineticz.net"><a href="http://kineticz.net/" title="jacob bullock" class="url" rel="external nofollow">jacob bullock</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Saturday, January 15th, 2011, 10:21 pm">January 15, 2011</abbr> at <abbr class="comment-time" title="Saturday, January 15th, 2011, 10:21 pm">22:21</abbr></span> | <a class="permalink" href="index.html#comment-169" title="Permalink to comment 169">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=169#respond' onclick='return addComment.moveForm("comment-169", "169", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>you have any advice on how i could make this tree animate when the branches open / close?</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-170" class="comment byuser comment-author-maxim bypostauthor even depth-2 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Saturday, January 15th, 2011, 10:27 pm">January 15, 2011</abbr> at <abbr class="comment-time" title="Saturday, January 15th, 2011, 10:27 pm">22:27</abbr></span> | <a class="permalink" href="index.html#comment-170" title="Permalink to comment 170">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=170#respond' onclick='return addComment.moveForm("comment-170", "170", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>You can add animation in renderer on creation/show but the old good branch animation is not available.</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-171" class="comment odd alt depth-3 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kineticz.net"><a href="http://kineticz.net/" title="jacob bullock" class="url" rel="external nofollow">jacob bullock</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Saturday, January 15th, 2011, 10:36 pm">January 15, 2011</abbr> at <abbr class="comment-time" title="Saturday, January 15th, 2011, 10:36 pm">22:36</abbr></span> | <a class="permalink" href="index.html#comment-171" title="Permalink to comment 171">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=171#respond' onclick='return addComment.moveForm("comment-171", "171", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>so if i have 3 branches and open the second one, there is no way to animate the third branch down, then reveal the children of the second branch?</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-172" class="comment byuser comment-author-maxim bypostauthor even depth-4 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Saturday, January 15th, 2011, 10:38 pm">January 15, 2011</abbr> at <abbr class="comment-time" title="Saturday, January 15th, 2011, 10:38 pm">22:38</abbr></span> | <a class="permalink" href="index.html#comment-172" title="Permalink to comment 172">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=172#respond' onclick='return addComment.moveForm("comment-172", "172", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>The layout of renderers is done simply by <code>VerticalLayout</code>. You can create your own layout that will somehow understand that branch is open and do the animation.</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-183" class="comment odd alt thread-even depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">Liz</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Wednesday, February 16th, 2011, 6:50 am">February 16, 2011</abbr> at <abbr class="comment-time" title="Wednesday, February 16th, 2011, 6:50 am">06:50</abbr></span> | <a class="permalink" href="index.html#comment-183" title="Permalink to comment 183">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=183#respond' onclick='return addComment.moveForm("comment-183", "183", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>I&#8217;ve implemented a custom item renderer with a multi-line label (vertical layout).  I get some odd affects such as the two bottom items in the visiable scroll are tripple the height (but resize when scrolling starts for the first time) and then scrolling calculations seem to go a little whack &#8211; the scrollbar jumps up and down when in use.  Scroll wheel has no ill effects.</p>
+<p>I did extend the Tree class and manually gave it a layout in the constructor and that seems to fix the two large item height issues but the scrolling still jumps a bit.</p>
+<p>Any idea why this might happen.  I also have used multi-line items in List components and the &#8220;jump&#8221; doesn&#8217;t occur during scrolling.</p>
+<p>Thanks!</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-184" class="comment even depth-2 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">Liz</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Wednesday, February 16th, 2011, 7:00 am">February 16, 2011</abbr> at <abbr class="comment-time" title="Wednesday, February 16th, 2011, 7:00 am">07:00</abbr></span> | <a class="permalink" href="index.html#comment-184" title="Permalink to comment 184">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=184#respond' onclick='return addComment.moveForm("comment-184", "184", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Hmm&#8230;I changed the default item renderer of yours to use mulit-line and I don&#8217;t seem to get that same issue.  I believe it might be my item renderer.  I do have my elements wrapped in a BorderContainer which might be causing the issue.</p>
+<p>I think this actually might be a Flex List vs ItemRender bug.  </p>
+<p>Thanks anyway for a great component!</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-187" class="comment odd alt thread-odd thread-alt depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://www.smithfox.com"><a href="http://www.smithfox.com/" title="smithfox" class="url" rel="external nofollow">smithfox</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Saturday, February 26th, 2011, 1:26 pm">February 26, 2011</abbr> at <abbr class="comment-time" title="Saturday, February 26th, 2011, 1:26 pm">13:26</abbr></span> | <a class="permalink" href="index.html#comment-187" title="Permalink to comment 187">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=187#respond' onclick='return addComment.moveForm("comment-187", "187", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Thank your share the great component!</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment -->
+	<li id="comment-193" class="comment even thread-even depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">Max</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, March 11th, 2011, 2:01 pm">March 11, 2011</abbr> at <abbr class="comment-time" title="Friday, March 11th, 2011, 2:01 pm">14:01</abbr></span> | <a class="permalink" href="index.html#comment-193" title="Permalink to comment 193">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=193#respond' onclick='return addComment.moveForm("comment-193", "193", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Looks good! Does this component support drag reordering?</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-194" class="comment byuser comment-author-maxim bypostauthor odd alt depth-2 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, March 11th, 2011, 2:05 pm">March 11, 2011</abbr> at <abbr class="comment-time" title="Friday, March 11th, 2011, 2:05 pm">14:05</abbr></span> | <a class="permalink" href="index.html#comment-194" title="Permalink to comment 194">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=194#respond' onclick='return addComment.moveForm("comment-194", "194", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>In fact this Tree is just a Spark List. Not sure if Spark List has such feature.</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-195" class="comment even depth-3 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">Liz</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Sunday, March 13th, 2011, 3:43 am">March 13, 2011</abbr> at <abbr class="comment-time" title="Sunday, March 13th, 2011, 3:43 am">03:43</abbr></span> | <a class="permalink" href="index.html#comment-195" title="Permalink to comment 195">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=195#respond' onclick='return addComment.moveForm("comment-195", "195", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Spark lists do! :)  I just made an interface with spark re-order and drag and drop (including this tree component) and it works a treat.  Haven&#8217;t tried the tree re-ordering but I don&#8217;t see it should be a problem.  All other native spark list functions work well.</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-198" class="comment odd alt thread-odd thread-alt depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">harry</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Tuesday, April 5th, 2011, 2:52 pm">April 5, 2011</abbr> at <abbr class="comment-time" title="Tuesday, April 5th, 2011, 2:52 pm">14:52</abbr></span> | <a class="permalink" href="index.html#comment-198" title="Permalink to comment 198">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=198#respond' onclick='return addComment.moveForm("comment-198", "198", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Hi do you know of any possible way i could show the names of the branches in an mx tree? for now, it only displays the icons but the branch names are not given :(</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-199" class="comment byuser comment-author-maxim bypostauthor even depth-2 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Tuesday, April 5th, 2011, 2:57 pm">April 5, 2011</abbr> at <abbr class="comment-time" title="Tuesday, April 5th, 2011, 2:57 pm">14:57</abbr></span> | <a class="permalink" href="index.html#comment-199" title="Permalink to comment 199">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=199#respond' onclick='return addComment.moveForm("comment-199", "199", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>1. Do you use MX Tree or this Spark Tree?<br />
+2. Do you mean item labels by writing &#8220;branch names&#8221;? If yes, try specifying <code>labelField</code> property for the tree. If your data has label in <code>name</code> property, set <code>labelField="name"</code>.</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-200" class="comment odd alt thread-even depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://www.premsweb.com/"><a href="http://www.premsweb.com/" title="Prem" class="url" rel="external nofollow">Prem</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Thursday, April 14th, 2011, 12:34 am">April 14, 2011</abbr> at <abbr class="comment-time" title="Thursday, April 14th, 2011, 12:34 am">00:34</abbr></span> | <a class="permalink" href="index.html#comment-200" title="Permalink to comment 200">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=200#respond' onclick='return addComment.moveForm("comment-200", "200", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Awesome piece of code !</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment -->
+	<li id="comment-201" class="comment even thread-odd thread-alt depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://www.premsweb.com/"><a href="http://www.premsweb.com/" title="Prem" class="url" rel="external nofollow">Prem</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, April 15th, 2011, 10:19 pm">April 15, 2011</abbr> at <abbr class="comment-time" title="Friday, April 15th, 2011, 10:19 pm">22:19</abbr></span> | <a class="permalink" href="index.html#comment-201" title="Permalink to comment 201">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=201#respond' onclick='return addComment.moveForm("comment-201", "201", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Posted a sample of this spark tree with a three state checkbox in the renderer<br />
+<a href="http://www.premsweb.com/spark-tree-with-a-three-state-checkbox" rel="nofollow">http://www.premsweb.com/spark-tree-with-a-three-state-checkbox</a></p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-202" class="comment byuser comment-author-maxim bypostauthor odd alt depth-2 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, April 15th, 2011, 10:26 pm">April 15, 2011</abbr> at <abbr class="comment-time" title="Friday, April 15th, 2011, 10:26 pm">22:26</abbr></span> | <a class="permalink" href="index.html#comment-202" title="Permalink to comment 202">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=202#respond' onclick='return addComment.moveForm("comment-202", "202", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Great stuff, thanks for the contribution to the community!</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-203" class="comment even thread-even depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">Trist</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Thursday, April 21st, 2011, 5:44 pm">April 21, 2011</abbr> at <abbr class="comment-time" title="Thursday, April 21st, 2011, 5:44 pm">17:44</abbr></span> | <a class="permalink" href="index.html#comment-203" title="Permalink to comment 203">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=203#respond' onclick='return addComment.moveForm("comment-203", "203", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Hi, wonderful work, quick question.<br />
+Whats the best way to specify the default icons for each node? </p>
+<p>I notice you have the line in the Tree:<br />
+<code><br />
+var mxTreeDeclaration:CSSStyleDeclaration = FlexGlobals.topLevelApplication.styleManager.getStyleDeclaration("mx.controls.Tree");<br />
+... MX Tree may not be used in the application<br />
+</code></p>
+<p>What&#8217;s the best way to set the icons/styles for the tree? Is there a &#8216;switch&#8217; I can use to use the icons specified with your embedded icons embedding, or should I set each one in my own code?</p>
+<p>Thanks</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-236" class="comment byuser comment-author-maxim bypostauthor odd alt depth-2 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Sunday, May 22nd, 2011, 8:17 pm">May 22, 2011</abbr> at <abbr class="comment-time" title="Sunday, May 22nd, 2011, 8:17 pm">20:17</abbr></span> | <a class="permalink" href="index.html#comment-236" title="Permalink to comment 236">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=236#respond' onclick='return addComment.moveForm("comment-236", "236", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Set the styles (including default icons) just the same way as any other style for any other component. You do not need to mess with the source code for that.</p>
+<p>Possible options are specifying styles in CSS, in MXML or in ActionScript.</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-244" class="comment even thread-odd thread-alt depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">Eric</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, May 27th, 2011, 3:30 pm">May 27, 2011</abbr> at <abbr class="comment-time" title="Friday, May 27th, 2011, 3:30 pm">15:30</abbr></span> | <a class="permalink" href="index.html#comment-244" title="Permalink to comment 244">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=244#respond' onclick='return addComment.moveForm("comment-244", "244", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Hi,<br />
+Is there any way to scroll to a selected children node?<br />
+Thx</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-246" class="comment byuser comment-author-maxim bypostauthor odd alt depth-2 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, May 27th, 2011, 7:33 pm">May 27, 2011</abbr> at <abbr class="comment-time" title="Friday, May 27th, 2011, 7:33 pm">19:33</abbr></span> | <a class="permalink" href="index.html#comment-246" title="Permalink to comment 246">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=246#respond' onclick='return addComment.moveForm("comment-246", "246", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Tree is just a Spark List so use the same techniques.<br />
+I’m on mobile and unfortunately can’t elaborate more on this.</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-284" class="comment even thread-even depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">Trist</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Tuesday, June 14th, 2011, 12:14 pm">June 14, 2011</abbr> at <abbr class="comment-time" title="Tuesday, June 14th, 2011, 12:14 pm">12:14</abbr></span> | <a class="permalink" href="index.html#comment-284" title="Permalink to comment 284">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=284#respond' onclick='return addComment.moveForm("comment-284", "284", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Hi,<br />
+Is there anyway to implement showRoot?<br />
+Cheers<br />
+Trist</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-286" class="comment byuser comment-author-maxim bypostauthor odd alt depth-2 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Thursday, June 16th, 2011, 11:19 pm">June 16, 2011</abbr> at <abbr class="comment-time" title="Thursday, June 16th, 2011, 11:19 pm">23:19</abbr></span> | <a class="permalink" href="index.html#comment-286" title="Permalink to comment 286">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=286#respond' onclick='return addComment.moveForm("comment-286", "286", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Hi Trist, sorry for the delay. It&#8217;s easy to implement <code>showRoot</code>, this logic should be done in <code>Tree.dataProvider</code> setter or in <code>TreeDataProvider</code> constructor. Unfortunatelly I have no time for that due to the tight work schedule.</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-293" class="comment even thread-odd thread-alt depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://null"><a href="http://null/" title="Brett" class="url" rel="external nofollow">Brett</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Thursday, June 23rd, 2011, 4:55 am">June 23, 2011</abbr> at <abbr class="comment-time" title="Thursday, June 23rd, 2011, 4:55 am">04:55</abbr></span> | <a class="permalink" href="index.html#comment-293" title="Permalink to comment 293">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=293#respond' onclick='return addComment.moveForm("comment-293", "293", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>I have been trying to make your tree work on a &#8220;lazy load mode&#8221; every time you click on a node it makes a service call and returns the childrens, the problems is that when you get your services results back and you assign it to the selected node it does not update the tree&#8230;, I just cant figure it out&#8230;<br />
+any help would be apreciated. :)</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-294" class="comment byuser comment-author-maxim bypostauthor odd alt depth-2 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Thursday, June 23rd, 2011, 10:23 am">June 23, 2011</abbr> at <abbr class="comment-time" title="Thursday, June 23rd, 2011, 10:23 am">10:23</abbr></span> | <a class="permalink" href="index.html#comment-294" title="Permalink to comment 294">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=294#respond' onclick='return addComment.moveForm("comment-294", "294", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>1. Make sure that your <code>children</code> property is bindable `[Bindable]` without custom event &#8211; tree can detect changes only in that case<br />
+2. Another way is to create another bindable property and change it when you change <code>children</code><br />
+3. One more option is calling <code>tree.refreshRenderers()</code> after updating children property,</p>
+<p>P.S: You can listen to <code>itemOpening</code> event, call <code>event.preventDefault()</code>, make service call and call <code>tree.expandItem(...)</code> when data arrives. Make sure not to cancel node expanding on the second time.</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-309" class="comment even depth-3 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://www.smithfox.com"><a href="http://www.smithfox.com/" title="smithfox" class="url" rel="external nofollow">smithfox</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Thursday, June 30th, 2011, 6:13 pm">June 30, 2011</abbr> at <abbr class="comment-time" title="Thursday, June 30th, 2011, 6:13 pm">18:13</abbr></span> | <a class="permalink" href="index.html#comment-309" title="Permalink to comment 309">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=309#respond' onclick='return addComment.moveForm("comment-309", "309", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Maxim,</p>
+<p>There are some event to tell me a leaf node is selected??</p>
+<p>It seem that the Tree can not fire change event, and has no itemClick too.</p>
+<p>itemOpening only take effect when you try to expand a BRANCH node. :(</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-310" class="comment odd alt depth-4 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://www.smithfox.com"><a href="http://www.smithfox.com/" title="smithfox" class="url" rel="external nofollow">smithfox</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, July 1st, 2011, 5:10 am">July 1, 2011</abbr> at <abbr class="comment-time" title="Friday, July 1st, 2011, 5:10 am">05:10</abbr></span> | <a class="permalink" href="index.html#comment-310" title="Permalink to comment 310">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=310#respond' onclick='return addComment.moveForm("comment-310", "310", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>It&#8217;s my build script issue: </p>
+<p>my build file only include Event metadata, comment the line, use the default setting. Now the tree can fire IndexChangeEvent</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-296" class="comment even thread-even depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://null"><a href="http://null/" title="Brett" class="url" rel="external nofollow">Brett</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Tuesday, June 28th, 2011, 5:11 am">June 28, 2011</abbr> at <abbr class="comment-time" title="Tuesday, June 28th, 2011, 5:11 am">05:11</abbr></span> | <a class="permalink" href="index.html#comment-296" title="Permalink to comment 296">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=296#respond' onclick='return addComment.moveForm("comment-296", "296", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Thanks, that helped a lot ;) I now am trying to display a current bread crub to the current node selected but when I check the parents on the ItemRenderer is Null&#8230; any feed back on this ?</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-322" class="comment byuser comment-author-maxim bypostauthor odd alt depth-2 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, July 8th, 2011, 4:12 pm">July 8, 2011</abbr> at <abbr class="comment-time" title="Friday, July 8th, 2011, 4:12 pm">16:12</abbr></span> | <a class="permalink" href="index.html#comment-322" title="Permalink to comment 322">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=322#respond' onclick='return addComment.moveForm("comment-322", "322", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>ItemRenderer-s are recycled and there are always some cache of renderers that are out-of-stage.</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-300" class="comment even thread-odd thread-alt depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://www.smithfox.com"><a href="http://www.smithfox.com/" title="smithfox" class="url" rel="external nofollow">smithfox</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Wednesday, June 29th, 2011, 4:33 pm">June 29, 2011</abbr> at <abbr class="comment-time" title="Wednesday, June 29th, 2011, 4:33 pm">16:33</abbr></span> | <a class="permalink" href="index.html#comment-300" title="Permalink to comment 300">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=300#respond' onclick='return addComment.moveForm("comment-300", "300", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Please see my blog post: <a href="http://www.smithfox.com/?e=85" rel="nofollow">http://www.smithfox.com/?e=85</a>  </p>
+<p>I attach the test.mxml there.</p>
+<p>After my research, I found the issue is caused by the Flex SDK4.5.1 ListBase&#8217;s Caret.</p>
+<p>So I try to give my solution:  <a href="http://www.smithfox.com/?e=155" rel="nofollow">http://www.smithfox.com/?e=155</a></p>
+<p>My SDK is flex_sdk_4.5.1.21328</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment -->
+	<li id="comment-331" class="comment odd alt thread-even depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://www.smithfox.com"><a href="http://www.smithfox.com/" title="smithfox" class="url" rel="external nofollow">smithfox</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Monday, July 25th, 2011, 7:41 am">July 25, 2011</abbr> at <abbr class="comment-time" title="Monday, July 25th, 2011, 7:41 am">07:41</abbr></span> | <a class="permalink" href="index.html#comment-331" title="Permalink to comment 331">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=331#respond' onclick='return addComment.moveForm("comment-331", "331", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>&#8220;Disable the Caret&#8221; is a  temp solution, there is still more issues.<br />
+Now I give out a full solution, and it has been tested in myself project.</p>
+<p><a href="http://www.smithfox.com/?e=155" rel="nofollow">http://www.smithfox.com/?e=155</a></p>
+<p>Note: it should be used under flex_sdk_4.5.1.xx</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment -->
+	<li id="comment-339" class="comment even thread-odd thread-alt depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">Mark Fuqua</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Tuesday, August 9th, 2011, 11:23 pm">August 9, 2011</abbr> at <abbr class="comment-time" title="Tuesday, August 9th, 2011, 11:23 pm">23:23</abbr></span> | <a class="permalink" href="index.html#comment-339" title="Permalink to comment 339">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=339#respond' onclick='return addComment.moveForm("comment-339", "339", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>This may be a silly question, but is this designed to work with multiple columns in a Spark Data Grid?  Or just the Tree column?  </p>
+<p>Thanks for the release.</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-340" class="comment byuser comment-author-maxim bypostauthor odd alt depth-2 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Wednesday, August 10th, 2011, 10:25 am">August 10, 2011</abbr> at <abbr class="comment-time" title="Wednesday, August 10th, 2011, 10:25 am">10:25</abbr></span> | <a class="permalink" href="index.html#comment-340" title="Permalink to comment 340">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=340#respond' onclick='return addComment.moveForm("comment-340", "340", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Sorry for the unclear descriptions:</p>
+<p>1. Spark Tree extends List and is works like MX Tree<br />
+2. Spark AdvancedDataGrid extends DataGrid and works like MX AdvancedDataGrid</p>
+<p>Both classes are located in SWC called &#8220;SparkTree4.5.swc&#8221; &#8211; the name may be confusing &#8211; but you will find them both inside.</p>
+<p>Example of Spark ADG usage: <a href="/2011/spark-advanceddatagrid/index.html" rel="nofollow">http://kachurovskiy.com/2011/spark-advanceddatagrid/</a></p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-343" class="comment even thread-even depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">MikeC</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Thursday, August 25th, 2011, 8:12 pm">August 25, 2011</abbr> at <abbr class="comment-time" title="Thursday, August 25th, 2011, 8:12 pm">20:12</abbr></span> | <a class="permalink" href="index.html#comment-343" title="Permalink to comment 343">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=343#respond' onclick='return addComment.moveForm("comment-343", "343", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>I&#8217;m trying to use the sparkTree but getting a compile error in the Tree class where you override:<br />
+override protected function adjustSelectionAndCaretUponNavigation(event:KeyboardEvent):void<br />
+Specifically, the compiler can&#8217;t find:<br />
+ mapKeycodeForLayoutDirection(event)</p>
+<p>I&#8217;ve looked through UIComponent (is that where the original function lies?), but can&#8217;t find it. </p>
+<p>Is this possibly a version issue?  I&#8217;m using Flex 4 SDK (not yet on 4.5).  </p>
+<p>I notice also on one of your issues, that someone has made some changes to that override, back in March, but that is not part of my problem.</p>
+<p>Any feedback is appreciated.</p>
+<p>thanks,  Mike</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-344" class="comment byuser comment-author-maxim bypostauthor odd alt depth-2 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Thursday, August 25th, 2011, 8:51 pm">August 25, 2011</abbr> at <abbr class="comment-time" title="Thursday, August 25th, 2011, 8:51 pm">20:51</abbr></span> | <a class="permalink" href="index.html#comment-344" title="Permalink to comment 344">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=344#respond' onclick='return addComment.moveForm("comment-344", "344", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Looks like you are using pre-release version of 4 SDK. Please tell me your full SDK version, it&#8217;s located in <code>Flash Builder ZZZ/sdks/4.x.0/flex-sdk-description.xml</code>.</p>
+<p>I&#8217;ve got 4.1.0.16076 and it runs smooth.</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-345" class="comment even thread-odd thread-alt depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">MikeC</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Thursday, August 25th, 2011, 10:19 pm">August 25, 2011</abbr> at <abbr class="comment-time" title="Thursday, August 25th, 2011, 10:19 pm">22:19</abbr></span> | <a class="permalink" href="index.html#comment-345" title="Permalink to comment 345">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=345#respond' onclick='return addComment.moveForm("comment-345", "345", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Thanks for the quick reply Maxim.<br />
+Busted, I have 4.0.0 build 14159 so I may just have a release with an old UIComponent.  They do warn us that mx_internal tends to be stuff that changes frequently.<br />
+I&#8217;ve been thinking I should upgrade to 4.5 so maybe today&#8217;s a good day to do it.<br />
+btw, great work on the tree.  I&#8217;m trying to integrate it into my Google Docs flex explorer.</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-346" class="comment byuser comment-author-maxim bypostauthor odd alt depth-2 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Thursday, August 25th, 2011, 10:21 pm">August 25, 2011</abbr> at <abbr class="comment-time" title="Thursday, August 25th, 2011, 10:21 pm">22:21</abbr></span> | <a class="permalink" href="index.html#comment-346" title="Permalink to comment 346">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=346#respond' onclick='return addComment.moveForm("comment-346", "346", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p><code>adjustSelectionAndCaretUponNavigation</code> is a method of <code>List</code> or <code>ListBase</code>, use Ctrl+Click on method in Flash Builder to see that.</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-347" class="comment even depth-3 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">MikeC</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Thursday, August 25th, 2011, 10:53 pm">August 25, 2011</abbr> at <abbr class="comment-time" title="Thursday, August 25th, 2011, 10:53 pm">22:53</abbr></span> | <a class="permalink" href="index.html#comment-347" title="Permalink to comment 347">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=347#respond' onclick='return addComment.moveForm("comment-347", "347", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>well, the adjustSelection&#8230; method is implemented in List, but I think the &#8220;mapKeycodeForLayoutDirection&#8221;<br />
+method is up the food chain in UIComponent.</p>
+<p>Unfortunately, I can&#8217;t link to it from my editor codeAssist because it is not in List, ListBase or UIComponent.  that is the reference giving me the error.</p>
+<p>I have seen reference to it in UIComponent in some docs but not in the 4.0.0 SDK at least on my box.</p>
+<p>I think I&#8217;ll try an SDK upgrade before going to 4.5 because I&#8217;m sure I&#8217;ll find a whole raft of issues in 4.5 with my own stuff.</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment -->
+	<li id="comment-348" class="comment odd alt depth-3 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">MikeC</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, August 26th, 2011, 12:00 am">August 26, 2011</abbr> at <abbr class="comment-time" title="Friday, August 26th, 2011, 12:00 am">00:00</abbr></span> | <a class="permalink" href="index.html#comment-348" title="Permalink to comment 348">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=348#respond' onclick='return addComment.moveForm("comment-348", "348", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>I just updated to 4.1 SDK and it fixed the problem.<br />
+This version of UIComponent does have the key handler which adjusts for layout direction.<br />
+thanks much Maxim.</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-350" class="comment even thread-even depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">DenisJ</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Thursday, September 1st, 2011, 5:33 am">September 1, 2011</abbr> at <abbr class="comment-time" title="Thursday, September 1st, 2011, 5:33 am">05:33</abbr></span> | <a class="permalink" href="index.html#comment-350" title="Permalink to comment 350">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=350#respond' onclick='return addComment.moveForm("comment-350", "350", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Looks good Maxim, apart from TreeDataPpovider.as I can&#8217;t see any licence file or specific mention of type of licence. Can you please elaborate and perhaps include a license file</p>
+<p>cheers Denis</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-351" class="comment byuser comment-author-maxim bypostauthor odd alt depth-2 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Thursday, September 1st, 2011, 10:25 am">September 1, 2011</abbr> at <abbr class="comment-time" title="Thursday, September 1st, 2011, 10:25 am">10:25</abbr></span> | <a class="permalink" href="index.html#comment-351" title="Permalink to comment 351">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=351#respond' onclick='return addComment.moveForm("comment-351", "351", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Hello Denis, thanks for using Spark Tree. License is MIT.</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-353" class="comment even depth-3 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">DenisJ</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Thursday, September 1st, 2011, 12:54 pm">September 1, 2011</abbr> at <abbr class="comment-time" title="Thursday, September 1st, 2011, 12:54 pm">12:54</abbr></span> | <a class="permalink" href="index.html#comment-353" title="Permalink to comment 353">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=353#respond' onclick='return addComment.moveForm("comment-353", "353", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Cool. Another question, how do I get the tree item renderer to draw the selected item background for the whole width of the list, as opposed to just the width of the element ?</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-354" class="comment byuser comment-author-maxim bypostauthor odd alt depth-4 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Thursday, September 1st, 2011, 12:56 pm">September 1, 2011</abbr> at <abbr class="comment-time" title="Thursday, September 1st, 2011, 12:56 pm">12:56</abbr></span> | <a class="permalink" href="index.html#comment-354" title="Permalink to comment 354">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=354#respond' onclick='return addComment.moveForm("comment-354", "354", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Specify the list layout <code>horizontalAlign="justify"</code> and set the renderer background <code>width="100%"</code>.</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-355" class="comment even depth-5 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">DenisJ</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Thursday, September 1st, 2011, 1:03 pm">September 1, 2011</abbr> at <abbr class="comment-time" title="Thursday, September 1st, 2011, 1:03 pm">13:03</abbr></span> | <a class="permalink" href="index.html#comment-355" title="Permalink to comment 355">Permalink</a>  </div>
+		<div class="comment-text">
+			
+			<p>Thanks for your prompt replies. Could you please show how to set the renderer  width and also, I&#8217;m struggling to set the indent, would love sample code :-)</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-356" class="comment byuser comment-author-maxim bypostauthor odd alt depth-4 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Thursday, September 1st, 2011, 1:13 pm">September 1, 2011</abbr> at <abbr class="comment-time" title="Thursday, September 1st, 2011, 1:13 pm">13:13</abbr></span> | <a class="permalink" href="index.html#comment-356" title="Permalink to comment 356">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=356#respond' onclick='return addComment.moveForm("comment-356", "356", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Renderer width is set by list layout. You just need to align the renderer inner components.</p>
+<p>Use <code>indentation</code> style: </p>
+<p><code>&lt;sperkTree:Tree ... indentation="30"/&gt;</code></p>
+<p>or</p>
+<p><code>tree.setStyle("indentation", 30);</code></p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-357" class="comment even depth-5 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">DenisJ</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Thursday, September 1st, 2011, 4:20 pm">September 1, 2011</abbr> at <abbr class="comment-time" title="Thursday, September 1st, 2011, 4:20 pm">16:20</abbr></span> | <a class="permalink" href="index.html#comment-357" title="Permalink to comment 357">Permalink</a>  </div>
+		<div class="comment-text">
+			
+			<p>Thanks, all sorted.</p>
+<p>cheers Denis</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-361" class="comment odd alt thread-odd thread-alt depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">DenisJ</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, September 2nd, 2011, 4:04 am">September 2, 2011</abbr> at <abbr class="comment-time" title="Friday, September 2nd, 2011, 4:04 am">04:04</abbr></span> | <a class="permalink" href="index.html#comment-361" title="Permalink to comment 361">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=361#respond' onclick='return addComment.moveForm("comment-361", "361", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>I find the hit area [+] requires the user to need to be too precise with the mouse. I will poke about the code to see if it can be improved, but if you have suggestion to make this bigger then jump in. I think the image size is probably fine, but it would be nice to have an extra few pixels around it that e.g. from the image edge to the top, left &amp; bottom boundary of the renderer</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment -->
+	<li id="comment-362" class="comment even thread-even depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">Eric</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, September 2nd, 2011, 2:36 pm">September 2, 2011</abbr> at <abbr class="comment-time" title="Friday, September 2nd, 2011, 2:36 pm">14:36</abbr></span> | <a class="permalink" href="index.html#comment-362" title="Permalink to comment 362">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=362#respond' onclick='return addComment.moveForm("comment-362", "362", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Hi,</p>
+<p>I found a bug, when you expand all nodes of a tree populated from XML, and try to close from the root node, there&#8217;s an exception.<br />
+I have the same problem with your demo</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-363" class="comment byuser comment-author-maxim bypostauthor odd alt depth-2 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, September 2nd, 2011, 2:40 pm">September 2, 2011</abbr> at <abbr class="comment-time" title="Friday, September 2nd, 2011, 2:40 pm">14:40</abbr></span> | <a class="permalink" href="index.html#comment-363" title="Permalink to comment 363">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=363#respond' onclick='return addComment.moveForm("comment-363", "363", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Hello Eric, thank you for the bug report. Looks like the issue is that <code>XMLListCollection</code> can return different <code>XML</code> instances for two consequent <code>getItemAt(i)</code> calls.</p>
+<p>You can workaround this issue by parsing XML into an ArrayCollection of objects that is the most common approach.</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-369" class="comment even thread-odd thread-alt depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">Neal Hudson</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Tuesday, September 13th, 2011, 2:36 pm">September 13, 2011</abbr> at <abbr class="comment-time" title="Tuesday, September 13th, 2011, 2:36 pm">14:36</abbr></span> | <a class="permalink" href="index.html#comment-369" title="Permalink to comment 369">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=369#respond' onclick='return addComment.moveForm("comment-369", "369", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Hi there, first of all &#8211; great work, really like the Spark Tree</p>
+<p>Have you tried using it in an mx:HDividedBox? In our application, we have the Spark Tree as a Table of Contents on the left, and on the right the content itself. If you drag the slider left and right the Spark Tree is not getting redrawn. </p>
+<p>Is this a known issue? If not, I&#8217;d like to report it<br />
+Thanks<br />
+Neal</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-371" class="comment byuser comment-author-maxim bypostauthor odd alt depth-2 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Wednesday, September 14th, 2011, 10:28 am">September 14, 2011</abbr> at <abbr class="comment-time" title="Wednesday, September 14th, 2011, 10:28 am">10:28</abbr></span> | <a class="permalink" href="index.html#comment-371" title="Permalink to comment 371">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=371#respond' onclick='return addComment.moveForm("comment-371", "371", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Hi Neal,</p>
+<p>It&#8217;s not a tree bug. Looks like you&#8217;ve got a problem with component layout &#8211; make sure that tree has <code>width="100%"</code>, tree layout has <code>horizontalAlign="justify"</code> and item renderer content scales to 100% width too.</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-370" class="comment even thread-even depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">Neal Hudson</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Wednesday, September 14th, 2011, 12:05 am">September 14, 2011</abbr> at <abbr class="comment-time" title="Wednesday, September 14th, 2011, 12:05 am">00:05</abbr></span> | <a class="permalink" href="index.html#comment-370" title="Permalink to comment 370">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=370#respond' onclick='return addComment.moveForm("comment-370", "370", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Hi there,<br />
+Unfortunately, I think we found another bug with Spark Tree. The error occurs when you ALT+TAB out of the AIR Application to another window (in Windows), and ALT+TAB back in. We have the data provider set to an XMLListCollection</p>
+<p>Here is the error generated:<br />
+TypeError: Error #1009: Cannot access a property or method of a null object reference.<br />
+	at spark.components::Scroller/focusInHandler()[E:\dev\4.5.1\frameworks\projects\spark\src\spark\components\Scroller.as:1273]<br />
+	at flash.display::Stage/set focus()<br />
+	at mx.core::UIComponent/setFocus()[E:\dev\4.5.1\frameworks\projects\framework\src\mx\core\UIComponent.as:9895]<br />
+	at mx.managers::FocusManager/activateWindowHandler()[E:\dev\4.5.1\frameworks\projects\framework\src\mx\managers\FocusManager.as:729]<br />
+	at flash.events::EventDispatcher/dispatchEventFunction()<br />
+	at flash.events::EventDispatcher/dispatchEvent()<br />
+	at mx.core::UIComponent/dispatchEvent()[E:\dev\4.5.1\frameworks\projects\framework\src\mx\core\UIComponent.as:13128]<br />
+	at spark.components::WindowedApplication/nativeWindow_activateHandler()[E:\dev\4.5.1\frameworks\projects\airspark\src\spark\components\WindowedApplication.as:2739</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-372" class="comment byuser comment-author-maxim bypostauthor odd alt depth-2 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Wednesday, September 14th, 2011, 10:30 am">September 14, 2011</abbr> at <abbr class="comment-time" title="Wednesday, September 14th, 2011, 10:30 am">10:30</abbr></span> | <a class="permalink" href="index.html#comment-372" title="Permalink to comment 372">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=372#respond' onclick='return addComment.moveForm("comment-372", "372", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Neal,</p>
+<p>As you can see, the RTE comes from <code>spark.components::Scroller/focusInHandler()</code> so there&#8217;s nothing about tree here. <a href="http://www.google.ru/search?rlz=1C1_____ruRU423RU423&amp;sourceid=chrome&amp;ie=UTF-8&amp;q=spark.components%3A%3AScroller%2FfocusInHandler()+bug" rel="nofollow">Try googling about this issue.</a></p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-373" class="comment even thread-odd thread-alt depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">Neal Hudson</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Wednesday, September 14th, 2011, 12:46 pm">September 14, 2011</abbr> at <abbr class="comment-time" title="Wednesday, September 14th, 2011, 12:46 pm">12:46</abbr></span> | <a class="permalink" href="index.html#comment-373" title="Permalink to comment 373">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=373#respond' onclick='return addComment.moveForm("comment-373", "373", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Apologies Maxim &#8211; the second one is not a bug with the tree.</p>
+<p>I&#8217;m still fairly sure the first one is though</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment -->
+	<li id="comment-388" class="comment odd alt thread-even depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">Vadim Romanenko</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, September 23rd, 2011, 6:12 pm">September 23, 2011</abbr> at <abbr class="comment-time" title="Friday, September 23rd, 2011, 6:12 pm">18:12</abbr></span> | <a class="permalink" href="index.html#comment-388" title="Permalink to comment 388">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=388#respond' onclick='return addComment.moveForm("comment-388", "388", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Hi, Maxim!</p>
+<p>  Is there any chance to build tree with your component, having this properties:<br />
+- one-column tree (grows from up to down, not from left to right)<br />
+- tree have vertical scroll if tree have too much &#8220;rows&#8221;<br />
+- tree have horizontal scroll if there too long tree item?</p>
+<p>Thank you for Your answer!</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-389" class="comment byuser comment-author-maxim bypostauthor even depth-2 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, September 23rd, 2011, 6:24 pm">September 23, 2011</abbr> at <abbr class="comment-time" title="Friday, September 23rd, 2011, 6:24 pm">18:24</abbr></span> | <a class="permalink" href="index.html#comment-389" title="Permalink to comment 389">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=389#respond' onclick='return addComment.moveForm("comment-389", "389", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Hello Vadim,</p>
+<p>Thanks for using Spark Tree. As you can see in the sample source code, the layout if Tree is set to TileList. Change it to VerticalLayout with horizontalAlign=&#8221;justify&#8221; and you&#8217;re done.</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-390" class="comment odd alt thread-odd thread-alt depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">Vadim Romanenko</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, September 23rd, 2011, 7:01 pm">September 23, 2011</abbr> at <abbr class="comment-time" title="Friday, September 23rd, 2011, 7:01 pm">19:01</abbr></span> | <a class="permalink" href="index.html#comment-390" title="Permalink to comment 390">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=390#respond' onclick='return addComment.moveForm("comment-390", "390", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Maxim, thank you for quick answer!</p>
+<p>Please, tell me &#8211; where i can see sample source code?</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-392" class="comment even depth-2 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">Vadim Romanenko</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Monday, September 26th, 2011, 7:18 pm">September 26, 2011</abbr> at <abbr class="comment-time" title="Monday, September 26th, 2011, 7:18 pm">19:18</abbr></span> | <a class="permalink" href="index.html#comment-392" title="Permalink to comment 392">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=392#respond' onclick='return addComment.moveForm("comment-392", "392", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Sorry for my question :) For others &#8211; to view sources, press right button at example and choose &#8220;View source&#8221;</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-393" class="comment odd alt thread-even depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">Vadim Romanenko</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Tuesday, September 27th, 2011, 7:04 pm">September 27, 2011</abbr> at <abbr class="comment-time" title="Tuesday, September 27th, 2011, 7:04 pm">19:04</abbr></span> | <a class="permalink" href="index.html#comment-393" title="Permalink to comment 393">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=393#respond' onclick='return addComment.moveForm("comment-393", "393", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Hi there, I tried to use your sample code to build my own test project <a href="http://ifolder.ru/26041882" rel="nofollow">http://ifolder.ru/26041882</a> .</p>
+<p>When I run this application, i fixed this bugs (or not?):<br />
+- when I open &#8220;tc2 &#8211; Test2&#8243; node, horizontal scrollbar not added. Only when I clicked twice on &#8220;plus&#8221; sign, scrollbar was added;<br />
+- when I close &#8220;tc2 &#8211; Test2&#8243; node, horizontal scrollbar wasn&#8217;t removed (all Tree contents are in the box &#8211; horiz.scrollbar not needed).</p>
+<p>Please, tell me &#8211; what I need to fix to remove such errors?</p>
+<p>Thank you for Your answers!</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-400" class="comment byuser comment-author-maxim bypostauthor even depth-2 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, September 30th, 2011, 8:06 pm">September 30, 2011</abbr> at <abbr class="comment-time" title="Friday, September 30th, 2011, 8:06 pm">20:06</abbr></span> | <a class="permalink" href="index.html#comment-400" title="Permalink to comment 400">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=400#respond' onclick='return addComment.moveForm("comment-400", "400", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Thank you for your comments and your patience!</p>
+<p>Looks like that scroll bars issues are caused by <code>HorizontalLayout</code> used in <a href="https://github.com/kachurovskiy/Spark-Tree/blob/FlexSDK4.5/src/com/sparkTree/DefaultTreeItemRenderer.mxml" rel="nofollow"><code>DefaultTreeItemRenderer.mxml</code></a>.</p>
+<p>To fix this just use your own custom item renderer without <code>HorizontalLayout</code> &#8211; use e.g. <code>BasicLayout</code> or manual ActionScript renderer coding. Sorry, have no time to fix this in default renderer by myself.</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-403" class="comment odd alt thread-odd thread-alt depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">Rene</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Wednesday, October 5th, 2011, 2:30 pm">October 5, 2011</abbr> at <abbr class="comment-time" title="Wednesday, October 5th, 2011, 2:30 pm">14:30</abbr></span> | <a class="permalink" href="index.html#comment-403" title="Permalink to comment 403">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=403#respond' onclick='return addComment.moveForm("comment-403", "403", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Hi Maxim, </p>
+<p>Is there an easy way to prevent the closing of a branch when the children property is empty. It seems that the ItemClose event is called when  i set the children = new array()</p>
+<p>Thanks, Rene</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-404" class="comment byuser comment-author-maxim bypostauthor even depth-2 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Wednesday, October 5th, 2011, 2:44 pm">October 5, 2011</abbr> at <abbr class="comment-time" title="Wednesday, October 5th, 2011, 2:44 pm">14:44</abbr></span> | <a class="permalink" href="index.html#comment-404" title="Permalink to comment 404">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=404#respond' onclick='return addComment.moveForm("comment-404", "404", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Thank you for using Spark Tree!</p>
+<p>You can prevent branch from closing by adding event listener for <code>itemOpening</code> event. In event handler check that <code>event.opening == false</code> &#8211; that would mean that node is about to close.</p>
+<p>After that you can call <code>event.preventDefault();</code> to cancel closing.</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-405" class="comment odd alt thread-even depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">Rene</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Wednesday, October 5th, 2011, 6:55 pm">October 5, 2011</abbr> at <abbr class="comment-time" title="Wednesday, October 5th, 2011, 6:55 pm">18:55</abbr></span> | <a class="permalink" href="index.html#comment-405" title="Permalink to comment 405">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=405#respond' onclick='return addComment.moveForm("comment-405", "405", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Thanks for your anwer!</p>
+<p>One more question. After refreshing the dataprovider, the indentation of the third level is equal to that of the second level. Any idea why that is?</p>
+<p>Thanks again, Rene</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-406" class="comment byuser comment-author-maxim bypostauthor even depth-2 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Wednesday, October 5th, 2011, 7:08 pm">October 5, 2011</abbr> at <abbr class="comment-time" title="Wednesday, October 5th, 2011, 7:08 pm">19:08</abbr></span> | <a class="permalink" href="index.html#comment-406" title="Permalink to comment 406">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=406#respond' onclick='return addComment.moveForm("comment-406", "406", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Can not reproduce this on <a href="/f/ria/10/sparkTree/SparkTreeApp.html" rel="nofollow">http://kachurovskiy.com/f/ria/10/sparkTree/SparkTreeApp.html</a> , looks like the problem is in your code. </p>
+<p>Try checking the custom renderer code.</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-423" class="comment odd alt thread-odd thread-alt depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">Norbert</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Wednesday, October 19th, 2011, 7:42 pm">October 19, 2011</abbr> at <abbr class="comment-time" title="Wednesday, October 19th, 2011, 7:42 pm">19:42</abbr></span> | <a class="permalink" href="index.html#comment-423" title="Permalink to comment 423">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=423#respond' onclick='return addComment.moveForm("comment-423", "423", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Hi, could you possibly explain to me how can I use spark-tree with my own dataDescriptor? I already implemented my own data structure representing tree hierarchy and dataDescriptor (extending ITreeDataDescriptor2) which describes it. I already used it successfully with mx:Tree implementation, but this component was extremely buggy. I tried to use my structure with your component, but it complains that dataDescriptor should implement IList interface. Why is that? Is it necessary even when i provided dataDescriptor? Do i need to reimplement my data structure?</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-424" class="comment byuser comment-author-maxim bypostauthor even depth-2 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Wednesday, October 19th, 2011, 9:34 pm">October 19, 2011</abbr> at <abbr class="comment-time" title="Wednesday, October 19th, 2011, 9:34 pm">21:34</abbr></span> | <a class="permalink" href="index.html#comment-424" title="Permalink to comment 424">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=424#respond' onclick='return addComment.moveForm("comment-424", "424", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Spark Tree is based on Spark List.</p>
+<p>Spark List requires it&#8217;s dataProvider to implement IList.</p>
+<p>That&#8217;s why you need to implement IList in your dataProvider (not dataDescriptor!) in order to use Spark Tree. It&#8217;s a quite small interface and it won&#8217;t take long to do that.</p>
+<p>Thank you.</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-428" class="comment odd alt depth-3 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">Norbert</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, October 21st, 2011, 6:48 pm">October 21, 2011</abbr> at <abbr class="comment-time" title="Friday, October 21st, 2011, 6:48 pm">18:48</abbr></span> | <a class="permalink" href="index.html#comment-428" title="Permalink to comment 428">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=428#respond' onclick='return addComment.moveForm("comment-428", "428", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Thank you for your answer :) I implemented IList interface and everything works like a charm. Still I have just one more question:  I have my own ItemRenderer wchich support drag &amp; drop operations (using dragEnter, dragDrop and mouseMove events in ItemRenderer). I would like my tree to autoscroll when I drag an item near the end of it. This doesn&#8217;t seem to work. I set both dragEnabled and dropEnabled to true. Any ideas how to solve that?</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-426" class="comment even thread-even depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">Jeremy</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, October 21st, 2011, 2:26 am">October 21, 2011</abbr> at <abbr class="comment-time" title="Friday, October 21st, 2011, 2:26 am">02:26</abbr></span> | <a class="permalink" href="index.html#comment-426" title="Permalink to comment 426">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=426#respond' onclick='return addComment.moveForm("comment-426", "426", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>When I use the defaultLeafIcon property, I get an error &#8211;<br />
+1178: Attempted access of inaccessible property defaultLeafIcon through a reference with static type com.sparkTree:Tree.</p>
+<p>I&#8217;m passing this as the value: @Embed(&#8216;views/assets/images/icons/database.png&#8217;)  (in MXML)</p>
+<p>Any ideas?</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-427" class="comment byuser comment-author-maxim bypostauthor odd alt depth-2 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, October 21st, 2011, 3:09 am">October 21, 2011</abbr> at <abbr class="comment-time" title="Friday, October 21st, 2011, 3:09 am">03:09</abbr></span> | <a class="permalink" href="index.html#comment-427" title="Permalink to comment 427">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=427#respond' onclick='return addComment.moveForm("comment-427", "427", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p><code>defaultLeafIcon</code> is a style, use <code>tree.setStyle("defaultLeafIcon", value);</code></p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-439" class="comment even thread-odd thread-alt depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">Isambard</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Wednesday, November 9th, 2011, 7:15 pm">November 9, 2011</abbr> at <abbr class="comment-time" title="Wednesday, November 9th, 2011, 7:15 pm">19:15</abbr></span> | <a class="permalink" href="index.html#comment-439" title="Permalink to comment 439">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=439#respond' onclick='return addComment.moveForm("comment-439", "439", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Hi </p>
+<p>Thanks for the component, it is awesome!</p>
+<p>I am trying to implement the dragging of items to inside other items, i.e. turning leafs into nodes. So you would be able to drag an item above a leaf, below it, or onto it in which case the leaf would become a node. Any pointers about how I would go about this would be much appreciated.</p>
+<p>Thanks</p>
+<p>Isambard.</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-440" class="comment byuser comment-author-maxim bypostauthor odd alt depth-2 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Thursday, November 10th, 2011, 9:42 pm">November 10, 2011</abbr> at <abbr class="comment-time" title="Thursday, November 10th, 2011, 9:42 pm">21:42</abbr></span> | <a class="permalink" href="index.html#comment-440" title="Permalink to comment 440">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=440#respond' onclick='return addComment.moveForm("comment-440", "440", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Hi Isambard,</p>
+<p>Thank you for using Spark Tree. You can implement drag and drop the same way it&#8217;s usually done for Spark List &#8211; use <code>dragEnabled</code>, <code>dropEnabled</code> and <code>dragMoveEnabled</code>.</p>
+<p>There is an issue specific for Spark Tree &#8211; if you are moving an open tree folder, you should close it before start dragging since List does not expect that removing one node can remove some other nodes (child nodes of an open folder).</p>
+<p>Another task is to distinguish whether node is dropped between nodes on into one of the nodes.</p>
+<p>All in all I would suggest to checkout the source of Spark Tree and to work closely with it and Spark List source to achieve all that.</p>
+<p>Sorry, don&#8217;t have time to give you a complete solution for your task. Good luck!</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-442" class="comment even depth-3 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">Isambard</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Thursday, November 10th, 2011, 9:50 pm">November 10, 2011</abbr> at <abbr class="comment-time" title="Thursday, November 10th, 2011, 9:50 pm">21:50</abbr></span> | <a class="permalink" href="index.html#comment-442" title="Permalink to comment 442">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=442#respond' onclick='return addComment.moveForm("comment-442", "442", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Hi Maxim</p>
+<p>Thanks for the reply.</p>
+<p>I turned on the drag stuff and then made some tweaks inside dragOverHandler and dragDropHandler in the Tree class which detect if the mouse is over another item, if it is just push the moved node into the children of the data item of the relevant itemRenderer rather than inserting it into the list. Works a treat.</p>
+<p>Thanks</p>
+<p>Isambard.</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-488" class="comment odd alt thread-even depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://www.dgeenens.net"><a href="http://www.dgeenens.net/" title="Didier" class="url" rel="external nofollow">Didier</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Tuesday, December 20th, 2011, 3:17 pm">December 20, 2011</abbr> at <abbr class="comment-time" title="Tuesday, December 20th, 2011, 3:17 pm">15:17</abbr></span> | <a class="permalink" href="index.html#comment-488" title="Permalink to comment 488">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=488#respond' onclick='return addComment.moveForm("comment-488", "488", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Hi,</p>
+<p>I&#8217;m trying to implement your sparktree. I&#8217;ve got an object that has a list of another object which in turn has a list of other objects. How do I go ahead with this? </p>
+<p>e.g.: User&gt;Courses&gt;Levels. I want to display the Courses and Levels in a tree. The courses are no problem, the levels on the other hand.</p>
+<p>Thx in advance,</p>
+<p>Didier</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment -->
+	<li id="comment-489" class="comment even thread-odd thread-alt depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://www.dgeenens.net"><a href="http://www.dgeenens.net/" title="Didier" class="url" rel="external nofollow">Didier</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Tuesday, December 20th, 2011, 7:49 pm">December 20, 2011</abbr> at <abbr class="comment-time" title="Tuesday, December 20th, 2011, 7:49 pm">19:49</abbr></span> | <a class="permalink" href="index.html#comment-489" title="Permalink to comment 489">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=489#respond' onclick='return addComment.moveForm("comment-489", "489", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Hi,</p>
+<p>I can&#8217;t see more than one level when I use an itemrenderer based on TreeItemRenderer. Any ideas?</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-491" class="comment odd alt depth-2 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://www.dgeenens.net"><a href="http://www.dgeenens.net/" title="Didier" class="url" rel="external nofollow">Didier</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Tuesday, December 20th, 2011, 7:52 pm">December 20, 2011</abbr> at <abbr class="comment-time" title="Tuesday, December 20th, 2011, 7:52 pm">19:52</abbr></span> | <a class="permalink" href="index.html#comment-491" title="Permalink to comment 491">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=491#respond' onclick='return addComment.moveForm("comment-491", "491", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Solved :)</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-508" class="comment even thread-even depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">Emerson Cardoso</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Tuesday, January 17th, 2012, 8:22 pm">January 17, 2012</abbr> at <abbr class="comment-time" title="Tuesday, January 17th, 2012, 8:22 pm">20:22</abbr></span> | <a class="permalink" href="index.html#comment-508" title="Permalink to comment 508">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=508#respond' onclick='return addComment.moveForm("comment-508", "508", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Hi, I&#8217;m using your Tree component and it&#8217;s working just fine, but I cannot set it to do word-wrapping with variable row height.</p>
+<p>I&#8217;ve already tried to set a VerticalLayout to it, with variableRowHeight=&#8221;true&#8221; and horizontalAlign=&#8221;justify&#8221;, but it didn&#8217;t work.</p>
+<p>How can I do this with your component?</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-509" class="comment byuser comment-author-maxim bypostauthor odd alt depth-2 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Tuesday, January 17th, 2012, 10:10 pm">January 17, 2012</abbr> at <abbr class="comment-time" title="Tuesday, January 17th, 2012, 10:10 pm">22:10</abbr></span> | <a class="permalink" href="index.html#comment-509" title="Permalink to comment 509">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=509#respond' onclick='return addComment.moveForm("comment-509", "509", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Word wrapping depends on item renderer. Try specifying custom item renderer that will contain multiline text field with word wrapping. </p>
+<p>Basically any Spark List multiline item renderer should work so Google for that.</p>
+<p>Sorry, don&#8217;t have time to elaborate more.</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-516" class="comment even thread-odd thread-alt depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">Stefan</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Tuesday, January 31st, 2012, 1:31 pm">January 31, 2012</abbr> at <abbr class="comment-time" title="Tuesday, January 31st, 2012, 1:31 pm">13:31</abbr></span> | <a class="permalink" href="index.html#comment-516" title="Permalink to comment 516">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=516#respond' onclick='return addComment.moveForm("comment-516", "516", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Hi,</p>
+<p>I’m trying to get the SparkTree working with Flex 4.6.<br />
+Could you give me an advice how to do that?</p>
+<p>Many Thanks,<br />
+Stefan</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-517" class="comment byuser comment-author-maxim bypostauthor odd alt depth-2 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Tuesday, January 31st, 2012, 8:18 pm">January 31, 2012</abbr> at <abbr class="comment-time" title="Tuesday, January 31st, 2012, 8:18 pm">20:18</abbr></span> | <a class="permalink" href="index.html#comment-517" title="Permalink to comment 517">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=517#respond' onclick='return addComment.moveForm("comment-517", "517", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Hi Stefan!</p>
+<p>Thank you for using Spark Tree. Try downloading <a href="https://github.com/downloads/kachurovskiy/Spark-Tree/SparkTree4.5.swc" rel="nofollow">https://github.com/downloads/kachurovskiy/Spark-Tree/SparkTree4.5.swc</a> . I haven&#8217;t tested it with 4.6 yet, need to download new Builder and SDK and it takes a while.</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-519" class="comment even depth-3 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">Stefan</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Tuesday, January 31st, 2012, 8:27 pm">January 31, 2012</abbr> at <abbr class="comment-time" title="Tuesday, January 31st, 2012, 8:27 pm">20:27</abbr></span> | <a class="permalink" href="index.html#comment-519" title="Permalink to comment 519">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=519#respond' onclick='return addComment.moveForm("comment-519", "519", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Hi Maxim,</p>
+<p>thanks for your quick answer!<br />
+with the 4.6 sdk I get a run time error:</p>
+<p>VerifyError: Error #1014: Class mx.controls.treeClasses::ITreeDataDescriptor2 could not be found.</p>
+<p>That is strange, the ITreeDataDescriptor2 interface should be included in the 4.6 sdk and there is no compile error.</p>
+<p>Regards,<br />
+Stefan</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-520" class="comment byuser comment-author-maxim bypostauthor odd alt depth-4 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Tuesday, January 31st, 2012, 8:46 pm">January 31, 2012</abbr> at <abbr class="comment-time" title="Tuesday, January 31st, 2012, 8:46 pm">20:46</abbr></span> | <a class="permalink" href="index.html#comment-520" title="Permalink to comment 520">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=520#respond' onclick='return addComment.moveForm("comment-520", "520", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>SDK 4.6 was released a long time ago and this component is quite popular &#8211; so I suggest you to check that ITreeDataDescriptor2 is compiled into your app. Try changing SDK linkage or the way you compile your project.</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment -->
+	<li id="comment-522" class="comment byuser comment-author-maxim bypostauthor even depth-4 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Wednesday, February 1st, 2012, 10:31 am">February 1, 2012</abbr> at <abbr class="comment-time" title="Wednesday, February 1st, 2012, 10:31 am">10:31</abbr></span> | <a class="permalink" href="index.html#comment-522" title="Permalink to comment 522">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=522#respond' onclick='return addComment.moveForm("comment-522", "522", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Just tested project with Flex 4.6 and all works well. Please describe the way you build your project if you still have the problem. Thanks!</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-527" class="comment odd alt thread-even depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://www.centomedia.be"><a href="http://www.centomedia.be/" title="Ramses" class="url" rel="external nofollow">Ramses</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Wednesday, February 8th, 2012, 5:21 pm">February 8, 2012</abbr> at <abbr class="comment-time" title="Wednesday, February 8th, 2012, 5:21 pm">17:21</abbr></span> | <a class="permalink" href="index.html#comment-527" title="Permalink to comment 527">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=527#respond' onclick='return addComment.moveForm("comment-527", "527", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Hello Maxim,</p>
+<p>I want to use your SparkTree component because it looks good and the mx Tree component is acting up all the time. :)</p>
+<p>But i&#8217;m having a problem with showing the data. I only see the top levels and no branches in the tree. I thought i was as simple as giving the objects in the ArrayCollection a property &#8220;children&#8221; but nothing is showing except for the top levels.</p>
+<p>The objects i use are generated objects from Flash Builder and are retrieved from our backend. This is the same for the objects in the children property. This is a ArrayCollection of generated objects.</p>
+<p>Any idea what the problem might be?</p>
+<p>Thanks in advance!</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-530" class="comment byuser comment-author-maxim bypostauthor even depth-2 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Wednesday, February 8th, 2012, 10:21 pm">February 8, 2012</abbr> at <abbr class="comment-time" title="Wednesday, February 8th, 2012, 10:21 pm">22:21</abbr></span> | <a class="permalink" href="index.html#comment-530" title="Permalink to comment 530">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=530#respond' onclick='return addComment.moveForm("comment-530", "530", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Hi Ramses! I recently updated the library with some style improvements, you may just not see the open/close icon.</p>
+<p>1. Do you have MX Tree in the project? In this case Spark Tree will use it&#8217;s icons<br />
+2. Can you reproduce it on an empty project?</p>
+<p>Thanks.</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-532" class="comment odd alt depth-3 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://www.centomedia.be"><a href="http://www.centomedia.be/" title="Ramses" class="url" rel="external nofollow">Ramses</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Thursday, February 9th, 2012, 12:39 pm">February 9, 2012</abbr> at <abbr class="comment-time" title="Thursday, February 9th, 2012, 12:39 pm">12:39</abbr></span> | <a class="permalink" href="index.html#comment-532" title="Permalink to comment 532">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=532#respond' onclick='return addComment.moveForm("comment-532", "532", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Hello,</p>
+<p>I figured it out (whats wrong), it is indeed a display problem. I used code to open the branches and then i could see all the leafs.. so it&#8217;s just the + sign not showing up.</p>
+<p>I did not have the mx tree component in my project, but the problem is that i&#8217;m using modules that are loaded on runtime.<br />
+The component works perfectly when i use it in my main application, but not in the modules.<br />
+But i cannot reproduce it in an empty project so far. I&#8217;m using altered modules and load them via a class that handles everything (loading/displaying/removing/..) for my modules. I will keep trying to reproduce it!</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-533" class="comment byuser comment-author-maxim bypostauthor even depth-4 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Thursday, February 9th, 2012, 12:45 pm">February 9, 2012</abbr> at <abbr class="comment-time" title="Thursday, February 9th, 2012, 12:45 pm">12:45</abbr></span> | <a class="permalink" href="index.html#comment-533" title="Permalink to comment 533">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=533#respond' onclick='return addComment.moveForm("comment-533", "533", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>I suggest you to download source code from <a href="https://github.com/kachurovskiy/Spark-Tree" rel="nofollow">https://github.com/kachurovskiy/Spark-Tree</a> , create library project from it and use as dependency to build your project. Then place breakpoint in <code>Tree.preinitializeHandler()</code>, you&#8217;ll see how styles are handled in your module&#8217;s tree.</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-541" class="comment odd alt thread-odd thread-alt depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">Prem</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Thursday, February 23rd, 2012, 11:55 pm">February 23, 2012</abbr> at <abbr class="comment-time" title="Thursday, February 23rd, 2012, 11:55 pm">23:55</abbr></span> | <a class="permalink" href="index.html#comment-541" title="Permalink to comment 541">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=541#respond' onclick='return addComment.moveForm("comment-541", "541", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Hi Maxim,<br />
+I am trying to filter the dataprovider of the Tree. Basically I am doing a custom filter function on a multi level tree data provider and then want to refresh the tree while maintaining the open nodes that match the filter. </p>
+<p>Problem Number 1: invalidateDisplayList() does not refresh the tree only reassigning the dataProvider does  </p>
+<p>Problem Number 2: reassigning the dataProvider causes all the nodes to go into the original collapse state ! </p>
+<p>Any suggestions ? </p>
+<p>Thank you much,<br />
+Prem</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-542" class="comment byuser comment-author-maxim bypostauthor even depth-2 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, February 24th, 2012, 4:56 am">February 24, 2012</abbr> at <abbr class="comment-time" title="Friday, February 24th, 2012, 4:56 am">04:56</abbr></span> | <a class="permalink" href="index.html#comment-542" title="Permalink to comment 542">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=542#respond' onclick='return addComment.moveForm("comment-542", "542", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Hi Prem!</p>
+<p>1. <code>invalidateDisplayList()</code> is not supposed to refresh tree. It&#8217;s invalidating visual appearance of component (size, borders, etc.) and does not affect item renderers refresh.</p>
+<p>2. Please apply filtering to the <b>original</b> collection, not to <code>tree.dataProvider</code>. Here is the correct code:</p>
+<pre>var collection:ArrayCollection = ...
+tree.dataProvider = collection;
+trace(tree.dataProvider == collection); // false
+collection.filterFunction = ...</pre>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-543" class="comment odd alt thread-even depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">Prem</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, February 24th, 2012, 7:18 pm">February 24, 2012</abbr> at <abbr class="comment-time" title="Friday, February 24th, 2012, 7:18 pm">19:18</abbr></span> | <a class="permalink" href="index.html#comment-543" title="Permalink to comment 543">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=543#respond' onclick='return addComment.moveForm("comment-543", "543", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>I am not filtering the dataprovider , I am filtering the original correction that has been assigned to tree.dataprovider using a method similar to this article since I dont want to filter the parents with the filter criteria <a href="http://www.kalengibbons.com/blog/index.php/2009/01/filtering-a-flex-tree-using-an-arraycollection/" rel="nofollow">http://www.kalengibbons.com/blog/index.php/2009/01/filtering-a-flex-tree-using-an-arraycollection/</a> </p>
+<p>Whenever the search text changes in a text input I recursively filter the children of the collection and then refresh the collection but that does not reflect on the tree. </p>
+<p>Am I missing something ?</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-544" class="comment byuser comment-author-maxim bypostauthor even depth-2 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, February 24th, 2012, 9:05 pm">February 24, 2012</abbr> at <abbr class="comment-time" title="Friday, February 24th, 2012, 9:05 pm">21:05</abbr></span> | <a class="permalink" href="index.html#comment-544" title="Permalink to comment 544">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=544#respond' onclick='return addComment.moveForm("comment-544", "544", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>The code at the link you provided is not accurate but anyway Spark Tree should work in this case if I pretend it to be MX Tree replacement.</p>
+<p>All nodes are closed after filtering because <code>children</code> of each person is replaced with the new collection &#8211; so all information about open branches in it is removed.</p>
+<p>You can easily fix it with by using this functions in kalengibbons example:</p>
+<pre>private function refreshData():void{
+	refreshRecursiveChildren(people[0]);
+}
+private function refreshRecursiveChildren(person:Person):void{
+	if (person.children) {
+		for each(var _person:Person in person.children){
+			refreshRecursiveChildren(_person);
+		}
+		person.children.filterFunction = filterData;
+		person.children.refresh();
+	}
+}</pre>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-545" class="comment odd alt thread-odd thread-alt depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">Prem</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, February 24th, 2012, 9:28 pm">February 24, 2012</abbr> at <abbr class="comment-time" title="Friday, February 24th, 2012, 9:28 pm">21:28</abbr></span> | <a class="permalink" href="index.html#comment-545" title="Permalink to comment 545">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=545#respond' onclick='return addComment.moveForm("comment-545", "545", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Thanks Maxim. I guess I was looking for a quick fix to an urgent problem. Could you please tell me what you found wrong in the code?</p>
+<p>I followed your advice and got it working. Should have looked at the code a little better, I have a custom implementation of your tree ( like the sample i posted a while back <a href="http://www.premsweb.com/spark-tree-with-a-three-state-checkbox" rel="nofollow">http://www.premsweb.com/spark-tree-with-a-three-state-checkbox</a> )  but a little more complex and wanted to implement this quick . </p>
+<p>Anyway , thank you again for your help and the great spark tree :)</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment -->
+	<li id="comment-548" class="comment even thread-even depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">Adnan Doric</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Thursday, March 1st, 2012, 6:23 pm">March 1, 2012</abbr> at <abbr class="comment-time" title="Thursday, March 1st, 2012, 6:23 pm">18:23</abbr></span> | <a class="permalink" href="index.html#comment-548" title="Permalink to comment 548">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=548#respond' onclick='return addComment.moveForm("comment-548", "548", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Hi,<br />
+Very nice component!</p>
+<p>There is a bug that can be reproduced in your own demo:</p>
+<ol>
+<li>Click &#8220;+&#8221; to expand the &#8220;parent Element 0&#8243;</li>
+<li>Drag the &#8220;child Element 2&#8243;, just before &#8220;child Element 0&#8243;</li>
+<li>Bug: &#8220;child Element 2&#8243; is kicked out of &#8220;parent Element 0&#8243;
+</li>
+</ol>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-550" class="comment byuser comment-author-maxim bypostauthor odd alt depth-2 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Thursday, March 1st, 2012, 9:43 pm">March 1, 2012</abbr> at <abbr class="comment-time" title="Thursday, March 1st, 2012, 9:43 pm">21:43</abbr></span> | <a class="permalink" href="index.html#comment-550" title="Permalink to comment 550">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=550#respond' onclick='return addComment.moveForm("comment-550", "550", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>I haven’t updated the example for a while. We were fixing some local drag issues on GitHub. Can you reproduce this with the latest SWC from GitHub?</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-551" class="comment even depth-3 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">Adnan Doric</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Thursday, March 1st, 2012, 9:49 pm">March 1, 2012</abbr> at <abbr class="comment-time" title="Thursday, March 1st, 2012, 9:49 pm">21:49</abbr></span> | <a class="permalink" href="index.html#comment-551" title="Permalink to comment 551">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=551#respond' onclick='return addComment.moveForm("comment-551", "551", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Yes I reproduced it in my project with latest SWC from Git then I came here and tested in your demo: same bug :)<br />
+I am not really affected but just wanted you to know.</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-552" class="comment byuser comment-author-maxim bypostauthor odd alt depth-4 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Thursday, March 1st, 2012, 10:48 pm">March 1, 2012</abbr> at <abbr class="comment-time" title="Thursday, March 1st, 2012, 10:48 pm">22:48</abbr></span> | <a class="permalink" href="index.html#comment-552" title="Permalink to comment 552">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=552#respond' onclick='return addComment.moveForm("comment-552", "552", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Yeah, you&#8217;re right. </p>
+<p>I&#8217;ve been trying to ignore those local drag problems but apparently I have to start fixing them at last :) There&#8217;s a closed issue about local drag with another issue described in last comment &#8211; <a href="https://github.com/kachurovskiy/Spark-Tree/issues/6" rel="nofollow">https://github.com/kachurovskiy/Spark-Tree/issues/6</a></p>
+<p>There&#8217;s another huge issue about multiple local drag of open parent node &#8211; it should generally fail because List doesn&#8217;t expect one node removal to cause another nodes removal.</p>
+<p>P.S.: If you have an idea how to fix at least one of this local drag issues &#8211; pull requests are always welcome on <a href="https://github.com/kachurovskiy/Spark-Tree" rel="nofollow">https://github.com/kachurovskiy/Spark-Tree</a> !</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-593" class="comment even thread-odd thread-alt depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">Keith</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Sunday, March 25th, 2012, 7:01 pm">March 25, 2012</abbr> at <abbr class="comment-time" title="Sunday, March 25th, 2012, 7:01 pm">19:01</abbr></span> | <a class="permalink" href="index.html#comment-593" title="Permalink to comment 593">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=593#respond' onclick='return addComment.moveForm("comment-593", "593", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Maxim,</p>
+<p>Your component saved my project!<br />
+One minor suggestion (so it can be embedded in mobile applications): in file DefaultDisclosureButtom.mxml, there is a  component. If you change it to  it works also in mobile, otherwise you get a packaging error.<br />
+Thank you for the great work!!!!</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment -->
+	<li id="comment-594" class="comment odd alt thread-even depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">Keith</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Monday, March 26th, 2012, 3:26 am">March 26, 2012</abbr> at <abbr class="comment-time" title="Monday, March 26th, 2012, 3:26 am">03:26</abbr></span> | <a class="permalink" href="index.html#comment-594" title="Permalink to comment 594">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=594#respond' onclick='return addComment.moveForm("comment-594", "594", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Hi Maxim,</p>
+<p>In my previous comment, I meant to say that there is a mx:Image component that may be worth changing to s:Image. Unfortunately, I wrote them as xml tags without formatting them as code, so they don&#8217;t show.</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment -->
+	<li id="comment-611" class="comment even thread-odd thread-alt depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">jessewk</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Wednesday, April 11th, 2012, 9:40 pm">April 11, 2012</abbr> at <abbr class="comment-time" title="Wednesday, April 11th, 2012, 9:40 pm">21:40</abbr></span> | <a class="permalink" href="index.html#comment-611" title="Permalink to comment 611">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=611#respond' onclick='return addComment.moveForm("comment-611", "611", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>To make SparkTree work with remote data (list classes that throw itemPending errors):</p>
+<ul>
+<li>Change all index based branch references in TreeDataProvider to use getItemAt(), e.g branch[i] becomes branch.getItemAt(i). You should really always use the getItemAt() accessor for IList classes.</li>
+<li>Your remote list class must implement ICollectionView (required by the getChildren() method of DefaultDataDescriptor). I just extended the built-in AsyncListView to AsyncListCollectionView and didn&#8217;t bother to implement the actual functionality. I just throw errors in all the ICollectionView specific methods.</li>
+<li>Use a custom data descriptor class and override isBranch(), hasChildren(), and getChildren(). Your child property should be an instance of your remote collection class, AsyncListCollectionView in my case.</li>
+<li>I used James Ward&#8217;s PagedList class (<a href="http://www.jamesward.com/2010/10/11/data-paging-in-flex-4/" rel="nofollow">http://www.jamesward.com/2010/10/11/data-paging-in-flex-4/</a>). In the getItemAt() function I had to add a null check in addition to the undefined check.</li>
+<li>Depending on your model implementation, you may want to provide a &#8216;typicalItem&#8217; that doesn&#8217;t have children so that itemPending errors won&#8217;t be thrown during default layout.</li>
+</ul>
+<p>Once it&#8217;s working, usage is simple:</p>
+<pre lang="xml">&lt;fx:Declarations&gt;
+  &lt;collections:PagedList id="pagedData"
+    loadItemsFunction="loadItems" length="0"/&gt;
+&lt;/fx:Declarations&gt;
+	
+&lt;sparkTree:Tree labelField="label" typicalItem="{typicalNode}"&gt;
+  &lt;sparkTree:dataProvider&gt;
+    &lt;collections:AsyncListCollectionView list="{pagedData}"
+      createPendingItemFunction="{createPendingItem}"
+      createFailedItemFunction="{createFailedItem}" /&gt;	
+  &lt;/sparkTree:dataProvider&gt;
+  &lt;sparkTree:dataDescriptor&gt;
+    &lt;support:NodeDescriptor /&gt;
+  &lt;/sparkTree:dataDescriptor&gt;
+&lt;/sparkTree:Tree&gt;</pre>
+<p>Hopefully that saves somebody a day of their life. I already paid that bounty&#8230;</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-612" class="comment byuser comment-author-maxim bypostauthor odd alt depth-2 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Wednesday, April 11th, 2012, 9:51 pm">April 11, 2012</abbr> at <abbr class="comment-time" title="Wednesday, April 11th, 2012, 9:51 pm">21:51</abbr></span> | <a class="permalink" href="index.html#comment-612" title="Permalink to comment 612">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=612#respond' onclick='return addComment.moveForm("comment-612", "612", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Thank you for this great contribution! I already changed all [i] to getItemAt(i) &#8211; <a href="https://github.com/kachurovskiy/Spark-Tree/blob/FlexSDK4.5/src/com/sparkTree/TreeDataProvider.as" rel="nofollow">https://github.com/kachurovskiy/Spark-Tree/blob/FlexSDK4.5/src/com/sparkTree/TreeDataProvider.as</a></p>
+<p>It would be great if you could provide a working sample project. Spark Tree is a very popular component and it will help many Flex developers. I would also be more than happy to recommend your work in a new post.</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-615" class="comment even thread-even depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">Evan</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Thursday, April 19th, 2012, 5:29 pm">April 19, 2012</abbr> at <abbr class="comment-time" title="Thursday, April 19th, 2012, 5:29 pm">17:29</abbr></span> | <a class="permalink" href="index.html#comment-615" title="Permalink to comment 615">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=615#respond' onclick='return addComment.moveForm("comment-615", "615", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Hi Maxim,<br />
+I&#8217;m attempting to set a spark VScrollBar skin against the SparkTree control using CSS, but finding that it&#8217;s not being recognised. I was thinking that doing this should be ok given SparkTree is based on the spark List control? I was wondering whether you might have any clues at all please?<br />
+My CSS definition is as follows:</p>
+<pre>s|List s|VScrollBar sparkTree|Tree {
+    skinClass: ClassReference("com.arenaeast.localskins.VScrollBarSkin");
+}</pre>
+<p>Thanks very much! :)</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-616" class="comment byuser comment-author-maxim bypostauthor odd alt depth-2 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Thursday, April 19th, 2012, 6:44 pm">April 19, 2012</abbr> at <abbr class="comment-time" title="Thursday, April 19th, 2012, 6:44 pm">18:44</abbr></span> | <a class="permalink" href="index.html#comment-616" title="Permalink to comment 616">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=616#respond' onclick='return addComment.moveForm("comment-616", "616", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Hi! Thanks for using Spark Tree. This selector should work:</p>
+<pre>sparkTree|Tree s|VScrollBar { ... }</pre>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-619" class="comment even thread-odd thread-alt depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">hstR</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, April 27th, 2012, 1:00 pm">April 27, 2012</abbr> at <abbr class="comment-time" title="Friday, April 27th, 2012, 1:00 pm">13:00</abbr></span> | <a class="permalink" href="index.html#comment-619" title="Permalink to comment 619">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=619#respond' onclick='return addComment.moveForm("comment-619", "619", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Your components seems to be not compatible with the Mobile App developement.<br />
+I met the following error when I tried to compile a Mobile Phone App :<br />
+VerifyError: Error #1014: Class mx.controls.treeClasses::ITreeDataDescriptor2 could not be found.</p>
+<p>I don&#8217;t met this problem with AIR &amp; Web Applications.</p>
+<p>Is this normal ?</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-620" class="comment byuser comment-author-maxim bypostauthor odd alt depth-2 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, April 27th, 2012, 9:35 pm">April 27, 2012</abbr> at <abbr class="comment-time" title="Friday, April 27th, 2012, 9:35 pm">21:35</abbr></span> | <a class="permalink" href="index.html#comment-620" title="Permalink to comment 620">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=620#respond' onclick='return addComment.moveForm("comment-620", "620", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>You can fix it now by loading the source code and removing MX dependencies from the component or wait until I create a separate branch and SWF for this case. Thanks.</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-624" class="comment even depth-3 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">hstR</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Wednesday, May 2nd, 2012, 1:28 pm">May 2, 2012</abbr> at <abbr class="comment-time" title="Wednesday, May 2nd, 2012, 1:28 pm">13:28</abbr></span> | <a class="permalink" href="index.html#comment-624" title="Permalink to comment 624">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=624#respond' onclick='return addComment.moveForm("comment-624", "624", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Hello,</p>
+<p>I&#8217;d prefer to wait for your separate branch and SWF for this case. I&#8217;m actually a flex-newbie and I didn&#8217;t understood your previous explainations, haha.</p>
+<p>Thanks for your work.</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment -->
+	<li id="comment-625" class="comment odd alt depth-3 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">hstR</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Wednesday, May 2nd, 2012, 2:37 pm">May 2, 2012</abbr> at <abbr class="comment-time" title="Wednesday, May 2nd, 2012, 2:37 pm">14:37</abbr></span> | <a class="permalink" href="index.html#comment-625" title="Permalink to comment 625">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=625#respond' onclick='return addComment.moveForm("comment-625", "625", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>My mistake. I found how to load the sources but I met some issues when I try to  remove the mx dependencies.  If you have any advice, please let me know.</p>
+<p>Bye.</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-626" class="comment byuser comment-author-maxim bypostauthor even depth-4 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Thursday, May 3rd, 2012, 9:31 am">May 3, 2012</abbr> at <abbr class="comment-time" title="Thursday, May 3rd, 2012, 9:31 am">09:31</abbr></span> | <a class="permalink" href="index.html#comment-626" title="Permalink to comment 626">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=626#respond' onclick='return addComment.moveForm("comment-626", "626", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>According to the <a href="http://help.adobe.com/en_US/flex/mobileapps/WSf3db6597adcd110e19124fcb12ab3a1c319-8000.html" rel="nofollow">doc</a> you have to get rid of mx.controls.* and mx.containers.* packages which comes to replacing  ITreeDataDescriptor2.</p>
+<p>The problem is that there is no spark tree data descriptor since there&#8217;s no spark tree or advanced grid. </p>
+<p>Solutions:<br />
+1. Copy ITreeDataDescriptor2, DefaultDataDescriptor and related classes to your own package<br />
+2. or replace all calls to ITreeDataDescriptor by replacing them with explicit logic not involving descriptor e.g. descriptor.getChildren(node) to node.children</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-627" class="comment odd alt depth-5 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">hstR</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Thursday, May 3rd, 2012, 5:16 pm">May 3, 2012</abbr> at <abbr class="comment-time" title="Thursday, May 3rd, 2012, 5:16 pm">17:16</abbr></span> | <a class="permalink" href="index.html#comment-627" title="Permalink to comment 627">Permalink</a>  </div>
+		<div class="comment-text">
+			
+			<p>Hello Maxim,</p>
+<p>I have listened your advices and I choosed the first suggested solution. I think my classes are ok now because there is no more errors with my packages.<br />
+Now I met another issue, which is a compiler issue. </p>
+<p>If you&#8217;re trying to create a separate branch and SWF, I hope you&#8217;ll be luckier than me.</p>
+<p>Thanks for you previous advices and solutions.</p>
+<p>hstR</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-652" class="comment even thread-even depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">Sunil Rana</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Thursday, May 17th, 2012, 2:34 pm">May 17, 2012</abbr> at <abbr class="comment-time" title="Thursday, May 17th, 2012, 2:34 pm">14:34</abbr></span> | <a class="permalink" href="index.html#comment-652" title="Permalink to comment 652">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=652#respond' onclick='return addComment.moveForm("comment-652", "652", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Hi Maxim,</p>
+<p>As per your solution below<br />
+  1. Copy ITreeDataDescriptor2, DefaultDataDescriptor and related classes to your own package</p>
+<p>I have made my spark tree component for mobile.Thank you very much.</p>
+<p>Thanks,<br />
+Sunil Rana</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-660" class="comment odd alt depth-2 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">zhd66</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Thursday, June 7th, 2012, 6:51 am">June 7, 2012</abbr> at <abbr class="comment-time" title="Thursday, June 7th, 2012, 6:51 am">06:51</abbr></span> | <a class="permalink" href="index.html#comment-660" title="Permalink to comment 660">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=660#respond' onclick='return addComment.moveForm("comment-660", "660", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>hi Sunil Rana,<br />
+   I Copy ITreeDataDescriptor2, ITreeDataDescriptor, DefaultDataDescriptor, HierarchicalViewCursor, version, HierarchicalCollectionView to src/com/sparktree directory, it can complie ok.<br />
+   But when i run it. It has following error info:<br />
+ReferenceError: Error #1065: Variable SampleData_ICON1 is not defined.</p>
+<p>	at flash.display::MovieClip/nextFrame()<br />
+	at mx.managers::SystemManager/deferredNextFrame()[E:\dev\4.y\frameworks\projects\framework\src\mx\managers\SystemManager.as:278]<br />
+	at mx.managers::SystemManager/preloader_preloaderDocFrameReadyHandler()[E:\dev\4.y\frameworks\projects\framework\src\mx\managers\SystemManager.as:2627]<br />
+	at flash.events::EventDispatcher/dispatchEventFunction()<br />
+	at flash.events::EventDispatcher/dispatchEvent()<br />
+	at mx.preloaders::Preloader/timerHandler()[E:\dev\4.y\frameworks\projects\framework\src\mx\preloaders\Preloader.as:515]<br />
+	at flash.utils::Timer/_timerDispatch()<br />
+	at flash.utils::Timer/tick()</p>
+<p>Did you meet it?</p>
+<p>Thanks,<br />
+zhd</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-661" class="comment even depth-3 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">zhd66</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Thursday, June 7th, 2012, 7:15 am">June 7, 2012</abbr> at <abbr class="comment-time" title="Thursday, June 7th, 2012, 7:15 am">07:15</abbr></span> | <a class="permalink" href="index.html#comment-661" title="Permalink to comment 661">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=661#respond' onclick='return addComment.moveForm("comment-661", "661", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>hi all,<br />
+   I create a new application and copy all source. And run it well.</p>
+<p>Thanks.<br />
+zhd</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-662" class="comment odd alt depth-2 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">John</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Wednesday, June 13th, 2012, 12:47 pm">June 13, 2012</abbr> at <abbr class="comment-time" title="Wednesday, June 13th, 2012, 12:47 pm">12:47</abbr></span> | <a class="permalink" href="index.html#comment-662" title="Permalink to comment 662">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=662#respond' onclick='return addComment.moveForm("comment-662", "662", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Hi</p>
+<p>Where can I get related classes like &#8220;ITreeDataDescriptor2&#8243; which are not available on mobile? (I&#8217;m new in flex development&#8230;)<br />
+Could you share sources of tree view for mobile please? </p>
+<p>Thanks in advance.</p>
+<p>John N.</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-680" class="comment even thread-odd thread-alt depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">ZiulDeArgn</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Tuesday, October 16th, 2012, 11:49 pm">October 16, 2012</abbr> at <abbr class="comment-time" title="Tuesday, October 16th, 2012, 11:49 pm">23:49</abbr></span> | <a class="permalink" href="index.html#comment-680" title="Permalink to comment 680">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=680#respond' onclick='return addComment.moveForm("comment-680", "680", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<blockquote><p>Eric September 2, 2011 at 14:36 | Permalink | Reply</p>
+<p>Hi,</p>
+<p>I found a bug, when you expand all nodes of a tree populated from XML, and try to close from the root node, there’s an exception.<br />
+ I have the same problem with your demo</p></blockquote>
+<p>I have this very same issue, im getting a XML from an HTTPService and i couldnt find a &#8220;simple cast&#8221; for it, the best i could get was this:<br />
+var arr:ArrayCollection = new ArrayCollection;<br />
+for each (var value:XML in myXML.children())<br />
+    arr.addItem(value)<br />
+And folders jump out to another level while exploring em (really weird behavior) =/</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-681" class="comment byuser comment-author-maxim bypostauthor odd alt depth-2 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Tuesday, October 16th, 2012, 11:53 pm">October 16, 2012</abbr> at <abbr class="comment-time" title="Tuesday, October 16th, 2012, 11:53 pm">23:53</abbr></span> | <a class="permalink" href="index.html#comment-681" title="Permalink to comment 681">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=681#respond' onclick='return addComment.moveForm("comment-681", "681", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>It&#8217;s a known bug, don&#8217;t use XML or XMLList instances as items in tree &#8211; just create some custom class to hold item data or use anonymous objects e.g. {title: &#8220;Item 1&#8243;}</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-682" class="comment even depth-3 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">ZiulDeArgon</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Wednesday, October 17th, 2012, 12:15 am">October 17, 2012</abbr> at <abbr class="comment-time" title="Wednesday, October 17th, 2012, 12:15 am">00:15</abbr></span> | <a class="permalink" href="index.html#comment-682" title="Permalink to comment 682">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=682#respond' onclick='return addComment.moveForm("comment-682", "682", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>got it, imma try with regular Objects, but, can those be used as dataProvider?, i wanna use ur tree to show all dirs and files from some specific folder.</p>
+<p>thnx for the quick response =)</p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-683" class="comment byuser comment-author-maxim bypostauthor odd alt depth-4 role-administrator user-maxim entry-author">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com"><a href="../../index.html" title="Maxim" class="url" rel="external nofollow">Maxim</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Wednesday, October 17th, 2012, 12:18 am">October 17, 2012</abbr> at <abbr class="comment-time" title="Wednesday, October 17th, 2012, 12:18 am">00:18</abbr></span> | <a class="permalink" href="index.html#comment-683" title="Permalink to comment 683">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=683#respond' onclick='return addComment.moveForm("comment-683", "683", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Yes, anonymous objects can be used to show folders.</p>
+<p>P.S.: I would suggest you to create class that will hold item data &#8211; see SampleData.as in source view <a href="/f/ria/10/sparkTree/srcview/index.html" rel="nofollow">http://kachurovskiy.com/f/ria/10/sparkTree/srcview/index.html</a></p>
+		</div><!-- .comment-text -->
+
+		
+	<ol class="children">
+
+	<li id="comment-687" class="comment even depth-5 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">ZiulDeArgon</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Wednesday, October 17th, 2012, 4:34 am">October 17, 2012</abbr> at <abbr class="comment-time" title="Wednesday, October 17th, 2012, 4:34 am">04:34</abbr></span> | <a class="permalink" href="index.html#comment-687" title="Permalink to comment 687">Permalink</a>  </div>
+		<div class="comment-text">
+			
+			<p>Using the class for the data did it, tyvm =)</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment --></ol><!-- .children -->
+</li><!-- .comment -->
+	<li id="comment-688" class="comment odd alt thread-even depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">smival</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Thursday, November 1st, 2012, 7:57 pm">November 1, 2012</abbr> at <abbr class="comment-time" title="Thursday, November 1st, 2012, 7:57 pm">19:57</abbr></span> | <a class="permalink" href="index.html#comment-688" title="Permalink to comment 688">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=688#respond' onclick='return addComment.moveForm("comment-688", "688", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>1) TypeError: Error #1034: Ошибка типа Coercion: невозможно преобразовать XMLList@8e348b1 в Class.<br />
+	at com.sparkTree::Tree/getOwnItemIcon()[C:\W\Flash\SparkTree\src\com\sparkTree\Tree.as:474]</p>
+<p>2) и еще если в примере нажать &#8220;Set XML as dataProvider&#8221; развернуть все три уровня и потом свернуть верхний то верхние два просто пропадают из видимости, третий остается неизменным.</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment -->
+	<li id="comment-690" class="comment even thread-odd thread-alt depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://Dedoose.com"><a href="http://dedoose.com/" title="JTtheGeek" class="url" rel="external nofollow">JTtheGeek</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Saturday, November 10th, 2012, 4:15 am">November 10, 2012</abbr> at <abbr class="comment-time" title="Saturday, November 10th, 2012, 4:15 am">04:15</abbr></span> | <a class="permalink" href="index.html#comment-690" title="Permalink to comment 690">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=690#respond' onclick='return addComment.moveForm("comment-690", "690", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>great work bud! I think I inadvertently discovered a bug in that setting indentation on the tree never makes it too the itemrenderer and just sits at the default value of 17.  So far haven&#8217;t been able to track down why this is but workin gon it.   Put a break on TreeItemRenderer.as line 255<br />
+~ JT</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment -->
+	<li id="comment-693" class="comment odd alt thread-even depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://myzo.fr"><a href="http://myzo.fr/" title="Zo" class="url" rel="external nofollow">Zo</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Wednesday, December 5th, 2012, 7:14 am">December 5, 2012</abbr> at <abbr class="comment-time" title="Wednesday, December 5th, 2012, 7:14 am">07:14</abbr></span> | <a class="permalink" href="index.html#comment-693" title="Permalink to comment 693">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=693#respond' onclick='return addComment.moveForm("comment-693", "693", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Still get the same problem<br />
+Class mx.controls.treeClasses::ITreeDataDescriptor2 could not be found.<br />
+Under FlexBuilder 4.6</p>
+<p>how to solve the problem ?</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment -->
+	<li id="comment-709" class="comment even thread-odd thread-alt depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">Rene</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Tuesday, April 23rd, 2013, 3:06 pm">April 23, 2013</abbr> at <abbr class="comment-time" title="Tuesday, April 23rd, 2013, 3:06 pm">15:06</abbr></span> | <a class="permalink" href="index.html#comment-709" title="Permalink to comment 709">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=709#respond' onclick='return addComment.moveForm("comment-709", "709", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Hi Maxim,</p>
+<p>If i have chapters with a children property which is an array with documents, how can i delete/remove a document? Removing a document from the children array works, but the tree is not updated visually. Is it a problem that the children property in the chapter is an array? Should it be an arraycollection?</p>
+<p>Thanks, Rene</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment -->
+	<li id="comment-744" class="comment odd alt thread-even depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">sam</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, November 8th, 2013, 3:14 am">November 8, 2013</abbr> at <abbr class="comment-time" title="Friday, November 8th, 2013, 3:14 am">03:14</abbr></span> | <a class="permalink" href="index.html#comment-744" title="Permalink to comment 744">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=744#respond' onclick='return addComment.moveForm("comment-744", "744", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Spark tree really works awesome.<br />
+Saved a lot of time.<br />
+the current Adobe Mx:Tree sucks.</p>
+<p>Thanks much</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment -->
+	<li id="comment-745" class="comment even thread-odd thread-alt depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">Fabian</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Friday, December 6th, 2013, 8:27 pm">December 6, 2013</abbr> at <abbr class="comment-time" title="Friday, December 6th, 2013, 8:27 pm">20:27</abbr></span> | <a class="permalink" href="index.html#comment-745" title="Permalink to comment 745">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=745#respond' onclick='return addComment.moveForm("comment-745", "745", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Hey guys,<br />
+I currently have a project where I just want to have a visual representation of the structure of some IVisualElements + Containers inside the SparkTree,<br />
+but having the top most Container (inside an ArrayCollection) added as the Dataprovider to the tree and using the normal Container.addElement Method doesn&#8217;t work as expected, in some cases adding a graphical object to a container crashes the whole tree with an Index out of Bounds exception<br />
+what can I do, Ive been working on it for days!</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment -->
+	<li id="comment-748" class="comment odd alt thread-even depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn">Kunal Sharma</cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Monday, December 30th, 2013, 12:41 pm">December 30, 2013</abbr> at <abbr class="comment-time" title="Monday, December 30th, 2013, 12:41 pm">12:41</abbr></span> | <a class="permalink" href="index.html#comment-748" title="Permalink to comment 748">Permalink</a><a class='comment-reply-link' href='/2010/spark-tree/?replytocom=748#respond' onclick='return addComment.moveForm("comment-748", "748", "respond", "66")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>Hello Maxim,<br />
+I am using your spark tree code. Can you please tell, how I can use Datadescriptor and Itemrenderer in Spark Tree. I changed my code as ItreeDescriptor2 after that it is showing error on &#8220;getParent&#8221;, &#8220;getNodeDepth&#8221; &amp; &#8220;getHierarchicalCollectionAdaptor&#8221;. So, Please help me to know, will it work in Spark tree?,  </p>
+<p>Thanks.</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment -->			</ol><!-- .comment-list -->
+
+			
+			
+		</div><!-- #comments -->
+
+	
+									<div id="respond" class="comment-respond">
+				<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="index.html#respond" style="display:none;">Click here to cancel reply.</a></small></h3>
+									<form action="/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+																										<p class="form-author req"><label for="author">Name <span class="required">*</span> </label> <input type="text" class="text-input" name="author" id="author" value="" size="40" /></p>
+<p class="form-email req"><label for="email">Email <span class="required">*</span> </label> <input type="text" class="text-input" name="email" id="email" value="" size="40" /></p>
+<p class="form-url"><label for="url">Website</label><input type="text" class="text-input" name="url" id="url" value="" size="40" /></p>
+												<p class="form-textarea req"><label for="comment">Comment</label><textarea name="comment" id="comment" cols="60" rows="10"></textarea></p>												<p class="form-submit">
+							<input name="submit" type="submit" id="submit" value="Post Comment" />
+							<input type='hidden' name='comment_post_ID' value='66' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+						</p>
+						<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="6735cb71da" /></p><p style="clear:both"><input style="width: 20px" type="checkbox" value="1" name="subscribe" id="subscribe"/>&nbsp;<label style="margin:0; padding:0; position:relative; left:0; top:0;" for="subscribe">Notify me about new comments</label></p>					</form>
+							</div><!-- #respond -->
+			        <script type="text/javascript">
+            jQuery(document).ready(function () {
+                jQuery('#commentform').submit(function () {
+                    _gaq.push(
+                            ['_setAccount', 'UA-4425250-5'],
+                            ['_trackEvent', 'comment', 'submit']
+                    );
+                });
+            });
+        </script>
+		
+</div><!-- #comments-template -->
+			
+		
+		
+	
+		<div class="navigation-links">
+			<a href="../runtime-icons-for-flex-components/index.html" rel="prev"><span class="previous">&laquo; Previous</span></a>			<a href="../spark-tree-updated/index.html" rel="next"><span class="next">Next &raquo;</span></a>		</div><!-- .navigation-links -->
+
+	
+	</div><!-- .content .hfeed -->
+
+		
+	<div id="primary" class="sidebar aside">
+
+		
+		<div id="text-8" class="widget widget_text widget-widget_text"><div class="widget-wrap widget-inside">			<div class="textwidget"><img src="/f/ria/11/flexBadge.png"/></div>
+		</div></div><div id="hybrid-search-3" class="widget search widget-search"><div class="widget-wrap widget-inside"><h3 class="widget-title">Search</h3><form method="get" class="search-form" id="search-formhybrid-search" action="/"><div><input class="search-text" type="text" name="s" id="search-texthybrid-search" value="" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;" /></div></form></div></div><div id="text-6" class="widget widget_text widget-widget_text"><div class="widget-wrap widget-inside"><h3 class="widget-title">My projects</h3>			<div class="textwidget"><a href="http://ftheme.kachurovskiy.com/">Flex theme</a><br/>
+<a href="index.html">Spark Tree</a></div>
+		</div></div><div id="meta-3" class="widget widget_meta widget-widget_meta"><div class="widget-wrap widget-inside"><h3 class="widget-title">Meta</h3>			<ul>
+						<li><a href="../../wp-login.html">Log in</a></li>
+			<li><a href="../../feed/index.html" title="Syndicate this site using RSS 2.0">Entries <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="../../comments/feed/index.html" title="The latest comments to all posts in RSS">Comments <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="http://wordpress.org/" title="Powered by WordPress, state-of-the-art semantic personal publishing platform.">WordPress.org</a></li>						</ul>
+</div></div><div id="text-7" class="widget widget_text widget-widget_text"><div class="widget-wrap widget-inside"><h3 class="widget-title">My photos</h3>			<div class="textwidget"><!-- Start of Flickr Badge -->
+<style type="text/css">
+#flickrWrapper a { display: block; float: left; clear: both;}
+#flickr_badge_uber_wrapper { border-color: white; }
+#flickr_badge_source_txt {padding:0; font: 11px Arial, Helvetica, Sans serif; color:#666666;}
+#flickr_badge_icon {display:block !important; margin:0 !important; border: 1px solid rgb(0, 0, 0) !important;}
+#flickr_icon_td {padding:0 5px 0 0 !important;}
+.flickr_badge_image {text-align:center !important;}
+.flickr_badge_image img {border: 1px solid black !important;}
+#flickr_www {display:block; padding:0 10px 0 10px !important; font: 11px Arial, Helvetica, Sans serif !important; color:#3993ff !important;}
+#flickr_badge_uber_wrapper a:hover,
+#flickr_badge_uber_wrapper a:link,
+#flickr_badge_uber_wrapper a:active,
+#flickr_badge_uber_wrapper a:visited {text-decoration:none !important; background:inherit !important;color:#3993ff;}
+#flickr_badge_wrapper {}
+#flickr_badge_source {padding:0 !important; font: 11px Arial, Helvetica, Sans serif !important; color:#666666 !important;}
+</style>
+<div id="flickrWrapper">
+<script type="text/javascript" src="http://www.flickr.com/badge_code_v2.gne?count=3&amp;display=latest&amp;size=t&amp;layout=v&amp;source=user&amp;user=44806284%40N06"></script>
+</div>
+<!-- End of Flickr Badge -->
+</div>
+		</div></div>
+		
+	</div><!-- #primary .aside -->
+
+
+	</div><!-- #container -->
+
+	<div id="footer-container">
+
+		
+		<div id="footer">
+
+			<div class="footer-content footer-insert"><p class="copyright">Copyright &#169; 2014 <a class="site-link" href="../../index.html" title="Maxim Kachurovskiy" rel="home"><span>Maxim Kachurovskiy</span></a>.</p>
+
+<p class="credit">Powered by <a class="wp-link" href="http://wordpress.org/" title="State-of-the-art semantic personal publishing platform"><span>WordPress</span></a> and <a class="theme-link" href="http://themehybrid.com/themes/hybrid" title="Hybrid WordPress Theme"><span>Hybrid</span></a>.</p></div>
+		</div><!-- #footer -->
+
+		
+	</div><!-- #footer-container -->
+
+</div><!-- #body-container -->
+
+<script type='text/javascript' src='/wp-content/plugins/contact-form-7/includes/js/jquery.form.min9d5c.js?ver=3.50.0-2014.02.05'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var _wpcf7 = {"loaderUrl":"http:\/\/kachurovskiy.com\/wp-content\/plugins\/contact-form-7\/images\/ajax-loader.gif","sending":"Sending ...","cached":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='/wp-content/plugins/contact-form-7/includes/js/scriptsf3df.js?ver=3.7.2'></script>
+<script type='text/javascript' src='/wp-content/themes/hybrid/library/js/drop-downs.min93cb.js?ver=20110920'></script>
+
+</body>
+
+<!-- Mirrored from kachurovskiy.com/2010/spark-tree/  04:20:44 GMT -->
+</html>

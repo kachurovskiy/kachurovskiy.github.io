@@ -1,0 +1,345 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="../../../style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../../../print.css" type="text/css" media="print">
+<meta content="Net,com.cgpClient.net.Net,dispatcher,loginData,status,login,ximss" name="keywords">
+<title>com.cgpClient.net.Net</title>
+</head>
+<body>
+<script type="text/javascript" language="javascript" src="../../../asdoc.js"></script><script type="text/javascript" language="javascript" src="../../../cookies.js"></script><script type="text/javascript" language="javascript">
+<!--
+				asdocTitle = 'Net - 'Library ASDoc'';
+				var baseRef = '../../../';
+				window.onload = configPage;
+			--></script>
+<table style="display:none" id="titleTable" cellspacing="0" cellpadding="0" class="titleTable">
+<tr>
+<td align="left" class="titleTableTitle">API Documentation</td><td align="right" class="titleTableTopNav"><a onclick="loadClassListFrame('../../../all-classes.html')" href="../../../package-summary.html">All&nbsp;Packages</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../all-classes.html')" href="../../../class-summary.html">All&nbsp;Classes</a>&nbsp;|&nbsp;<a onclick="loadClassListFrame('../../../index-list.html')" href="../../../all-index-A.html">Index</a>&nbsp;|&nbsp;<a href="../../../index.html?com/cgpClient/net/Net.html&amp;com/cgpClient/net/class-list.html" id="framesLink1">Frames</a><a onclick="parent.location=document.location" href="" style="display:none" id="noFramesLink1">No&nbsp;Frames</a></td><td rowspan="3" align="right" class="titleTableLogo"><img alt="Adobe Logo" title="Adobe Logo" class="logoImage" src="../../../images/logo.jpg"></td>
+</tr>
+<tr class="titleTableRow2">
+<td align="left" id="subTitle" class="titleTableSubTitle">Class&nbsp;Net</td><td align="right" id="subNav" class="titleTableSubNav"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a></td>
+</tr>
+<tr class="titleTableRow3">
+<td colspan="2">&nbsp;</td>
+</tr>
+</table>
+<script type="text/javascript" language="javascript">
+<!--
+if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("Class Net"); titleBar_setSubNav(false,true,false,false,false,false,true,false,false,false,false,false,false,false);}
+--></script>
+<div class="MainContent">
+<table cellspacing="0" cellpadding="0" class="classHeaderTable">
+<tr>
+<td class="classHeaderTableLabel">Package</td><td><a onclick="javascript:loadClassListFrame('class-list.html')" href="package-detail.html">com.cgpClient.net</a></td>
+</tr>
+<tr>
+<td class="classHeaderTableLabel">Class</td><td class="classSignature">public class Net</td>
+</tr>
+</table>
+<p></p>
+  <code>Net</code> class connects to CommuniGate Pro
+  server using socket or HTTP Binding, establishes XIMSS session (login), 
+  sends XIMSS requests and receives data from server.
+ 
+  <p>Use <code>login()</code> method to establish connection.</p>
+ 
+  <p>Login process can be monitored by subscribing to <code>NetEvent.STATUS</code>
+  event that is dispatched by <code>dispatcher</code>.</p>
+ 
+  <p>After successful logging in you can send synchronous XIMSS requests 
+  to server using <code>ximss()</code> method and receive asynchronous
+  messages by subscribing to <code>dispatcher</code> events.</p>
+ 
+  <p>To close XIMSS session send <code>&lt;bye/&gt;</code> to the server and
+  connection will be closed.</p>
+ 
+  <p></p>
+<p>
+<span class="classHeaderTableLabel">See also</span>
+</p>
+<div class="seeAlso">
+<a href="../net/Net.html#login()" target="">login()</a>
+<br>
+<a href="../net/Net.html#ximss()" target="">ximss()</a>
+<br>
+<a href="../net/Net.html#dispatcher" target="">dispatcher</a>
+<br>
+<a href="../net/Net.html#status" target="">status</a>
+</div>
+<br>
+<hr>
+</div>
+<a name="propertySummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Properties</div>
+<table id="summaryTableProperty" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#dispatcher">dispatcher</a> : EventDispatcher<div class="summaryTableDescription">[static][read-only]
+   Dispatched for <code>XIMSSAsyncEvent</code> and <code>NetEvent</code>
+   events.</div>
+</td><td class="summaryTableOwnerCol">Net</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#loginData">loginData</a> : Array<div class="summaryTableDescription">[static][read-only]
+   Array of <code>XML</code> elements, that were received during last login.</div>
+</td><td class="summaryTableOwnerCol">Net</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a class="signatureLink" href="#status">status</a> : String<div class="summaryTableDescription">[static][read-only]
+   Connection status.</div>
+</td><td class="summaryTableOwnerCol">Net</td>
+</tr>
+</table>
+</div>
+<a name="methodSummary"></a>
+<div class="summarySection">
+<div class="summaryTableTitle">Public Methods</div>
+<table id="summaryTableMethod" class="summaryTable " cellpadding="3" cellspacing="0">
+<tr>
+<th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined&nbsp;by</th>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#login()">login</a>(theHost:String, theLoginUserName:String, thePassword:String, theFailoverScheme:String = "socket 80, socket 11024, binding 80, binding 8100"):void</div>
+<div class="summaryTableDescription">[static]
+   Create XIMSS session with CommuniGate Pro server.</div>
+</td><td class="summaryTableOwnerCol">Net</td>
+</tr>
+<tr class="">
+<td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol">
+<div class="summarySignature">
+<a class="signatureLink" href="#ximss()">ximss</a>(xml:XML, dataCallBack:Function, responseCallBack:Function):void</div>
+<div class="summaryTableDescription">[static]
+   If XIMSS session is established, sends synchronous XIMSS request.</div>
+</td><td class="summaryTableOwnerCol">Net</td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" language="javascript">
+<!--
+showHideInherited();
+--></script>
+<div class="MainContent">
+<a name="propertyDetail"></a>
+<div class="detailSectionHeader">Property detail</div>
+<a name="dispatcher"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">dispatcher</td><td class="detailHeaderType">property</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>dispatcher:EventDispatcher</code>&nbsp;&nbsp;[read-only]<p>
+   Dispatched for <code>XIMSSAsyncEvent</code> and <code>NetEvent</code>
+   events.
+  
+   </p><p><strong>Example: listening to asynchronous XIMSS event</strong>
+   <div class='listing'><pre>
+   Net.dispatcher.addEventListener("ximss-readIM", readIMHandler);
+  
+   function readIMHandler(event:XIMSSAsyncEvent):void
+   {
+       trace("Incoming IM: " + event.xml.toXMLString());
+   }
+   </pre></div></p>
+  
+   <p><strong>Example: monitoring login process</strong>
+   <div class='listing'><pre>
+   Net.dispatcher.addEventListener(NetEvent.STATUS, statusHandler);
+   Net.login("myserver.com", "user1", "password1", "socket 11024, binding 80");
+   
+   function statusHandler(event:NetEvent):void
+   {
+       if (event.status == NetStatus.RELAX)
+       {
+           if (event.error)
+           {
+               // login failed, show user the problem
+               textField.text = event.error.toString();
+           }
+           else
+           {
+               // session has ended without error
+               // ex. server has shutdown or user logged out
+           }
+       }
+       else if (event.status == NetStatus.LOGGED_IN)
+       {
+           // we are logged in, ximss() works
+       }
+   }
+   </pre></div></p>
+  <span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public static function get dispatcher():EventDispatcher</code>
+<br>
+</div>
+<a name="loginData"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">loginData</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>loginData:Array</code>&nbsp;&nbsp;[read-only]<p>
+   Array of <code>XML</code> elements, that were received during last login.
+  </p><span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public static function get loginData():Array</code>
+<br>
+</div>
+<a name="status"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">status</td><td class="detailHeaderType">property</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>status:String</code>&nbsp;&nbsp;[read-only]<p>
+   Connection status. Possible values are <code>NetStatus.RELAX</code>,
+   <code>NetStatus.LOGGING_IN</code> and <code>NetStatus.LOGGED_IN</code>.
+  
+   </p><p>Status can be monitored by listening <code>NetEvent.STATUS</code>
+   event from <code>dispatcher</code>.</p>
+  
+   <p>The default value is <code>NetStatus.RELAX</code>.</p>
+<span class="label">Implementation</span>
+<br>
+<code>&nbsp;&nbsp;&nbsp;&nbsp;public static function get status():String</code>
+<br>
+</div>
+<a name="methodDetail"></a>
+<div class="detailSectionHeader">Method detail</div>
+<a name="login()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">login</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function login(theHost:String, theLoginUserName:String, thePassword:String, theFailoverScheme:String = "socket 80, socket 11024, binding 80, binding 8100"):void</code><p>
+   Create XIMSS session with CommuniGate Pro server. To monitor the login
+   process use <code>status</code> property and 
+   <code>dispatcher</code> <code>NetEvent.STATUS</code> event.
+  
+   </p><span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">theHost</span>:String</code> &mdash; Remote host, for example <code>mail.myserver.com</code>
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">theLoginUserName</span>:String</code> &mdash; User login user name. Can be <code>alex</code>
+   or <code>mary&#64;myserver.com</code>
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">thePassword</span>:String</code> &mdash; Password in plain text
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">theFailoverScheme</span>:String</code> (default = "<code>socket 80, socket 11024, binding 80, binding 8100</code>")<code></code> &mdash; Channels that should be used to establish 
+   connection. Available channels are "socket" and "binding". <p>
+   <strong>Note:</strong> only AIR applications can connect to ports less than 1024.</p>
+  </td>
+</tr>
+</table>
+</div>
+<a name="ximss()"></a>
+<table cellspacing="0" cellpadding="0" class="detailHeader">
+<tr>
+<td class="detailHeaderName">ximss</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td>
+</tr>
+</table>
+<div class="detailBody">
+<code>public static function ximss(xml:XML, dataCallBack:Function, responseCallBack:Function):void</code><p>
+   If XIMSS session is established, sends synchronous XIMSS request.
+   In other cases requests are cached until <code>status</code> will become
+   <code>NetStatus.LOGGED_IN</code> or <code>NetStatus.RELAX</code>.
+  
+   </p><p><strong>Example: sending IM</strong>
+   <div class='listing'><pre>
+   Net.ximss(&lt;sendIM peer="maxim&#64;communigate.com"&gt;Hey, your lib really works!&lt;/sendIM&gt;,
+       null, responseCallBack);
+  
+   function responseCallBack(object:Object):void
+   {
+       var text:String = getErrorText(object);
+       if (text) // IM was not sent, show error 
+           historyArea.text += "Error: " + text + "\n\n";
+   }
+   </pre></div>
+  
+   <p><strong>Example: reading mail body</strong>
+   <div class='listing'><pre>
+   Net.ximss(&lt;folderRead folder={Model.instance.folder.name} 
+       uid={mail.uid} totalSizeLimit={10485760}/&gt;, dataCallBack, responseCallBack);
+    
+   private function dataCallBack(xml:XML):void
+   {
+       mail.update(xml);
+   }
+  
+   private function responseCallBack(object:Object):void
+   {
+       var text:String = getErrorText(object); 
+       if (text)
+       {
+           mail.status = Mail.PREVIEW;
+           mail.errors.addItem(new Error(text));
+       }
+       else
+       {
+           mail.status = Mail.VIEW;
+       }
+   }
+   </pre></div>
+  
+   <span class="label">Parameters</span>
+<table border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="20px"></td><td><code><span class="label">xml</span>:XML</code> &mdash; Synchronous request XML.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">dataCallBack</span>:Function</code> &mdash; Data callback.
+   </td>
+</tr>
+<tr>
+<td class="paramSpacer">&nbsp;</td>
+</tr>
+<tr>
+<td width="20px"></td><td><code><span class="label">responseCallBack</span>:Function</code> &mdash; Response or error callback.
+  </td>
+</tr>
+</table>
+</div>
+<br>
+<br>
+<hr>
+<br>
+<p></p>
+<center class="copyright"> 
+</center>
+</div>
+</body>
+</html>
+<!-- -->

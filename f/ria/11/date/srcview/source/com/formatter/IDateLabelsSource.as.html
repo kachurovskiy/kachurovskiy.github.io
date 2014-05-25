@@ -1,0 +1,35 @@
+<!-- saved from url=(0014)about:internet -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>IDateLabelsSource.as</title>
+<link rel="stylesheet" type="text/css" href="../../../SourceStyles.css"/>
+</head>
+
+<body><pre><span class="ActionScriptpackage">package</span> <span class="ActionScriptDefault_Text">com</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">formatter</span>
+<span class="ActionScriptBracket/Brace">{</span>
+<span class="ActionScriptASDoc">/**
+ * Languages have different logic of naming different amount of years, hours,
+ * minutes and seconds. E.g. in English we write "1 hour" but "2 hours" and "0 hours" 
+ * and in Russian the difference is even more dramatic.
+ * 
+ * &lt;p&gt;Interface for language date labels source.&lt;/p&gt;
+ */</span>
+<span class="ActionScriptReserved">public</span> <span class="ActionScriptinterface">interface</span> <span class="ActionScriptDefault_Text">IDateLabelsSource</span>
+<span class="ActionScriptBracket/Brace">{</span>
+    
+    <span class="ActionScriptASDoc">/**
+     * Provides localized date part label.
+     * 
+     * @param amount Amount of years, months or other date parts.
+     * 
+     * @param datePart Type of date part e.g. &lt;code&gt;DatePart.YEAR&lt;/code&gt;.
+     * 
+     * @return localized label for year, month or other date part.
+     */</span>
+    <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">getLabel</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">amount</span>:<span class="ActionScriptDefault_Text">int</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">datePart</span>:<span class="ActionScriptDefault_Text">String</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">String</span>;
+    
+<span class="ActionScriptBracket/Brace">}</span>
+<span class="ActionScriptBracket/Brace">}</span></pre></body>
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<!-- Mirrored from kachurovskiy.com/2010/runtime-icons-for-flex-components/  04:20:44 GMT -->
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Runtime icons for Flex components</title>
+
+<link rel="stylesheet" href="/wp-content/themes/hybrid/style.min.css" type="text/css" media="all" />
+
+
+
+<meta name="generator" content="WordPress 3.8.1" />
+<meta name="template" content="Hybrid 1.2" />
+<link rel="alternate" type="application/rss+xml" title="Maxim Kachurovskiy &raquo; Feed" href="../../feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="Maxim Kachurovskiy &raquo; Comments Feed" href="../../comments/feed/index.html" />
+
+            <script type="text/javascript">//<![CDATA[
+            // Google Analytics for WordPress by Yoast v4.3.5 | http://yoast.com/wordpress/google-analytics/
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-4425250-5']);
+				            _gaq.push(['_trackPageview']);
+            (function () {
+                var ga = document.createElement('script');
+                ga.type = 'text/javascript';
+                ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(ga, s);
+            })();
+            //]]></script>
+			<link rel="alternate" type="application/rss+xml" title="Maxim Kachurovskiy &raquo; Runtime icons for Flex components Comments Feed" href="feed/index.html" />
+<link rel='stylesheet' id='contact-form-7-css'  href='/wp-content/plugins/contact-form-7/includes/css/stylesf3df.css?ver=3.7.2' type='text/css' media='all' />
+<script type='text/javascript' src='/wp-includes/js/jquery/jquery.js?ver=1.10.2'></script>
+<script type='text/javascript' src='/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+<script type='text/javascript' src='/wp-includes/js/comment-reply.min.js?ver=3.8.1'></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../xmlrpc0db0.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Start/stop all nested MovieClips' href='../start-stop-all-nested-movieclips/index.html' />
+<link rel='next' title='Spark Tree' href='../spark-tree/index.html' />
+<link rel='canonical' href='index.html' />
+<link rel='shortlink' href='../../index8cf7.html?p=51' />
+
+<script type="text/javascript" src="/wp-content/plugins/ald-transpose-email/ald-transpose-email.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/wp-content/plugins/highlight-source-pro/all.css" /><!--[if IE]><link rel="stylesheet" type="text/css" href="http://kachurovskiy.com/wp-content/plugins/highlight-source-pro/ie.css" /><![endif]-->
+</head>
+
+<body class="wordpress ltr en_US parent-theme y2014 m03 d18 h08 tuesday logged-out singular singular-post singular-post-51 single-51 primary-active secondary-inactive subsidiary-inactive">
+
+
+<div id="body-container">
+
+	
+	<div id="header-container">
+
+		<div id="header">
+
+			<div id="site-title"><a href="../../index.html" title="Maxim Kachurovskiy" rel="home"><span>Maxim Kachurovskiy</span></a></div><div id="site-description"><span>Adobe Flex, Flash, ActionScript and more</span></div>
+		</div><!-- #header -->
+
+	</div><!-- #header-container -->
+
+	
+	<div id="container">
+
+		
+	<div id="content" class="hfeed content">
+
+		<div class="breadcrumb-trail breadcrumbs" itemprop="breadcrumb"><span class="trail-before">Browse:</span> <span class="trail-begin"><a href="../../index.html" title="Maxim Kachurovskiy" rel="home" class="trail-begin">Home</a></span> <span class="sep">/</span> <a href="../index.html" title="2010">2010</a> <span class="sep">/</span> <span class="trail-end">Runtime icons for Flex components</span></div>
+		
+			<div id="post-51" class="hentry post publish post-1 odd author-maxim category-fplatform category-flex category-tutorials">
+
+				<h1 class='post-title entry-title'><a href='index.html'>Runtime icons for Flex components</a></h1><p class="byline">By <span class="author vcard"><a class="url fn n" rel="author" href="/author/maxim/index.html" title="Maxim">Maxim</a></span> on <abbr class="published" title="Tuesday, August 24th, 2010, 11:32 am">August 24, 2010</abbr> </p>
+				<div class="entry-content">
+					<p><code>Bitmap</code> or <code>BitmapData</code> can not be used as <code>icon</code> in Flex components like MX Button because they want <code>Class</code> that will instantiate as <code>BitmapAsset</code>.</p>
+<h3>Solution</h3>
+<p>Create cache of special classes. Each of them will be able to become an icon. Here is <a href="/f/ria/10/runtimeIcons/RuntimeBitmapAsset.as">RuntimeBitmapAsset.as</a> that can be used the next way:</p>
+<div class="geshi no actionscript">
+<ol>
+<li class="li1">
+<div class="de1"><span class="kw2">var</span> bitmapData:BitmapData = <span class="kw2">new</span> BitmapData<span class="br0">&#40;</span><span class="nu0">100</span>, <span class="nu0">100</span><span class="br0">&#41;</span>;</div>
+</li>
+<li class="li1">
+<div class="de1">bitmapData.<span class="me1">perlinNoise</span><span class="br0">&#40;</span><span class="nu0">100</span>, <span class="nu0">100</span>, <span class="nu0">3</span>, <span class="nu0">10</span>, <span class="kw2">true</span>, <span class="kw2">true</span><span class="br0">&#41;</span>;</div>
+</li>
+<li class="li1">
+<div class="de1"><span class="kw2">var</span> icon:<span class="kw2">Class</span> = RuntimeBitmapAsset.<span class="me1">getClass</span><span class="br0">&#40;</span>bitmapData<span class="br0">&#41;</span>;</div>
+</li>
+<li class="li1">
+<div class="de1"><span class="kw3">button</span>.<span class="kw3">setStyle</span><span class="br0">&#40;</span><span class="st0">&quot;icon&quot;</span>, icon<span class="br0">&#41;</span>;</div>
+</li>
+</ol>
+</div>
+<p><img src="/f/ria/10/runtimeIcons/screenshot1.png"/></p>
+<h3>P.S.: The same for DisplayObject-s</h3>
+<p>The same method can be used to wrap any <code>DisplayObject</code> into <code>Class</code>.</p>
+									</div><!-- .entry-content -->
+
+				<p class="entry-meta"><span class="category"><span class="before">Posted in </span><a href="/category/fplatform/index.html" rel="tag">Flash Platform</a>, <a href="/category/fplatform/flex/index.html" rel="tag">Flex</a>, <a href="/category/tutorials/index.html" rel="tag">Tutorials</a></span>  | <a class="comments-link" href="index.html#comments" title="Comment on Runtime icons for Flex components">3 Responses</a></p>
+			</div><!-- .hentry -->
+
+			
+			
+<div id="comments-template">
+
+	
+		<div id="comments">
+
+			<h3 id="comments-number" class="comments-header">3 responses to &#8220;Runtime icons for Flex components&#8221;</h3>
+
+			
+			<ol class="comment-list">
+				
+	<li id="comment-2" class="comment even thread-even depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://blog.kiichigo.eu"><a href="http://blog.kiichigo.eu/" title="Nirth" class="url" rel="external nofollow">Nirth</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Wednesday, August 25th, 2010, 3:00 am">August 25, 2010</abbr> at <abbr class="comment-time" title="Wednesday, August 25th, 2010, 3:00 am">03:00</abbr></span> | <a class="permalink" href="index.html#comment-2" title="Permalink to comment 2">Permalink</a><a class='comment-reply-link' href='/2010/runtime-icons-for-flex-components/?replytocom=2#respond' onclick='return addComment.moveForm("comment-2", "2", "respond", "51")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>I think, this would be cooler if we figure out how to generate classes ( via ByteArray, Loader.loadBytes ) in runtime.</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment -->
+	<li id="comment-18" class="pingback odd alt thread-odd thread-alt depth-1 ping reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://kachurovskiy.com/2010/storing-icons-in-external-zip-and-seamless-work-with-composite-icons/"><a href="../storing-icons-in-external-zip-and-seamless-work-with-composite-icons/index.html" title="Storing icons in external ZIP and seamless work with composite icons" class="url" rel="external nofollow">Storing icons in external ZIP and seamless work with composite icons</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Monday, September 6th, 2010, 10:17 am">September 6, 2010</abbr> at <abbr class="comment-time" title="Monday, September 6th, 2010, 10:17 am">10:17</abbr></span> | <a class="permalink" href="index.html#comment-18" title="Permalink to comment 18">Permalink</a>  </div>
+		<div class="comment-text">
+			
+			<p>[...] Change font size in the whole app with Ctrl+/- Runtime icons for Flex components [...]</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment -->
+	<li id="comment-563" class="comment even thread-even depth-1 reader">
+
+		<div class="comment-meta comment-meta-data"><span class="comment-author vcard"><cite class="fn" title="http://tgeorgiev.blogspot.com"><a href="http://tgeorgiev.blogspot.com/" title="Tony" class="url" rel="external nofollow">Tony</a></cite></span><!-- .comment-author .vcard --> <span class="published"><abbr class="comment-date" title="Tuesday, March 6th, 2012, 1:35 am">March 6, 2012</abbr> at <abbr class="comment-time" title="Tuesday, March 6th, 2012, 1:35 am">01:35</abbr></span> | <a class="permalink" href="index.html#comment-563" title="Permalink to comment 563">Permalink</a><a class='comment-reply-link' href='/2010/runtime-icons-for-flex-components/?replytocom=563#respond' onclick='return addComment.moveForm("comment-563", "563", "respond", "51")'>Reply</a></div>
+		<div class="comment-text">
+			
+			<p>That was pretty helpful! Specifically my case was to load icons for nodes of a Tree at runtime.</p>
+<p> Thanks</p>
+		</div><!-- .comment-text -->
+
+		
+	</li><!-- .comment -->			</ol><!-- .comment-list -->
+
+			
+			
+		</div><!-- #comments -->
+
+	
+									<div id="respond" class="comment-respond">
+				<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="index.html#respond" style="display:none;">Click here to cancel reply.</a></small></h3>
+									<form action="/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+																										<p class="form-author req"><label for="author">Name <span class="required">*</span> </label> <input type="text" class="text-input" name="author" id="author" value="" size="40" /></p>
+<p class="form-email req"><label for="email">Email <span class="required">*</span> </label> <input type="text" class="text-input" name="email" id="email" value="" size="40" /></p>
+<p class="form-url"><label for="url">Website</label><input type="text" class="text-input" name="url" id="url" value="" size="40" /></p>
+												<p class="form-textarea req"><label for="comment">Comment</label><textarea name="comment" id="comment" cols="60" rows="10"></textarea></p>												<p class="form-submit">
+							<input name="submit" type="submit" id="submit" value="Post Comment" />
+							<input type='hidden' name='comment_post_ID' value='51' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+						</p>
+						<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="b1cce5750e" /></p><p style="clear:both"><input style="width: 20px" type="checkbox" value="1" name="subscribe" id="subscribe"/>&nbsp;<label style="margin:0; padding:0; position:relative; left:0; top:0;" for="subscribe">Notify me about new comments</label></p>					</form>
+							</div><!-- #respond -->
+			        <script type="text/javascript">
+            jQuery(document).ready(function () {
+                jQuery('#commentform').submit(function () {
+                    _gaq.push(
+                            ['_setAccount', 'UA-4425250-5'],
+                            ['_trackEvent', 'comment', 'submit']
+                    );
+                });
+            });
+        </script>
+		
+</div><!-- #comments-template -->
+			
+		
+		
+	
+		<div class="navigation-links">
+			<a href="../start-stop-all-nested-movieclips/index.html" rel="prev"><span class="previous">&laquo; Previous</span></a>			<a href="../spark-tree/index.html" rel="next"><span class="next">Next &raquo;</span></a>		</div><!-- .navigation-links -->
+
+	
+	</div><!-- .content .hfeed -->
+
+		
+	<div id="primary" class="sidebar aside">
+
+		
+		<div id="text-8" class="widget widget_text widget-widget_text"><div class="widget-wrap widget-inside">			<div class="textwidget"><img src="/f/ria/11/flexBadge.png"/></div>
+		</div></div><div id="hybrid-search-3" class="widget search widget-search"><div class="widget-wrap widget-inside"><h3 class="widget-title">Search</h3><form method="get" class="search-form" id="search-formhybrid-search" action="/"><div><input class="search-text" type="text" name="s" id="search-texthybrid-search" value="" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;" /></div></form></div></div><div id="text-6" class="widget widget_text widget-widget_text"><div class="widget-wrap widget-inside"><h3 class="widget-title">My projects</h3>			<div class="textwidget"><a href="http://ftheme.kachurovskiy.com/">Flex theme</a><br/>
+<a href="../spark-tree/index.html">Spark Tree</a></div>
+		</div></div><div id="meta-3" class="widget widget_meta widget-widget_meta"><div class="widget-wrap widget-inside"><h3 class="widget-title">Meta</h3>			<ul>
+						<li><a href="../../wp-login.html">Log in</a></li>
+			<li><a href="../../feed/index.html" title="Syndicate this site using RSS 2.0">Entries <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="../../comments/feed/index.html" title="The latest comments to all posts in RSS">Comments <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="http://wordpress.org/" title="Powered by WordPress, state-of-the-art semantic personal publishing platform.">WordPress.org</a></li>						</ul>
+</div></div><div id="text-7" class="widget widget_text widget-widget_text"><div class="widget-wrap widget-inside"><h3 class="widget-title">My photos</h3>			<div class="textwidget"><!-- Start of Flickr Badge -->
+<style type="text/css">
+#flickrWrapper a { display: block; float: left; clear: both;}
+#flickr_badge_uber_wrapper { border-color: white; }
+#flickr_badge_source_txt {padding:0; font: 11px Arial, Helvetica, Sans serif; color:#666666;}
+#flickr_badge_icon {display:block !important; margin:0 !important; border: 1px solid rgb(0, 0, 0) !important;}
+#flickr_icon_td {padding:0 5px 0 0 !important;}
+.flickr_badge_image {text-align:center !important;}
+.flickr_badge_image img {border: 1px solid black !important;}
+#flickr_www {display:block; padding:0 10px 0 10px !important; font: 11px Arial, Helvetica, Sans serif !important; color:#3993ff !important;}
+#flickr_badge_uber_wrapper a:hover,
+#flickr_badge_uber_wrapper a:link,
+#flickr_badge_uber_wrapper a:active,
+#flickr_badge_uber_wrapper a:visited {text-decoration:none !important; background:inherit !important;color:#3993ff;}
+#flickr_badge_wrapper {}
+#flickr_badge_source {padding:0 !important; font: 11px Arial, Helvetica, Sans serif !important; color:#666666 !important;}
+</style>
+<div id="flickrWrapper">
+<script type="text/javascript" src="http://www.flickr.com/badge_code_v2.gne?count=3&amp;display=latest&amp;size=t&amp;layout=v&amp;source=user&amp;user=44806284%40N06"></script>
+</div>
+<!-- End of Flickr Badge -->
+</div>
+		</div></div>
+		
+	</div><!-- #primary .aside -->
+
+
+	</div><!-- #container -->
+
+	<div id="footer-container">
+
+		
+		<div id="footer">
+
+			<div class="footer-content footer-insert"><p class="copyright">Copyright &#169; 2014 <a class="site-link" href="../../index.html" title="Maxim Kachurovskiy" rel="home"><span>Maxim Kachurovskiy</span></a>.</p>
+
+<p class="credit">Powered by <a class="wp-link" href="http://wordpress.org/" title="State-of-the-art semantic personal publishing platform"><span>WordPress</span></a> and <a class="theme-link" href="http://themehybrid.com/themes/hybrid" title="Hybrid WordPress Theme"><span>Hybrid</span></a>.</p></div>
+		</div><!-- #footer -->
+
+		
+	</div><!-- #footer-container -->
+
+</div><!-- #body-container -->
+
+<script type='text/javascript' src='/wp-content/plugins/contact-form-7/includes/js/jquery.form.min9d5c.js?ver=3.50.0-2014.02.05'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var _wpcf7 = {"loaderUrl":"http:\/\/kachurovskiy.com\/wp-content\/plugins\/contact-form-7\/images\/ajax-loader.gif","sending":"Sending ...","cached":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='/wp-content/plugins/contact-form-7/includes/js/scriptsf3df.js?ver=3.7.2'></script>
+<script type='text/javascript' src='/wp-content/themes/hybrid/library/js/drop-downs.min93cb.js?ver=20110920'></script>
+
+</body>
+
+<!-- Mirrored from kachurovskiy.com/2010/runtime-icons-for-flex-components/  04:20:44 GMT -->
+</html>

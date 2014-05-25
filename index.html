@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<!-- Mirrored from kachurovskiy.com/  04:20:43 GMT -->
+
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Maxim Kachurovskiy: Adobe Flex, Flash, ActionScript and more</title>
+
+<link rel="stylesheet" href="wp-content/themes/hybrid/style.min.css" type="text/css" media="all" />
+
+<link rel="pingback" href="xmlrpc.php" />
+
+<meta name="generator" content="WordPress 3.8.1" />
+<meta name="template" content="Hybrid 1.2" />
+<link rel="alternate" type="application/rss+xml" title="Maxim Kachurovskiy &raquo; Feed" href="feed/index.html" />
+<link rel="alternate" type="application/rss+xml" title="Maxim Kachurovskiy &raquo; Comments Feed" href="comments/feed/index.html" />
+
+            <script type="text/javascript">//<![CDATA[
+            // Google Analytics for WordPress by Yoast v4.3.5 | http://yoast.com/wordpress/google-analytics/
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', 'UA-4425250-5']);
+				            _gaq.push(['_trackPageview']);
+            (function () {
+                var ga = document.createElement('script');
+                ga.type = 'text/javascript';
+                ga.async = true;
+                ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+
+                var s = document.getElementsByTagName('script')[0];
+                s.parentNode.insertBefore(ga, s);
+            })();
+            //]]></script>
+			<link rel='stylesheet' id='contact-form-7-css'  href='wp-content/plugins/contact-form-7/includes/css/stylesf3df.css?ver=3.7.2' type='text/css' media='all' />
+<script type='text/javascript' src='/wp-includes/js/jquery/jquery.js?ver=1.10.2'></script>
+<script type='text/javascript' src='/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="xmlrpc0db0.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="/wp-includes/wlwmanifest.xml" /> 
+
+<script type="text/javascript" src="wp-content/plugins/ald-transpose-email/ald-transpose-email.js"></script>
+
+<link rel="stylesheet" type="text/css" href="wp-content/plugins/highlight-source-pro/all.css" /><!--[if IE]><link rel="stylesheet" type="text/css" href="http://kachurovskiy.com/wp-content/plugins/highlight-source-pro/ie.css" /><![endif]-->
+</head>
+
+<body class="wordpress ltr en_US parent-theme y2014 m03 d18 h08 tuesday logged-out home blog primary-active secondary-inactive subsidiary-inactive">
+
+
+<div id="body-container">
+
+	
+	<div id="header-container">
+
+		<div id="header">
+
+			<h1 id="site-title"><a href="index.html" title="Maxim Kachurovskiy" rel="home"><span>Maxim Kachurovskiy</span></a></h1><h2 id="site-description"><span>Adobe Flex, Flash, ActionScript and more</span></h2>
+		</div><!-- #header -->
+
+	</div><!-- #header-container -->
+
+	
+	<div id="container">
+
+		
+	<div id="content" class="hfeed content">
+
+		
+		
+	
+		
+			<div id="post-310" class="hentry post publish post-1 odd author-maxim category-actionscript category-bugs category-issues category-security">
+
+				<h2 class='post-title entry-title'><a href='2013/flash-security-at-the-end-of-flash-era/index.html'>Flash Security at the end of Flash era</a></h2><p class="byline">By <span class="author vcard"><a class="url fn n" rel="author" href="author/maxim/index.html" title="Maxim">Maxim</a></span> on <abbr class="published" title="Friday, April 19th, 2013, 9:56 am">April 19, 2013</abbr> </p>
+				<div class="entry-content">
+					<p>Flash era is <a href="http://www.indeed.com/jobtrends?q=flash">rapidly wrapping up</a> and it is important to ensure the security of Flash applications we leave behind us.</p>
+<h1>Danger of <code>crossdomain.xml</code></h1>
+<p><code>crossdomain.xml</code> <a href="http://www.adobe.com/devnet-docs/acrobatetk/tools/AppSec/CrossDomain_PolicyFile_Specification.pdf">specifies</a> the following:</p>
+<ul>
+<li>If <code>https://other-domain.com/evil.swf</code> can read data from your domain <code>https://mycorp.com/user-mail</code></li>
+<li>If other crossdomain policies can be found on your domain e.g. <code>https://mycorp.com/relaxed-app/user-supplied-file.csv</code></li>
+</ul>
+<p>If you don&#8217;t provide or provide inappropriate <code>https://mycorp.com/crossdomain.xml</code> and some data on your domain is protected by:</p>
+<ul>
+<li>Cookies</li>
+<li>HTTP Authentication</li>
+<li>Other ambient user credential e.g. client certificate</li>
+</ul>
+<p>then <b style="font-weight: bold">attacker can steal that data without user even noticing</b>.</p>
+<p><b style="font-weight: bold">Example:</b> <code>https://mail.mycorp.com</code> allowing all everybody access it. Then if I just embed invisible SWF on kachurovskiy.com homepage and make it load <code>https://mail.mycorp.com</code> then I&#8217;ll get all your mail without you even knowing about it.</p>
+<h2>Overly broad crossdomain.xml</h2>
+<p>If your crossdomain.xml contains <code>&lt;allow-access-from domain="*"/&gt;</code> then you&#8217;re in trouble unless your domain serves only public data. Same stands true for allowing untrusted domains or domain that allow user-controlled data to be served from them.</p>
+<h2>No crossdomain.xml</h2>
+<p>If you don&#8217;t have <code>/crossdomain.xml</code> malicious SWF can <a href="http://livedocs.adobe.com/flashlite/3.0/docs/help.html?content=00005452.html">ask Flash Player to load crossdomain policy</a> from <code>https://mycorp.com/userfiles/vasily.txt</code> on your server and gain access to all URLs under <code>https://mycorp.com/userfiles/</code>!</p>
+<p><a href="/f/ria/13/security/crossdomain.xml">The safest <code>/crossdomain.xml</code></a></p>
+<h1>Ultimate SWF Security Solution</h1>
+<p>Delete all SWF that are no longer needed. Every SWF file is a chance for attacker to:</p>
+<ul>
+<li>Execute attacker-supplied JavaScript by e.g. making your app call <code>navigateToURL(new URLRequest("javascript:alert(1)"))</code></li>
+<li>Use SWF as a proxy to make requests to your domain if your SWF calls <code>System.allowDomain()</code></li>
+<li>List goes on</li>
+</ul>
+<h1>Moving SWFs to a cookie-less domain</h1>
+<p>Moving SWF to a cookie-less domain prevents attacker from making use of:</p>
+<ul>
+<li>JavaScript injection bugs</li>
+<li><code>Security.allowDomain("*")</code> bugs</li>
+</ul>
+<p>You can still allow SWF to interact with main domain by allowing that particular domain, see for example <a href="https://www.youtube.com/crossdomain.xml">YouTube&#8217;s crossdomain.xml</a>, just double check that you&#8217;re not using <code>Security.allowDomain()</code> at the same time.</p>
+<h1>Security.allowDomain(&#8220;*&#8221;)</h1>
+<p>If <code>https://mycorp.com/mail.swf</code> will execute <code>Security.allowDomain("*")</code> or <code>Security.allowDomain("other-domain.com")</code> then <code>https://other-domain.com/evil.swf</code> will be able to load your SWF and access all it&#8217;s content, variables and methods. It&#8217;s likely to give <code>evil.swf</code> access to all the information and actions available to <code>mail.swf</code> and in general to <code>https://mycorp.com</code> which may be problem as you already know.</p>
+<p>The safest solution is to remove all <code>Security.allowDomain()</code> calls or at least get a really good understanding what you are allowing by calling this method. This is especially true for AS 2.0 since it has content loading method attached to the display tree.</p>
+<p><a href="http://www.amazon.com/Tangled-Web-Securing-Modern-Applications/dp/1593273886/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1366350395&amp;sr=1-1&amp;keywords=the+tangled+web"><img src="/f/ria/13/security/tangledweb.png" style="float:right;"/></a><br />
+<h1>Hosting user files</h1>
+<p>This is not really related to Flash but is too often overlooked. There is a very good reason why all Google products serve all user supplied content from separate domains e.g. <code>googleusercontent.com</code>. <a href="http://en.wikipedia.org/wiki/Cross-site_scripting#Persistent">Find out why.</a></p>
+<h1>Learn more</h1>
+<p>This is just a quick overlook of common Flash-related security issues that is intentionally short so that you don&#8217;t fall asleep reading.</p>
+<p>This post is powered by book <a href="http://www.amazon.com/Tangled-Web-Securing-Modern-Applications/dp/1593273886/ref=sr_1_1?s=books&amp;ie=UTF8&amp;qid=1366350395&amp;sr=1-1&amp;keywords=the+tangled+web">The Tangled Web</a> &#8211; awesome and rewarding reading for Web Developer.</p>
+									</div><!-- .entry-content -->
+
+				<p class="entry-meta"><span class="category"><span class="before">Posted in </span><a href="category/actionscript/index.html" rel="tag">ActionScript</a>, <a href="category/bugs/index.html" rel="tag">Bugs</a>, <a href="category/issues/index.html" rel="tag">Issues</a>, <a href="category/security/index.html" rel="tag">Security</a></span>  | <a class="comments-link" href="2013/flash-security-at-the-end-of-flash-era/index.html#respond" title="Comment on Flash Security at the end of Flash era"></a></p>
+			</div><!-- .hentry -->
+
+			
+			
+			<div id="post-278" class="hentry post publish post-2 even alt author-maxim category-component category-fplatform category-flex">
+
+				<h2 class='post-title entry-title'><a href='2011/spark-advanceddatagrid/index.html'>Spark AdvancedDataGrid</a></h2><p class="byline">By <span class="author vcard"><a class="url fn n" rel="author" href="author/maxim/index.html" title="Maxim">Maxim</a></span> on <abbr class="published" title="Tuesday, August 9th, 2011, 5:04 pm">August 9, 2011</abbr> </p>
+				<div class="entry-content">
+					<p>I have used the logic from <a href="2010/spark-tree/index.html">Spark Tree</a> to build <code>AdvancedDataGrid</code> based on Spark <code>DataGrid</code> and it seem to work nice:</p>
+<p><a href="/f/ria/10/sparkTree/SparkADGApp.html"><img src="/f/ria/10/sparkTree/SparkADGApp.png"/></a><br />
+<a href="/f/ria/10/sparkTree/srcview/index.html">View Source</a></p>
+<p>Since <code>AdvancedDataGrid</code>contains a few code and uses a lot of Spark Tree logic I&#8217;ve decided to add it to the <a href="https://github.com/kachurovskiy/Spark-Tree">Spark Tree project in GitHub.com</a> instead of creating a separate library.</p>
+<p><strong>Note:</strong> you will not see disclosure icons unless you specify corresponding item renderer for some column: <code>&lt;s:GridColumn itemRenderer="com.sparkTree.DefaultTreeADGItemRenderer"/&gt;</code></p>
+<p><a href="https://github.com/downloads/kachurovskiy/Spark-Tree/SparkTree4.5.swc">Download SparkTree4.5.swc for Flex SDK 4.5 and higher.</a></p>
+<p>Please report bugs in comments or to the <a href="https://github.com/kachurovskiy/Spark-Tree/issues">GitHub Issue Tracker</a>.</p>
+									</div><!-- .entry-content -->
+
+				<p class="entry-meta"><span class="category"><span class="before">Posted in </span><a href="category/component/index.html" rel="tag">Component</a>, <a href="category/fplatform/index.html" rel="tag">Flash Platform</a>, <a href="category/fplatform/flex/index.html" rel="tag">Flex</a></span>  | <a class="comments-link" href="2011/spark-advanceddatagrid/index.html#comments" title="Comment on Spark AdvancedDataGrid">12 Responses</a></p>
+			</div><!-- .hentry -->
+
+			
+			
+			<div id="post-200" class="hentry post publish post-3 odd author-maxim has-more-link category-fplatform category-flex">
+
+				<h2 class='post-title entry-title'><a href='2011/pronto4/index.html'>Pronto 4</a></h2><p class="byline">By <span class="author vcard"><a class="url fn n" rel="author" href="author/maxim/index.html" title="Maxim">Maxim</a></span> on <abbr class="published" title="Friday, February 25th, 2011, 9:36 pm">February 25, 2011</abbr> </p>
+				<div class="entry-content">
+					<p>I&#8217;m happy to present the project I&#8217;ve been working on for the last 2 years.</p>
+<p><a href="2011/pronto4.html"><img src="/f/ria/11/pronto/prontoLogo.png"/></a><br />
+ <a href="2011/pronto4/index.html#more-200" class="more-link">Continue reading  &#8220;Pronto 4&#8243;</a></p>
+									</div><!-- .entry-content -->
+
+				<p class="entry-meta"><span class="category"><span class="before">Posted in </span><a href="category/fplatform/index.html" rel="tag">Flash Platform</a>, <a href="category/fplatform/flex/index.html" rel="tag">Flex</a></span>  | <a class="comments-link" href="2011/pronto4/index.html#comments" title="Comment on Pronto 4">3 Responses</a></p>
+			</div><!-- .hentry -->
+
+			
+			
+			<div id="post-187" class="hentry post publish post-4 even alt author-maxim category-fplatform category-flex category-styles-skins">
+
+				<h2 class='post-title entry-title'><a href='2011/ftheme-com-launch/index.html'>FTheme.com launch</a></h2><p class="byline">By <span class="author vcard"><a class="url fn n" rel="author" href="author/maxim/index.html" title="Maxim">Maxim</a></span> on <abbr class="published" title="Sunday, February 6th, 2011, 6:50 pm">February 6, 2011</abbr> </p>
+				<div class="entry-content">
+					<p><a href="http://ftheme.kachurovskiy.com/"><img src="http://kachurovskiy.com/f/ria/11/fthemeLaunch.jpg"/></a></p>
+<p><a href="http://ftheme.kachurovskiy.com/">FTheme.com</a> is my new library that hopefully will make a small revolution in Flex 4 styling and skinning. New application look can be created in Notepad, loaded at runtime and change everything from application background bitmap fill to the <code>CheckBox</code>-es size.</p>
+<p>Hope that you enjoy existing looks (<a href="http://ftheme.kachurovskiy.com/look/NightSky">NightSky</a> is my favorite). Looking for forward for your feedback and new exciting looks.</p>
+									</div><!-- .entry-content -->
+
+				<p class="entry-meta"><span class="category"><span class="before">Posted in </span><a href="category/fplatform/index.html" rel="tag">Flash Platform</a>, <a href="category/fplatform/flex/index.html" rel="tag">Flex</a>, <a href="category/styles-skins/index.html" rel="tag">Styles and skins</a></span>  | <a class="comments-link" href="2011/ftheme-com-launch/index.html#comments" title="Comment on FTheme.com launch">7 Responses</a></p>
+			</div><!-- .hentry -->
+
+			
+			
+			<div id="post-165" class="hentry post publish post-5 odd author-maxim category-fplatform">
+
+				<h2 class='post-title entry-title'><a href='2010/year-summary/index.html'>Year summary</a></h2><p class="byline">By <span class="author vcard"><a class="url fn n" rel="author" href="author/maxim/index.html" title="Maxim">Maxim</a></span> on <abbr class="published" title="Wednesday, December 29th, 2010, 10:41 pm">December 29, 2010</abbr> </p>
+				<div class="entry-content">
+					<p>It was a good year, thank you for reading this blog &#8211; hope it is useful at least sometimes :) Starting from the 20-th August 2010 when this blog was opened:</p>
+<ul>
+<li>More than <strong>2900</strong> people came and read more than <strong>5000</strong> pages</li>
+<li>Average time on site for each visitor was more than 2 minutes.</li>
+<li>600 visitors came from USA, 585 from Russia and 222 from Ukraine.</li>
+<li>Most popular posts were <a href="2010/spark-tree/index.html">Spark Tree</a> and <a href="2010/storing-icons-in-external-zip-and-seamless-work-with-composite-icons/index.html">storing icons in external ZIP</a>.</li>
+<li>45% were using Firefox, 31% Chrome and 10% Safari.</li>
+</ul>
+<p>Here is some personal statistics according to the <a href="http://www.statsvn.org/">StatSVN</a>:</p>
+<ul>
+<li>In this year I&#8217;ve committed 277 559 lines of code that is 1 100 lines/day.</li>
+<li>45% lines were modifications and 55% were new.</li>
+</ul>
+<p>One of my next posts is going to be about the look&#038;feel customization system that we are developing in CommuniGate for Pronto:</p>
+<p><a href="/f/ria/10/summary/customizationPanel.png"><img src="/f/ria/10/summary/customizationPanel400.png"/></a></p>
+<p>It&#8217;s super-powerful, lightweight and fully backward-compatible (while runtime Flex styles in SWFs are not).</p>
+									</div><!-- .entry-content -->
+
+				<p class="entry-meta"><span class="category"><span class="before">Posted in </span><a href="category/fplatform/index.html" rel="tag">Flash Platform</a></span>  | <a class="comments-link" href="2010/year-summary/index.html#comments" title="Comment on Year summary">5 Responses</a></p>
+			</div><!-- .hentry -->
+
+			
+			
+			<div id="post-158" class="hentry post publish post-6 even alt author-maxim category-bugs category-component category-fplatform category-flex">
+
+				<h2 class='post-title entry-title'><a href='2010/spark-tree-on-github/index.html'>Spark Tree on GitHub</a></h2><p class="byline">By <span class="author vcard"><a class="url fn n" rel="author" href="author/maxim/index.html" title="Maxim">Maxim</a></span> on <abbr class="published" title="Friday, December 10th, 2010, 11:18 pm">December 10, 2010</abbr> </p>
+				<div class="entry-content">
+					<p>I&#8217;ve just uploaded <a href="https://github.com/kachurovskiy/Spark-Tree">Spark Tree component to the GitHub</a> so if you&#8217;ve got some updates or bug fixes &#8211; please send pull requests :) Also the package is changed &#8211; now it&#8217;s <code>com.sparkTree</code>.</p>
+<p><a href="https://github.com/downloads/kachurovskiy/Spark-Tree/SparkTree.swc">Download SparkTree.swc</a><br />
+<a href="https://github.com/kachurovskiy/Spark-Tree/archives/master">Download source code</a></p>
+									</div><!-- .entry-content -->
+
+				<p class="entry-meta"><span class="category"><span class="before">Posted in </span><a href="category/bugs/index.html" rel="tag">Bugs</a>, <a href="category/component/index.html" rel="tag">Component</a>, <a href="category/fplatform/index.html" rel="tag">Flash Platform</a>, <a href="category/fplatform/flex/index.html" rel="tag">Flex</a></span>  | <a class="comments-link" href="2010/spark-tree-on-github/index.html#comments" title="Comment on Spark Tree on GitHub">11 Responses</a></p>
+			</div><!-- .hentry -->
+
+			
+			
+			<div id="post-145" class="hentry post publish post-7 odd author-maxim category-fplatform">
+
+				<h2 class='post-title entry-title'><a href='2010/amfphp-in-convinient-and-reliable-way/index.html'>AMFPHP in convinient and reliable way</a></h2><p class="byline">By <span class="author vcard"><a class="url fn n" rel="author" href="author/maxim/index.html" title="Maxim">Maxim</a></span> on <abbr class="published" title="Sunday, November 14th, 2010, 3:11 pm">November 14, 2010</abbr> </p>
+				<div class="entry-content">
+					<p>Remoting with AMFPHP greatly simplifies the client-server application logic. Now I&#8217;m going to simplify it&#8217;s usage. No responders, no listeners or clients. <strong>Just one <code>call(...)</code> and one callback function:</strong></p>
+<div class="geshi no actionscript">
+<ol>
+<li class="li1">
+<div class="de1"><span class="kw3">private</span> <span class="kw2">function</span> init<span class="br0">&#40;</span><span class="br0">&#41;</span>:<span class="kw3">void</span></div>
+</li>
+<li class="li1">
+<div class="de1"><span class="br0">&#123;</span></div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; <span class="kw2">new</span> Gateway<span class="br0">&#40;</span><span class="st0">&quot;http://localhost/amfphp/gateway.php&quot;</span><span class="br0">&#41;</span>;</div>
+</li>
+<li class="li1">
+<div class="de1"><span class="br0">&#125;</span></div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1"><span class="kw3">private</span> <span class="kw2">function</span> listButton_clickHandler<span class="br0">&#40;</span>event:MouseEvent<span class="br0">&#41;</span>:<span class="kw3">void</span></div>
+</li>
+<li class="li1">
+<div class="de1"><span class="br0">&#123;</span></div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; listButton.<span class="kw3">enabled</span> = <span class="kw2">false</span>;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; <span class="kw3">call</span><span class="br0">&#40;</span><span class="st0">&quot;Persons.listPersons&quot;</span>, <span class="nu0">10</span>, listPersonsCallback<span class="br0">&#41;</span>;</div>
+</li>
+<li class="li1">
+<div class="de1"><span class="br0">&#125;</span></div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1"><span class="kw3">private</span> <span class="kw2">function</span> listPersonsCallback<span class="br0">&#40;</span><span class="kw3">object</span>:<span class="kw3">Object</span>, errorText:<span class="kw3">String</span><span class="br0">&#41;</span>:<span class="kw3">void</span></div>
+</li>
+<li class="li1">
+<div class="de1"><span class="br0">&#123;</span></div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; listButton.<span class="kw3">enabled</span> = <span class="kw2">true</span>;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; listButton.<span class="me1">errorString</span> = errorText;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; <span class="kw1">if</span> <span class="br0">&#40;</span>errorText<span class="br0">&#41;</span></div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; &nbsp; &nbsp; <span class="kw1">return</span>;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; </div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; <span class="co1">// handle persons from object</span></div>
+</li>
+<li class="li1">
+<div class="de1"><span class="br0">&#125;</span></div>
+</li>
+</ol>
+</div>
+<p>Here is the <code>Persons.php</code> service:</p>
+<div class="geshi no actionscript">
+<ol>
+<li class="li1">
+<div class="de1"><span class="sy0">&lt;</span> ?php</div>
+</li>
+<li class="li1">
+<div class="de1"><span class="kw2">class</span> Persons</div>
+</li>
+<li class="li1">
+<div class="de1"><span class="br0">&#123;</span></div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; <span class="kw2">var</span> $link;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; <span class="kw3">public</span> <span class="kw2">function</span> __construct<span class="br0">&#40;</span><span class="br0">&#41;</span> </div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; <span class="br0">&#123;</span></div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; &nbsp; &nbsp; $link = mysql_connect<span class="br0">&#40;</span>DB_HOST, DB_USER, DB_PASS<span class="br0">&#41;</span>;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; &nbsp; &nbsp; <span class="kw1">if</span> <span class="br0">&#40;</span><span class="sy0">!</span>$link<span class="br0">&#41;</span></div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="kw3">throw</span> <span class="kw2">new</span> Exception<span class="br0">&#40;</span><span class="st0">&quot;DB connection error&quot;</span> . <span class="me1"><span class="br0">&#40;</span>PRODUCTION_SERVER<span class="sy0">|</span>> ? <span class="st0">&quot;&quot;</span> : <span class="st0">&quot;: &quot;</span> . <span class="me1">mysql_error</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; &nbsp; &nbsp; <span class="kw1">if</span> <span class="br0">&#40;</span><span class="sy0">!</span>mysql_select_db<span class="br0">&#40;</span>DB_NAME<span class="br0">&#41;</span><span class="br0">&#41;</span></div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="kw3">throw</span> <span class="kw2">new</span> Exception<span class="br0">&#40;</span><span class="st0">&quot;DB selection error&quot;</span> . <span class="me1"><span class="br0">&#40;</span>PRODUCTION_SERVER<span class="sy0">|</span>> ? <span class="st0">&quot;&quot;</span> : <span class="st0">&quot;: &quot;</span> . <span class="me1">mysql_error</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; <span class="br0">&#125;</span></div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; <span class="kw2">function</span> listPersons<span class="br0">&#40;</span>$limit<span class="br0">&#41;</span></div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; <span class="br0">&#123;</span></div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; &nbsp; &nbsp; $query = sprintf<span class="br0">&#40;</span><span class="st0">&quot;SELECT * FROM persons LIMIT %d&quot;</span>, </div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; mysql_real_escape_string<span class="br0">&#40;</span>$limit<span class="br0">&#41;</span><span class="br0">&#41;</span>;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; &nbsp; &nbsp; $this-<span class="sy0">&gt;</span>_handleResultError<span class="br0">&#40;</span>$result = mysql_query<span class="br0">&#40;</span>$query<span class="br0">&#41;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; &nbsp; &nbsp; <span class="kw1">return</span> $result;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; <span class="br0">&#125;</span></div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; </div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; <span class="co1">// utility function</span></div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; <span class="kw2">function</span> _handleResultError<span class="br0">&#40;</span><span class="sy0">&amp;</span>$result<span class="br0">&#41;</span></div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; <span class="br0">&#123;</span></div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; &nbsp; &nbsp; <span class="kw1">if</span> <span class="br0">&#40;</span><span class="sy0">!</span>$result<span class="br0">&#41;</span></div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span class="kw3">throw</span> <span class="kw2">new</span> Exception<span class="br0">&#40;</span><span class="st0">&quot;query error&quot;</span> . <span class="me1"><span class="br0">&#40;</span>PRODUCTION_SERVER<span class="sy0">|</span>> ? <span class="st0">&quot;&quot;</span> : <span class="st0">&quot;: &quot;</span> . <span class="me1">mysql_error</span><span class="br0">&#40;</span><span class="br0">&#41;</span><span class="br0">&#41;</span><span class="br0">&#41;</span>;</div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp; &nbsp; <span class="br0">&#125;</span></div>
+</li>
+<li class="li1">
+<div class="de1">&nbsp;</div>
+</li>
+<li class="li1">
+<div class="de1"><span class="br0">&#125;</span></div>
+</li>
+</ol>
+</div>
+<p><strong><a href="/f/ria/10/call/CallGateway.rar">Download Gateway.as and call.as</a></strong></p>
+<p>Callback function can have the following signatures depending on the application logic: </p>
+<ul>
+<li><code>function():void</code></li>
+<li><code>function(errorText:String):void</code></li>
+<li><code>function(object:Object, errorText:String):void</code></li>
+</ul>
+									</div><!-- .entry-content -->
+
+				<p class="entry-meta"><span class="category"><span class="before">Posted in </span><a href="category/fplatform/index.html" rel="tag">Flash Platform</a></span>  | <a class="comments-link" href="2010/amfphp-in-convinient-and-reliable-way/index.html#comments" title="Comment on AMFPHP in convinient and reliable way">2 Responses</a></p>
+			</div><!-- .hentry -->
+
+			
+			
+			<div id="post-125" class="hentry post publish post-8 even alt author-maxim category-fplatform category-flex category-issues category-tutorials">
+
+				<h2 class='post-title entry-title'><a href='2010/hgroup-vgroup-layout-oversiz/index.html'>Easy solution for one annoying HGroup/VGroup layout issue</a></h2><p class="byline">By <span class="author vcard"><a class="url fn n" rel="author" href="author/maxim/index.html" title="Maxim">Maxim</a></span> on <abbr class="published" title="Saturday, October 16th, 2010, 9:06 pm">October 16, 2010</abbr> </p>
+				<div class="entry-content">
+					<p>Text elements in horizontal and vertical layouts are sometimes coward. When text is small, layout looks nice:</p>
+<p><img src="/f/ria/10/layout/layoutOK.png"/></p>
+<p><img src="/f/ria/10/layout/mxml1.png"/></p>
+<p>If the text is controlled by user and layout is not smart enough, it can look this way:</p>
+<p><img src="/f/ria/10/layout/layoutNotOK.png"/><br />
+<small>&#8220;Logout&#8221; button is invisible, search field is cropped.</small></p>
+<p>It happens when <code>HGroup</code> or <code>VGroup</code> (horizontal/vertical layouts) are used since giving elements as much space as they require is their logical behavior. <a href="http://www.hrundik.ru/blog/">My colleague Nikita Petrov</a> has shown me a very easy to avoid this:</p>
+<p><img src="/f/ria/10/layout/mxml2.png"/></p>
+<p><img src="/f/ria/10/layout/layoutFixed.png"/></p>
+									</div><!-- .entry-content -->
+
+				<p class="entry-meta"><span class="category"><span class="before">Posted in </span><a href="category/fplatform/index.html" rel="tag">Flash Platform</a>, <a href="category/fplatform/flex/index.html" rel="tag">Flex</a>, <a href="category/issues/index.html" rel="tag">Issues</a>, <a href="category/tutorials/index.html" rel="tag">Tutorials</a></span>  | <a class="comments-link" href="2010/hgroup-vgroup-layout-oversiz/index.html#comments" title="Comment on Easy solution for one annoying HGroup/VGroup layout issue">5 Responses</a></p>
+			</div><!-- .hentry -->
+
+			
+			
+			<div id="post-111" class="hentry post publish post-9 odd author-maxim has-more-link category-fplatform category-flex category-tutorials">
+
+				<h2 class='post-title entry-title'><a href='2010/storing-icons-in-external-zip-and-seamless-work-with-composite-icons/index.html'>Storing icons in external ZIP and seamless work with composite icons</a></h2><p class="byline">By <span class="author vcard"><a class="url fn n" rel="author" href="author/maxim/index.html" title="Maxim">Maxim</a></span> on <abbr class="published" title="Sunday, September 5th, 2010, 11:00 pm">September 5, 2010</abbr> </p>
+				<div class="entry-content">
+					<p>There are a lot of ways to work with icons in Flex, e.g.:</p>
+<ul>
+<li>Use <code>@Embed(...)</code> directive inline</li>
+<li>Use <code>[Embed(...)]</code> metatag and store all icons in class like <code>Assets.as</code></li>
+</ul>
+<p>All this is good until you have too much assets because:</p>
+<ul>
+<li>Each <code>Embed</code> directive takes huge time during compilation</li>
+<li>Developer can not optimize memory/CPU usage via passing one <code>BitmapData</code> to the same <code>Bitmaps</code> instead of creating new <code>BitmapData</code> for each icon</li>
+<li><code>Embed</code> sometimes fails during incremental compilation</li>
+</ul>
+<p>Another huge problem I&#8217;m going to address today is the runtime icons layering. Imagine you need these <strong>9 icons</strong> <span style="font-size: 60%;"><a href="http://webappers.com/">(thanks to webappers.com)</a></span>:<br />
+<img src="/f/ria/10/icons/9icons.png"/></p>
+<p>The simple solution is just to embed all of them. But wouldn&#8217;t it be better to store and load only these <strong>6 icons</strong>? You can compose them in runtime!<br />
+<img src="/f/ria/10/icons/6icons.png"/><br />
+ <a href="2010/storing-icons-in-external-zip-and-seamless-work-with-composite-icons/index.html#more-111" class="more-link">Continue reading  &#8220;Storing icons in external ZIP and seamless work with composite icons&#8221;</a></p>
+									</div><!-- .entry-content -->
+
+				<p class="entry-meta"><span class="category"><span class="before">Posted in </span><a href="category/fplatform/index.html" rel="tag">Flash Platform</a>, <a href="category/fplatform/flex/index.html" rel="tag">Flex</a>, <a href="category/tutorials/index.html" rel="tag">Tutorials</a></span>  | <a class="comments-link" href="2010/storing-icons-in-external-zip-and-seamless-work-with-composite-icons/index.html#comments" title="Comment on Storing icons in external ZIP and seamless work with composite icons">6 Responses</a></p>
+			</div><!-- .hentry -->
+
+			
+			
+			<div id="post-104" class="hentry post publish post-10 even alt author-maxim category-fplatform category-flex category-layout category-tutorials">
+
+				<h2 class='post-title entry-title'><a href='2010/cloud-layout/index.html'>Cloud Layout</a></h2><p class="byline">By <span class="author vcard"><a class="url fn n" rel="author" href="author/maxim/index.html" title="Maxim">Maxim</a></span> on <abbr class="published" title="Wednesday, September 1st, 2010, 6:26 pm">September 1, 2010</abbr> </p>
+				<div class="entry-content">
+					<p>Here is the <a href="/f/ria/10/cloud/srcview/source/CloudLayout.as.html">CloudLayout.as</a> <small><a href="/f/ria/10/cloud/CloudLayout.as">[plain]</a></small> that does nice Web 2.0 tag cloud:</p>
+<p><a href="/f/ria/10/cloud/TagCloudApp.html"><img src="/f/ria/10/cloud/screenshot1.png"/></a><br />
+<a href="/f/ria/10/cloud/srcview/index.html">View Source</a></p>
+									</div><!-- .entry-content -->
+
+				<p class="entry-meta"><span class="category"><span class="before">Posted in </span><a href="category/fplatform/index.html" rel="tag">Flash Platform</a>, <a href="category/fplatform/flex/index.html" rel="tag">Flex</a>, <a href="category/layout/index.html" rel="tag">Layout</a>, <a href="category/tutorials/index.html" rel="tag">Tutorials</a></span>  | <a class="comments-link" href="2010/cloud-layout/index.html#comments" title="Comment on Cloud Layout">7 Responses</a></p>
+			</div><!-- .hentry -->
+
+			
+			
+		
+		
+	
+		<div class="navigation-links">
+			<a href="page/2/index.html" ><span class="next">Next &raquo;</span></a>		</div><!-- .navigation-links -->
+
+	
+	</div><!-- .content .hfeed -->
+
+		
+	<div id="primary" class="sidebar aside">
+
+		
+		<div id="text-8" class="widget widget_text widget-widget_text"><div class="widget-wrap widget-inside">			<div class="textwidget"><img src="/f/ria/11/flexBadge.png"/></div>
+		</div></div><div id="hybrid-search-3" class="widget search widget-search"><div class="widget-wrap widget-inside"><h3 class="widget-title">Search</h3><form method="get" class="search-form" id="search-formhybrid-search" action="/"><div><input class="search-text" type="text" name="s" id="search-texthybrid-search" value="" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;" /></div></form></div></div><div id="text-6" class="widget widget_text widget-widget_text"><div class="widget-wrap widget-inside"><h3 class="widget-title">My projects</h3>			<div class="textwidget"><a href="http://ftheme.kachurovskiy.com/">Flex theme</a><br/>
+<a href="2010/spark-tree/index.html">Spark Tree</a></div>
+		</div></div><div id="meta-3" class="widget widget_meta widget-widget_meta"><div class="widget-wrap widget-inside"><h3 class="widget-title">Meta</h3>			<ul>
+						<li><a href="wp-login.html">Log in</a></li>
+			<li><a href="feed/index.html" title="Syndicate this site using RSS 2.0">Entries <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="comments/feed/index.html" title="The latest comments to all posts in RSS">Comments <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="http://wordpress.org/" title="Powered by WordPress, state-of-the-art semantic personal publishing platform.">WordPress.org</a></li>						</ul>
+</div></div><div id="text-7" class="widget widget_text widget-widget_text"><div class="widget-wrap widget-inside"><h3 class="widget-title">My photos</h3>			<div class="textwidget"><!-- Start of Flickr Badge -->
+<style type="text/css">
+#flickrWrapper a { display: block; float: left; clear: both;}
+#flickr_badge_uber_wrapper { border-color: white; }
+#flickr_badge_source_txt {padding:0; font: 11px Arial, Helvetica, Sans serif; color:#666666;}
+#flickr_badge_icon {display:block !important; margin:0 !important; border: 1px solid rgb(0, 0, 0) !important;}
+#flickr_icon_td {padding:0 5px 0 0 !important;}
+.flickr_badge_image {text-align:center !important;}
+.flickr_badge_image img {border: 1px solid black !important;}
+#flickr_www {display:block; padding:0 10px 0 10px !important; font: 11px Arial, Helvetica, Sans serif !important; color:#3993ff !important;}
+#flickr_badge_uber_wrapper a:hover,
+#flickr_badge_uber_wrapper a:link,
+#flickr_badge_uber_wrapper a:active,
+#flickr_badge_uber_wrapper a:visited {text-decoration:none !important; background:inherit !important;color:#3993ff;}
+#flickr_badge_wrapper {}
+#flickr_badge_source {padding:0 !important; font: 11px Arial, Helvetica, Sans serif !important; color:#666666 !important;}
+</style>
+<div id="flickrWrapper">
+<script type="text/javascript" src="http://www.flickr.com/badge_code_v2.gne?count=3&amp;display=latest&amp;size=t&amp;layout=v&amp;source=user&amp;user=44806284%40N06"></script>
+</div>
+<!-- End of Flickr Badge -->
+</div>
+		</div></div>
+		
+	</div><!-- #primary .aside -->
+
+
+	</div><!-- #container -->
+
+	<div id="footer-container">
+
+		
+		<div id="footer">
+
+			<div class="footer-content footer-insert"><p class="copyright">Copyright &#169; 2014 <a class="site-link" href="index.html" title="Maxim Kachurovskiy" rel="home"><span>Maxim Kachurovskiy</span></a>.</p>
+
+<p class="credit">Powered by <a class="wp-link" href="http://wordpress.org/" title="State-of-the-art semantic personal publishing platform"><span>WordPress</span></a> and <a class="theme-link" href="http://themehybrid.com/themes/hybrid" title="Hybrid WordPress Theme"><span>Hybrid</span></a>.</p></div>
+		</div><!-- #footer -->
+
+		
+	</div><!-- #footer-container -->
+
+</div><!-- #body-container -->
+
+<script type='text/javascript' src='wp-content/plugins/contact-form-7/includes/js/jquery.form.min9d5c.js?ver=3.50.0-2014.02.05'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var _wpcf7 = {"loaderUrl":"http:\/\/kachurovskiy.com\/wp-content\/plugins\/contact-form-7\/images\/ajax-loader.gif","sending":"Sending ...","cached":"1"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='wp-content/plugins/contact-form-7/includes/js/scriptsf3df.js?ver=3.7.2'></script>
+<script type='text/javascript' src='wp-content/themes/hybrid/library/js/drop-downs.min93cb.js?ver=20110920'></script>
+
+</body>
+
+<!-- Mirrored from kachurovskiy.com/  04:20:43 GMT -->
+</html>

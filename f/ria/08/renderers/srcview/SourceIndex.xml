@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<index>
+	<title>Source of ItemRenderersTest</title>
+	<nodes>
+		<node icon="classpathIcon" label="src" expanded="true">
+			<node icon="packageIcon" label="renderers" expanded="true">
+				<node icon="actionScriptIcon" label="CustomSimpleItemRenderer.as" url="source/renderers/CustomSimpleItemRenderer.as.html"/>
+				<node icon="mxmlIcon" label="EasyRenderer.mxml" url="source/renderers/EasyRenderer.mxml.html"/>
+				<node icon="actionScriptIcon" label="EmptyItemRenderer.as" url="source/renderers/EmptyItemRenderer.as.html"/>
+			</node>
+			<node icon="mxmlAppIcon" selected="true" label="ItemRenderersTest.mxml" url="source/ItemRenderersTest.mxml.html"/>
+			<node icon="mxmlIcon" label="TestingComponent.mxml" url="source/TestingComponent.mxml.html"/>
+			<node icon="actionScriptIcon" label="TestingComponentEvent.as" url="source/TestingComponentEvent.as.html"/>
+		</node>
+	</nodes>
+</index>

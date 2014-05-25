@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<index>
+	<title>Source of ItemRendererBlinkApp</title>
+	<nodes>
+		<node label="html-template">
+			<node icon="htmlIcon" label="index.template.html" url="source/html-template/index.template.html"/>
+			<node label="swfobject.js" url="source/html-template/swfobject.js.txt"/>
+		</node>
+		<node label="libs">
+		</node>
+		<node label="release-assets">
+			<node icon="imageIcon" label="screenshot1.png" url="source/release-assets/screenshot1.png.html"/>
+		</node>
+		<node label="src">
+			<node icon="mxmlIcon" label="BadItemRenderer.mxml" url="source/BadItemRenderer.mxml.html"/>
+			<node icon="actionScriptIcon" label="Data1.as" url="source/Data1.as.html"/>
+			<node icon="actionScriptIcon" label="Data2.as" url="source/Data2.as.html"/>
+			<node icon="mxmlIcon" label="GoodItemRenderer.mxml" url="source/GoodItemRenderer.mxml.html"/>
+			<node icon="mxmlAppIcon" selected="true" label="ItemRendererBlinkApp.mxml" url="source/ItemRendererBlinkApp.mxml.html"/>
+		</node>
+	</nodes>
+	<zipfile label="Download source (ZIP, 21K)" url="ItemRendererBlinkApp.zip">
+	</zipfile>
+	<sdklink label="Download Flex SDK" url="http://www.adobe.com/go/flex4_sdk_download">
+	</sdklink>
+</index>

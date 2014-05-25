@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<index>
+	<title>Source of CGPLibraryExample</title>
+	<nodes>
+		<node icon="classpathIcon" label="src" expanded="true">
+			<node icon="packageIcon" label="assets.icons" expanded="true">
+				<node icon="imageIcon" label="greenCross10.png" url="source/example/src/assets/icons/greenCross10.png.html"/>
+				<node icon="imageIcon" label="greenCross16.png" url="source/example/src/assets/icons/greenCross16.png.html"/>
+				<node icon="actionScriptIcon" label="Icons.as" url="source/example/src/assets/icons/Icons.as.html"/>
+				<node label="Thumbs.db" url="source/example/src/assets/icons/Thumbs.db"/>
+			</node>
+			<node icon="packageIcon" label="control" expanded="true">
+				<node icon="actionScriptIcon" label="LoginAction.as" url="source/example/src/control/LoginAction.as.html"/>
+				<node icon="actionScriptIcon" label="LoginCompleteAction.as" url="source/example/src/control/LoginCompleteAction.as.html"/>
+				<node icon="actionScriptIcon" label="LogoutCommand.as" url="source/example/src/control/LogoutCommand.as.html"/>
+			</node>
+			<node icon="packageIcon" label="model" expanded="true">
+				<node icon="actionScriptIcon" label="Model.as" url="source/example/src/model/Model.as.html"/>
+			</node>
+			<node icon="packageIcon" label="view" expanded="true">
+				<node icon="mxmlIcon" label="AttachedFileRenderer.mxml" url="source/example/src/view/AttachedFileRenderer.mxml.html"/>
+				<node icon="mxmlIcon" label="ComposeMail.mxml" url="source/example/src/view/ComposeMail.mxml.html"/>
+				<node icon="mxmlIcon" label="Login.mxml" url="source/example/src/view/Login.mxml.html"/>
+				<node icon="mxmlIcon" label="Main.mxml" url="source/example/src/view/Main.mxml.html"/>
+			</node>
+			<node icon="mxmlIcon" label="CGPLibraryExample.mxml" url="source/example/src/CGPLibraryExample.mxml.html"/>
+		</node>
+	</nodes>
+</index>

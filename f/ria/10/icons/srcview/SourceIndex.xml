@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<index>
+	<title>Source of AssetManagerApp</title>
+	<nodes>
+		<node icon="classpathIcon" label="assets" expanded="true">
+			<node label="assets.zip" url="source/assets/assets.zip"/>
+		</node>
+		<node label="fla">
+			<node icon="flaIcon" label="addLayerAnimated48.fla" url="source/fla/addLayerAnimated48.fla"/>
+			<node icon="swfIcon" label="addLayerAnimated48.swf" url="source/fla/addLayerAnimated48.swf"/>
+		</node>
+		<node label="html-template">
+			<node icon="htmlIcon" label="index.template.html" url="source/html-template/index.template.html"/>
+			<node label="swfobject.js" url="source/html-template/swfobject.js.txt"/>
+		</node>
+		<node label="libs">
+			<node label="fzip.swc" url="source/libs/fzip.swc"/>
+		</node>
+		<node label="src">
+			<node icon="actionScriptIcon" label="AssetManager.as" url="source/AssetManager.as.html"/>
+			<node icon="mxmlAppIcon" selected="true" label="AssetManagerApp.mxml" url="source/AssetManagerApp.mxml.html"/>
+			<node icon="actionScriptIcon" label="AssetManagerEvent.as" url="source/AssetManagerEvent.as.html"/>
+			<node icon="actionScriptIcon" label="AssetsBase.as" url="source/AssetsBase.as.html"/>
+			<node icon="actionScriptIcon" label="LoadAssetsZIPAction.as" url="source/LoadAssetsZIPAction.as.html"/>
+			<node icon="actionScriptIcon" label="RuntimeBitmapAsset.as" url="source/RuntimeBitmapAsset.as.html"/>
+			<node icon="actionScriptIcon" label="SampleAssets.as" url="source/SampleAssets.as.html"/>
+		</node>
+	</nodes>
+	<zipfile label="Download source (ZIP, 61K)" url="AssetManagerApp.zip">
+	</zipfile>
+	<sdklink label="Download Flex SDK" url="http://www.adobe.com/go/flex4_sdk_download">
+	</sdklink>
+</index>

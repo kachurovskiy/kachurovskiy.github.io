@@ -1,0 +1,470 @@
+<!-- saved from url=(0014)about:internet -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<title>Tree.as</title>
+<link rel="stylesheet" type="text/css" href="../SourceStyles.css"/>
+</head>
+
+<body><pre><span class="ActionScriptpackage">package</span>
+<span class="ActionScriptBracket/Brace">{</span>
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">flash</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">events</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">Event</span>;
+
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">collections</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">IList</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">controls</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">treeClasses</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">DefaultDataDescriptor</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">controls</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">treeClasses</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ITreeDataDescriptor2</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">core</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ClassFactory</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">core</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">FlexGlobals</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">core</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">IVisualElement</span>;
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">mx</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">styles</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">CSSStyleDeclaration</span>;
+
+<span class="ActionScriptReserved">import</span> <span class="ActionScriptDefault_Text">spark</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">components</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">List</span>;
+
+<span class="ActionScriptComment">//--------------------------------------
+</span><span class="ActionScriptComment">//  Events
+</span><span class="ActionScriptComment">//--------------------------------------
+</span>
+<span class="ActionScriptASDoc">/**
+ *  Dispatched when a branch is closed or collapsed.
+ */</span>
+<span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Event</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"itemClose"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">type</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"TreeEvent"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+
+<span class="ActionScriptASDoc">/**
+ *  Dispatched when a branch is opened or expanded.
+ */</span>
+<span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Event</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"itemOpen"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">type</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"TreeEvent"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+
+<span class="ActionScriptASDoc">/**
+ *  Dispatched when a branch open or close is initiated.
+ */</span>
+<span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Event</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"itemOpening"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">type</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"TreeEvent"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+
+<span class="ActionScriptComment">//--------------------------------------
+</span><span class="ActionScriptComment">//  Styles
+</span><span class="ActionScriptComment">//--------------------------------------
+</span>
+<span class="ActionScriptASDoc">/**
+ *  Specifies the icon that is displayed next to a parent item that is open so that its
+ *  children are displayed.
+ *
+ *  The default value is the "TreeDisclosureOpen" symbol in the Assets.swf file.
+ */</span>
+<span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Style</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"disclosureOpenIcon"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">type</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"Class"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">format</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"EmbeddedFile"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">inherit</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"no"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+
+<span class="ActionScriptASDoc">/**
+ *  Specifies the icon that is displayed next to a parent item that is closed so that its
+ *  children are not displayed (the subtree is collapsed).
+ *
+ *  The default value is the "TreeDisclosureClosed" symbol in the Assets.swf file.
+ */</span>
+<span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Style</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"disclosureClosedIcon"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">type</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"Class"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">format</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"EmbeddedFile"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">inherit</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"no"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+<span class="ActionScriptASDoc">/**
+ * Indentation for each tree level, in pixels. The default value is 17.
+ */</span>
+<span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Style</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"indentation"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">type</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"Number"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">inherit</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"no"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">theme</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"spark"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+
+<span class="ActionScriptASDoc">/**
+ *  Specifies the folder open icon for a branch item of the tree.
+ */</span>
+<span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Style</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"folderOpenIcon"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">type</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"Class"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">format</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"EmbeddedFile"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">inherit</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"no"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+
+<span class="ActionScriptASDoc">/**
+ *  Specifies the folder closed icon for a branch item of the tree.
+ */</span>
+<span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Style</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"folderClosedIcon"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">type</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"Class"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">format</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"EmbeddedFile"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">inherit</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"no"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+
+<span class="ActionScriptASDoc">/**
+ *  Specifies the default icon for a leaf item.
+ */</span>
+<span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Style</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"defaultLeafIcon"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">type</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"Class"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">format</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"EmbeddedFile"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">inherit</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"no"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+
+<span class="ActionScriptASDoc">/**
+ *  Color of the text when the user rolls over a row.
+ */</span>
+<span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Style</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"textRollOverColor"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">type</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"uint"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">format</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"Color"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">inherit</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"yes"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+
+<span class="ActionScriptASDoc">/**
+ *  Color of the text when the user selects a row.
+ */</span>
+<span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Style</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"textSelectedColor"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">type</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"uint"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">format</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"Color"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">inherit</span><span class="ActionScriptOperator">=</span><span class="ActionScriptString">"yes"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+<span class="ActionScriptASDoc">/**
+ * Custom Spark Tree that is based on Spark List. Supports most of MX Tree
+ * features and does not have it's bugs.
+ */</span>
+<span class="ActionScriptReserved">public</span> <span class="ActionScriptclass">class</span> <span class="ActionScriptDefault_Text">Tree</span> <span class="ActionScriptReserved">extends</span> <span class="ActionScriptDefault_Text">List</span>
+<span class="ActionScriptBracket/Brace">{</span>
+    
+    <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>    <span class="ActionScriptComment">//
+</span>    <span class="ActionScriptComment">//  Constructor
+</span>    <span class="ActionScriptComment">//
+</span>    <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>    
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">Tree</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">super</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+        
+        <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">mxTreeDeclaration</span>:<span class="ActionScriptDefault_Text">CSSStyleDeclaration</span> <span class="ActionScriptOperator">=</span> 
+            <span class="ActionScriptDefault_Text">FlexGlobals</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">topLevelApplication</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">styleManager</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">getStyleDeclaration</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"mx.controls.Tree"</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">mxTreeDeclaration</span><span class="ActionScriptBracket/Brace">)</span> <span class="ActionScriptComment">// MX Tree may not be used in the application
+</span>        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">setStyle</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"indentation"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">mxTreeDeclaration</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">getStyle</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"indentation"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">setStyle</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"disclosureOpenIcon"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">mxTreeDeclaration</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">getStyle</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"disclosureOpenIcon"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">setStyle</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"disclosureClosedIcon"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">mxTreeDeclaration</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">getStyle</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"disclosureClosedIcon"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">setStyle</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"folderOpenIcon"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">mxTreeDeclaration</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">getStyle</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"folderOpenIcon"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">setStyle</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"folderClosedIcon"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">mxTreeDeclaration</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">getStyle</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"folderClosedIcon"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">setStyle</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"defaultLeafIcon"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">mxTreeDeclaration</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">getStyle</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"defaultLeafIcon"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        <span class="ActionScriptReserved">else</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">setStyle</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"indentation"</span><span class="ActionScriptOperator">,</span> 17<span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">setStyle</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"disclosureOpenIcon"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">disclosureOpenIcon</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">setStyle</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"disclosureClosedIcon"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">disclosureClosedIcon</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">setStyle</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"folderOpenIcon"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">folderOpenIcon</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">setStyle</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"folderClosedIcon"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">folderClosedIcon</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">setStyle</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"defaultLeafIcon"</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">defaultLeafIcon</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptDefault_Text">itemRenderer</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">ClassFactory</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">DefaultTreeItemRenderer</span><span class="ActionScriptBracket/Brace">)</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>    <span class="ActionScriptComment">//
+</span>    <span class="ActionScriptComment">//  Variables
+</span>    <span class="ActionScriptComment">//
+</span>    <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>    
+    <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Embed</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"disclosureOpenIcon.png"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+    <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">disclosureOpenIcon</span>:<span class="ActionScriptDefault_Text">Class</span>;
+    
+    <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Embed</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"disclosureClosedIcon.png"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+    <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">disclosureClosedIcon</span>:<span class="ActionScriptDefault_Text">Class</span>;
+    
+    <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Embed</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"folderOpenIcon.png"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+    <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">folderOpenIcon</span>:<span class="ActionScriptDefault_Text">Class</span>;
+    
+    <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Embed</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"folderClosedIcon.png"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+    <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">folderClosedIcon</span>:<span class="ActionScriptDefault_Text">Class</span>;
+    
+    <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Embed</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"defaultLeafIcon.png"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+    <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">defaultLeafIcon</span>:<span class="ActionScriptDefault_Text">Class</span>;
+    
+    <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">refreshRenderersCalled</span>:<span class="ActionScriptDefault_Text">Boolean</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">false</span>;
+    
+    <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>    <span class="ActionScriptComment">//
+</span>    <span class="ActionScriptComment">//  Properties
+</span>    <span class="ActionScriptComment">//
+</span>    <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>    
+    <span class="ActionScriptComment">//----------------------------------
+</span>    <span class="ActionScriptComment">//  dataDescriptor
+</span>    <span class="ActionScriptComment">//----------------------------------
+</span>
+    <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">_dataDescriptor</span>:<span class="ActionScriptDefault_Text">ITreeDataDescriptor2</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">DefaultDataDescriptor</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+    
+    <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Bindable</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"dataDescriptorChange"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">get</span> <span class="ActionScriptDefault_Text">dataDescriptor</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">ITreeDataDescriptor2</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">_dataDescriptor</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">set</span> <span class="ActionScriptDefault_Text">dataDescriptor</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span>:<span class="ActionScriptDefault_Text">ITreeDataDescriptor2</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">_dataDescriptor</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptDefault_Text">value</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptReserved">return</span>;
+        
+        <span class="ActionScriptDefault_Text">_dataDescriptor</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">value</span>;
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">_dataProvider</span><span class="ActionScriptBracket/Brace">)</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">_dataProvider</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">dataDescriptor</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">_dataDescriptor</span>;
+            <span class="ActionScriptDefault_Text">refreshRenderers</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        <span class="ActionScriptDefault_Text">dispatchEvent</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">Event</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"dataDescriptorChange"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptComment">//----------------------------------
+</span>    <span class="ActionScriptComment">//  dataProvider
+</span>    <span class="ActionScriptComment">//----------------------------------
+</span>    
+    <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">_dataProvider</span>:<span class="ActionScriptDefault_Text">TreeDataProvider</span>;
+    
+    <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">get</span> <span class="ActionScriptDefault_Text">dataProvider</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">IList</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">_dataProvider</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">set</span> <span class="ActionScriptDefault_Text">dataProvider</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span>:<span class="ActionScriptDefault_Text">IList</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">typedValue</span>:<span class="ActionScriptDefault_Text">TreeDataProvider</span>;
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span><span class="ActionScriptBracket/Brace">)</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">typedValue</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">value</span> <span class="ActionScriptReserved">is</span> <span class="ActionScriptDefault_Text">TreeDataProvider</span> <span class="ActionScriptOperator">?</span> <span class="ActionScriptDefault_Text">TreeDataProvider</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span><span class="ActionScriptBracket/Brace">)</span> : <span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">TreeDataProvider</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">typedValue</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">dataDescriptor</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">dataDescriptor</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">_dataProvider</span><span class="ActionScriptBracket/Brace">)</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">_dataProvider</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">removeEventListener</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">TreeEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ITEM_CLOSE</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">dataProvider_someHandler</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">_dataProvider</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">removeEventListener</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">TreeEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ITEM_OPEN</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">dataProvider_someHandler</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">_dataProvider</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">removeEventListener</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">TreeEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ITEM_OPENING</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">dataProvider_someHandler</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        
+        <span class="ActionScriptDefault_Text">_dataProvider</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">typedValue</span>;
+        <span class="ActionScriptReserved">super</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">dataProvider</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">typedValue</span>;
+        
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">_dataProvider</span><span class="ActionScriptBracket/Brace">)</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">_dataProvider</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addEventListener</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">TreeEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ITEM_CLOSE</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">dataProvider_someHandler</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">_dataProvider</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addEventListener</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">TreeEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ITEM_OPEN</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">dataProvider_someHandler</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptDefault_Text">_dataProvider</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">addEventListener</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">TreeEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">ITEM_OPENING</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">dataProvider_someHandler</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptComment">//----------------------------------
+</span>    <span class="ActionScriptComment">//  iconField
+</span>    <span class="ActionScriptComment">//----------------------------------
+</span>    
+    <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">_iconField</span>:<span class="ActionScriptDefault_Text">String</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptString">"icon"</span>;
+    
+    <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Bindable</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"iconFieldChange"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">get</span> <span class="ActionScriptDefault_Text">iconField</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">String</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">_iconField</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">set</span> <span class="ActionScriptDefault_Text">iconField</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span>:<span class="ActionScriptDefault_Text">String</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">_iconField</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptDefault_Text">value</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptReserved">return</span>;
+        
+        <span class="ActionScriptDefault_Text">_iconField</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">value</span>;
+        <span class="ActionScriptDefault_Text">refreshRenderers</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptDefault_Text">dispatchEvent</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">Event</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"iconFieldChange"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptComment">//----------------------------------
+</span>    <span class="ActionScriptComment">//  iconOpenField
+</span>    <span class="ActionScriptComment">//----------------------------------
+</span>    
+    <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">_iconOpenField</span>:<span class="ActionScriptDefault_Text">String</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptString">"icon"</span>;
+    
+    <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Bindable</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"iconOpenFieldChange"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+    <span class="ActionScriptASDoc">/**
+     * Field that will be searched for icon when showing open folder item.
+     */</span>
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">get</span> <span class="ActionScriptDefault_Text">iconOpenField</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">String</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">_iconOpenField</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">set</span> <span class="ActionScriptDefault_Text">iconOpenField</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span>:<span class="ActionScriptDefault_Text">String</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">_iconOpenField</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptDefault_Text">value</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptReserved">return</span>;
+        
+        <span class="ActionScriptDefault_Text">_iconOpenField</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">value</span>;
+        <span class="ActionScriptDefault_Text">refreshRenderers</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptDefault_Text">dispatchEvent</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">Event</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"iconOpenFieldChange"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptComment">//----------------------------------
+</span>    <span class="ActionScriptComment">//  iconFunction
+</span>    <span class="ActionScriptComment">//----------------------------------
+</span>    
+    <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">_iconFunction</span>:<span class="ActionScriptDefault_Text">Function</span>;
+    
+    <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Bindable</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"iconFunctionChange"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+    <span class="ActionScriptASDoc">/**
+     * Icon function. Signature &lt;code&gt;function(item:Object, isOpen:Boolean, isBranch:Boolean):Class&lt;/code&gt;.
+     */</span>
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">get</span> <span class="ActionScriptDefault_Text">iconFunction</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">Function</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">_iconFunction</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">set</span> <span class="ActionScriptDefault_Text">iconFunction</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span>:<span class="ActionScriptDefault_Text">Function</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">_iconFunction</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptDefault_Text">value</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptReserved">return</span>;
+        
+        <span class="ActionScriptDefault_Text">_iconFunction</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">value</span>;
+        <span class="ActionScriptDefault_Text">refreshRenderers</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptDefault_Text">dispatchEvent</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">Event</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"iconFunctionChange"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptComment">//----------------------------------
+</span>    <span class="ActionScriptComment">//  iconsVisible
+</span>    <span class="ActionScriptComment">//----------------------------------
+</span>    
+    <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">_iconsVisible</span>:<span class="ActionScriptDefault_Text">Boolean</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">true</span>;
+    
+    <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Bindable</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"iconsVisibleChange"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+    <span class="ActionScriptASDoc">/**
+     * Field that will be searched for icon when showing open folder item.
+     */</span>
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">get</span> <span class="ActionScriptDefault_Text">iconsVisible</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">Boolean</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">_iconsVisible</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">set</span> <span class="ActionScriptDefault_Text">iconsVisible</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span>:<span class="ActionScriptDefault_Text">Boolean</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">_iconsVisible</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptDefault_Text">value</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptReserved">return</span>;
+        
+        <span class="ActionScriptDefault_Text">_iconsVisible</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">value</span>;
+        <span class="ActionScriptDefault_Text">refreshRenderers</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptDefault_Text">dispatchEvent</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">Event</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"iconsVisibleChange"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptComment">//----------------------------------
+</span>    <span class="ActionScriptComment">//  useTextColors
+</span>    <span class="ActionScriptComment">//----------------------------------
+</span>    
+    <span class="ActionScriptReserved">private</span> <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">_useTextColors</span>:<span class="ActionScriptDefault_Text">Boolean</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">true</span>;
+    
+    <span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptMetadata">Bindable</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"useTextColorsChange"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">]</span>
+    <span class="ActionScriptASDoc">/**
+     * MX components use "textRollOverColor" and "textSelectedColor" while Spark
+     * do not. Set this property to &lt;code&gt;true&lt;/code&gt; to use them in tree.
+     */</span>
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">get</span> <span class="ActionScriptDefault_Text">useTextColors</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">Boolean</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">_useTextColors</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptReserved">set</span> <span class="ActionScriptDefault_Text">useTextColors</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">value</span>:<span class="ActionScriptDefault_Text">Boolean</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">_useTextColors</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptDefault_Text">value</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptReserved">return</span>;
+        
+        <span class="ActionScriptDefault_Text">_useTextColors</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">value</span>;
+        <span class="ActionScriptDefault_Text">refreshRenderers</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptDefault_Text">dispatchEvent</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptReserved">new</span> <span class="ActionScriptDefault_Text">Event</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"useTextColorsChange"</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+
+    <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>    <span class="ActionScriptComment">//
+</span>    <span class="ActionScriptComment">//  Overriden methods
+</span>    <span class="ActionScriptComment">//
+</span>    <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>    
+    <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">updateRenderer</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">renderer</span>:<span class="ActionScriptDefault_Text">IVisualElement</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">itemIndex</span>:<span class="ActionScriptDefault_Text">int</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">data</span>:<span class="ActionScriptDefault_Text">Object</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptDefault_Text">itemIndex</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">_dataProvider</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">getItemIndex</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">data</span><span class="ActionScriptBracket/Brace">)</span>;
+        
+        <span class="ActionScriptReserved">super</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">updateRenderer</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">renderer</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">itemIndex</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">data</span><span class="ActionScriptBracket/Brace">)</span>;
+        
+        <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">treeItemRenderer</span>:<span class="ActionScriptDefault_Text">ITreeItemRenderer</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">ITreeItemRenderer</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">renderer</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptDefault_Text">treeItemRenderer</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">level</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">_dataProvider</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">getItemLevel</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">data</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptDefault_Text">treeItemRenderer</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">isBranch</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">true</span>;
+        <span class="ActionScriptDefault_Text">treeItemRenderer</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">isLeaf</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">false</span>;
+        <span class="ActionScriptDefault_Text">treeItemRenderer</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">hasChildren</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">dataDescriptor</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">hasChildren</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">data</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptDefault_Text">treeItemRenderer</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">isOpen</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">_dataProvider</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">isOpen</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">data</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptDefault_Text">treeItemRenderer</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">icon</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">_iconsVisible</span> <span class="ActionScriptOperator">?</span> <span class="ActionScriptDefault_Text">getIcon</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">data</span><span class="ActionScriptBracket/Brace">)</span> : <span class="ActionScriptReserved">null</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptReserved">override</span> <span class="ActionScriptReserved">protected</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">updateDisplayList</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">unscaledWidth</span>:<span class="ActionScriptDefault_Text">Number</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">unscaledHeight</span>:<span class="ActionScriptDefault_Text">Number</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">super</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">updateDisplayList</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">unscaledWidth</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">unscaledHeight</span><span class="ActionScriptBracket/Brace">)</span>;
+        
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">refreshRenderersCalled</span><span class="ActionScriptBracket/Brace">)</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptDefault_Text">refreshRenderersCalled</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">false</span>;
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">n</span>:<span class="ActionScriptDefault_Text">int</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">dataGroup</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">numElements</span>;
+            <span class="ActionScriptReserved">for</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">i</span>:<span class="ActionScriptDefault_Text">int</span> <span class="ActionScriptOperator">=</span> 0; <span class="ActionScriptDefault_Text">i</span> <span class="ActionScriptOperator">&lt;</span> <span class="ActionScriptDefault_Text">n</span>; <span class="ActionScriptDefault_Text">i</span><span class="ActionScriptOperator">++</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptBracket/Brace">{</span>
+                <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">renderer</span>:<span class="ActionScriptDefault_Text">ITreeItemRenderer</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">dataGroup</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">getElementAt</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">i</span><span class="ActionScriptBracket/Brace">)</span> <span class="ActionScriptReserved">as</span> <span class="ActionScriptDefault_Text">ITreeItemRenderer</span>;
+                <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">renderer</span><span class="ActionScriptBracket/Brace">)</span>
+                    <span class="ActionScriptDefault_Text">updateRenderer</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">renderer</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">renderer</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">itemIndex</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">renderer</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">data</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptBracket/Brace">}</span>
+        <span class="ActionScriptBracket/Brace">}</span>
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>    <span class="ActionScriptComment">//
+</span>    <span class="ActionScriptComment">//  Methods
+</span>    <span class="ActionScriptComment">//
+</span>    <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>    
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">expandItem</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">item</span>:<span class="ActionScriptDefault_Text">Object</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">open</span>:<span class="ActionScriptDefault_Text">Boolean</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">true</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">cancelable</span>:<span class="ActionScriptDefault_Text">Boolean</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">true</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">dataDescriptor</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">hasChildren</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">item</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">children</span>:<span class="ActionScriptDefault_Text">IList</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">IList</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">dataDescriptor</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">getChildren</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">item</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">open</span><span class="ActionScriptBracket/Brace">)</span>
+                <span class="ActionScriptDefault_Text">_dataProvider</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">openBranch</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">children</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">item</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">cancelable</span><span class="ActionScriptBracket/Brace">)</span>;
+            <span class="ActionScriptReserved">else</span>
+                <span class="ActionScriptDefault_Text">_dataProvider</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">closeBranch</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">children</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">item</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">cancelable</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">getIcon</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">item</span>:<span class="ActionScriptDefault_Text">Object</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">Class</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">isBranch</span>:<span class="ActionScriptDefault_Text">Boolean</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">dataDescriptor</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">isBranch</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">item</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">isOpen</span>:<span class="ActionScriptDefault_Text">Boolean</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">isBranch</span> <span class="ActionScriptOperator">?</span> <span class="ActionScriptDefault_Text">_dataProvider</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">isOpen</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">item</span><span class="ActionScriptBracket/Brace">)</span> : <span class="ActionScriptReserved">false</span>;
+        <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">icon</span>:<span class="ActionScriptDefault_Text">Class</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">getOwnItemIcon</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">item</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">isOpen</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">isBranch</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">icon</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">icon</span>;
+        
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">isBranch</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptDefault_Text">icon</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">getStyle</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">isOpen</span> <span class="ActionScriptOperator">?</span> <span class="ActionScriptString">"folderOpenIcon"</span> : <span class="ActionScriptString">"folderClosedIcon"</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptReserved">else</span>
+            <span class="ActionScriptDefault_Text">icon</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">getStyle</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptString">"defaultLeafIcon"</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">icon</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">getOwnItemIcon</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">item</span>:<span class="ActionScriptDefault_Text">Object</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">isOpen</span>:<span class="ActionScriptOperator">*</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">null</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">isBranch</span>:<span class="ActionScriptOperator">*</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">null</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptDefault_Text">Class</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">isOpen</span> <span class="ActionScriptOperator">===</span> <span class="ActionScriptReserved">null</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptDefault_Text">isOpen</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">_dataProvider</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">isOpen</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">item</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">isBranch</span> <span class="ActionScriptOperator">===</span> <span class="ActionScriptReserved">null</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptDefault_Text">isBranch</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">dataDescriptor</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">isBranch</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">item</span><span class="ActionScriptBracket/Brace">)</span>;
+        
+        <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">icon</span>:<span class="ActionScriptDefault_Text">Class</span>;
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptOperator">!</span><span class="ActionScriptDefault_Text">icon</span> <span class="ActionScriptOperator">&amp;&amp;</span> <span class="ActionScriptDefault_Text">_iconFunction</span> <span class="ActionScriptOperator">!=</span> <span class="ActionScriptReserved">null</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptDefault_Text">icon</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">_iconFunction</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">item</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">isOpen</span><span class="ActionScriptOperator">,</span> <span class="ActionScriptDefault_Text">isBranch</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">icon</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">icon</span>;
+        
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">isOpen</span> <span class="ActionScriptOperator">&amp;&amp;</span> <span class="ActionScriptDefault_Text">_iconOpenField</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptDefault_Text">icon</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">item</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">hasOwnProperty</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">_iconOpenField</span><span class="ActionScriptBracket/Brace">)</span> <span class="ActionScriptOperator">?</span> <span class="ActionScriptDefault_Text">item</span><span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptDefault_Text">_iconOpenField</span><span class="ActionScriptBracket/Brace">]</span> : <span class="ActionScriptReserved">null</span>;
+        <span class="ActionScriptReserved">else</span> <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptOperator">!</span><span class="ActionScriptDefault_Text">isOpen</span> <span class="ActionScriptOperator">&amp;&amp;</span> <span class="ActionScriptDefault_Text">_iconField</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptDefault_Text">icon</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">item</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">hasOwnProperty</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">_iconField</span><span class="ActionScriptBracket/Brace">)</span> <span class="ActionScriptOperator">?</span> <span class="ActionScriptDefault_Text">item</span><span class="ActionScriptBracket/Brace">[</span><span class="ActionScriptDefault_Text">_iconField</span><span class="ActionScriptBracket/Brace">]</span> : <span class="ActionScriptReserved">null</span>;
+        <span class="ActionScriptReserved">return</span> <span class="ActionScriptDefault_Text">icon</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptReserved">public</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">refreshRenderers</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptDefault_Text">refreshRenderersCalled</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptReserved">true</span>;
+        <span class="ActionScriptDefault_Text">invalidateDisplayList</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+    <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>    <span class="ActionScriptComment">//
+</span>    <span class="ActionScriptComment">//  Event handlers
+</span>    <span class="ActionScriptComment">//
+</span>    <span class="ActionScriptComment">//--------------------------------------------------------------------------
+</span>
+    <span class="ActionScriptReserved">private</span> <span class="ActionScriptfunction">function</span> <span class="ActionScriptDefault_Text">dataProvider_someHandler</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">event</span>:<span class="ActionScriptDefault_Text">TreeEvent</span><span class="ActionScriptBracket/Brace">)</span>:<span class="ActionScriptReserved">void</span>
+    <span class="ActionScriptBracket/Brace">{</span>
+        <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">clonedEvent</span>:<span class="ActionScriptDefault_Text">TreeEvent</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">TreeEvent</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">event</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">clone</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptComment">// find corresponding item renderer
+</span>        <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">n</span>:<span class="ActionScriptDefault_Text">int</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">dataGroup</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">numElements</span>;
+        <span class="ActionScriptReserved">for</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">i</span>:<span class="ActionScriptDefault_Text">int</span> <span class="ActionScriptOperator">=</span> 0; <span class="ActionScriptDefault_Text">i</span> <span class="ActionScriptOperator">&lt;</span> <span class="ActionScriptDefault_Text">n</span>; <span class="ActionScriptDefault_Text">i</span><span class="ActionScriptOperator">++</span><span class="ActionScriptBracket/Brace">)</span>
+        <span class="ActionScriptBracket/Brace">{</span>
+            <span class="ActionScriptvar">var</span> <span class="ActionScriptDefault_Text">renderer</span>:<span class="ActionScriptDefault_Text">ITreeItemRenderer</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">dataGroup</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">getElementAt</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">i</span><span class="ActionScriptBracket/Brace">)</span> <span class="ActionScriptReserved">as</span> <span class="ActionScriptDefault_Text">ITreeItemRenderer</span>;
+            <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">renderer</span> <span class="ActionScriptOperator">&amp;&amp;</span> <span class="ActionScriptDefault_Text">renderer</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">data</span> <span class="ActionScriptOperator">==</span> <span class="ActionScriptDefault_Text">event</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">item</span><span class="ActionScriptBracket/Brace">)</span>
+                <span class="ActionScriptDefault_Text">clonedEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">itemRenderer</span> <span class="ActionScriptOperator">=</span> <span class="ActionScriptDefault_Text">renderer</span>;
+        <span class="ActionScriptBracket/Brace">}</span>
+        <span class="ActionScriptDefault_Text">dispatchEvent</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">clonedEvent</span><span class="ActionScriptBracket/Brace">)</span>;
+        <span class="ActionScriptReserved">if</span> <span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptDefault_Text">clonedEvent</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">isDefaultPrevented</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span><span class="ActionScriptBracket/Brace">)</span>
+            <span class="ActionScriptDefault_Text">event</span><span class="ActionScriptOperator">.</span><span class="ActionScriptDefault_Text">preventDefault</span><span class="ActionScriptBracket/Brace">(</span><span class="ActionScriptBracket/Brace">)</span>;
+    <span class="ActionScriptBracket/Brace">}</span>
+    
+<span class="ActionScriptBracket/Brace">}</span>
+<span class="ActionScriptBracket/Brace">}</span>
+</pre></body>
+</html>

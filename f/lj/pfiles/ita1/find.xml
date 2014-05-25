@@ -1,0 +1,6 @@
+﻿<xml>
+<find bg="find_bg.jpg" width="392" height="249" x="3" y="46">
+	<text name="tf" text="WE WILL FIND YOU!!!!!!!" 
+		x="150" y="100" width="240" height="200"/>
+<find/>
+</xml>

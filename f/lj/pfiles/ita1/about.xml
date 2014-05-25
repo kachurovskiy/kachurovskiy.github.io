@@ -1,0 +1,10 @@
+﻿<xml>
+<about bg="about_bg.jpg" width="392" height="249" x="3" y="46">	
+	<img url="lenin.jpg" x="5" y="5" width="135" height="111"/>
+	<img url="sky.jpg" x="267" y="117" width="120" height="81"/>
+	<text name="tf" text="Sample text for the dynamic text field. Check this out. Aaa w subbotu referat po angliskomu... Jopa. We were hopeful that the government would see the wisdom and justice in not pursuing a case against Sklyarov, Burton said. Even if one were to ignore the serious legal questions involving the (copyright protections), this case hardly cries out for criminal prosecution. Sklyarov's and ElcomSoft's actions are. " 
+		x="145" y="3" width="240" height="200"/>
+	<text name="tf2" text="Sample text for the dynamic text field. Check this out. Aaa w subbotu referat po angliskomu... Jopa. We were hopeful that the government would see the wisdom and justice in not pursuing a case against Sklyarov, Burton said. Even if one were to ignore the serious legal questions involving the (copyright protections), this case hardly cries out for criminal prosecution. Sklyarov's and ElcomSoft's actions are. Sample text for the dynamic text field. Check this out. Aaa w subbotu referat po angliskomu... Jopa." 
+		x="3" y="120" width="262" height="130"/>
+<about/>
+</xml>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<index>
+	<title>Source of RuntimeAssetClass</title>
+	<nodes>
+		<node icon="classpathIcon" label="src" expanded="true">
+			<node icon="packageIcon" label="bitmaps" expanded="true">
+				<node icon="actionScriptIcon" label="B0.as" url="source/bitmaps/B0.as.html"/>
+				<node icon="actionScriptIcon" label="B1.as" url="source/bitmaps/B1.as.html"/>
+				<node icon="actionScriptIcon" label="B2.as" url="source/bitmaps/B2.as.html"/>
+				<node icon="actionScriptIcon" label="RuntimeBitmapAsset.as" url="source/bitmaps/RuntimeBitmapAsset.as.html"/>
+			</node>
+			<node icon="mxmlAppIcon" selected="true" label="RuntimeAssetClass.mxml" url="source/RuntimeAssetClass.mxml.html"/>
+		</node>
+	</nodes>
+</index>
