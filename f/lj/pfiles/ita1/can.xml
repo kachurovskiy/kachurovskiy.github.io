@@ -1,8 +1,0 @@
-﻿<xml>
-<can bg="can_bg.jpg" width="392" height="249" x="3" y="46">
-	<text name="tf" text="We can everything." 
-		x="210" y="50" width="240" height="200"/>
-	<text name="tf2" text="Do you believe?)" 
-		x="210" y="150" width="262" height="130"/>
-<can/>
-</xml>

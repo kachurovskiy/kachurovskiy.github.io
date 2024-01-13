@@ -1,7 +1,0 @@
-﻿<xml>
-<can bg="find_bg.jpg" width="392" height="249" x="3" y="46">
-	<text name="tf" text="Man in a sky." 
-		x="295" y="30" width="200" height="100"/>
-	<img url="portfolio_fly.jpg" x="5" y="5" width="285" height="240"/>
-<can/>
-</xml>
